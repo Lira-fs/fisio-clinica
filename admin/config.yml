@@ -1,0 +1,98 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "imagens"
+public_folder: "/imagens"
+
+collections:
+  # FISIOTERAPEUTAS
+  - name: "fisioterapeutas"
+    label: "👨‍⚕️ Fisioterapeutas"
+    folder: "_data/fisioterapeutas"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nome Completo", name: "nome", widget: "string"}
+      - {label: "Especialidade", name: "especialidade", widget: "string"}
+      - {label: "CRM/CREFITO", name: "registro", widget: "string"}
+      - {label: "Foto", name: "foto", widget: "image", required: false}
+      - {label: "Descrição", name: "descricao", widget: "text"}
+      - {label: "Unidade", name: "unidade", widget: "select", options: ["Jundiaí", "Itatiba", "Várzea Paulista"]}
+      - {label: "Experiência (anos)", name: "experiencia", widget: "number"}
+      - {label: "Telefone", name: "telefone", widget: "string", required: false}
+      - {label: "Email", name: "email", widget: "string", required: false}
+      - {label: "Status", name: "ativo", widget: "boolean", default: true}
+
+  # POSTS DO BLOG
+  - name: "blog"
+    label: "📝 Blog Posts"
+    folder: "_data/posts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Título", name: "titulo", widget: "string"}
+      - {label: "Data de Publicação", name: "data", widget: "datetime"}
+      - {label: "Autor", name: "autor", widget: "string"}
+      - {label: "Imagem de Capa", name: "imagem", widget: "image"}
+      - {label: "Resumo", name: "resumo", widget: "text"}
+      - {label: "Conteúdo", name: "conteudo", widget: "markdown"}
+      - {label: "Categoria", name: "categoria", widget: "select", options: ["Fisioterapia Esportiva", "Reabilitação", "Pilates", "Dicas de Saúde", "Novidades"]}
+      - {label: "Tags", name: "tags", widget: "list", required: false}
+      - {label: "Publicado", name: "publicado", widget: "boolean", default: true}
+
+  # TRATAMENTOS
+  - name: "tratamentos"
+    label: "🏥 Tratamentos"
+    folder: "_data/tratamentos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nome do Tratamento", name: "nome", widget: "string"}
+      - {label: "Descrição Curta", name: "descricao_curta", widget: "text"}
+      - {label: "Descrição Completa", name: "descricao_completa", widget: "markdown"}
+      - {label: "Imagem", name: "imagem", widget: "image"}
+      - {label: "Duração da Sessão", name: "duracao", widget: "string"}
+      - {label: "Preço (R$)", name: "preco", widget: "number", required: false}
+      - {label: "Indicações", name: "indicacoes", widget: "list"}
+      - {label: "Benefícios", name: "beneficios", widget: "list"}
+      - {label: "Disponível em", name: "unidades", widget: "select", multiple: true, options: ["Jundiaí", "Itatiba", "Várzea Paulista"]}
+      - {label: "Ativo", name: "ativo", widget: "boolean", default: true}
+
+  # CONFIGURAÇÕES GERAIS
+  - name: "configuracoes"
+    label: "⚙️ Configurações"
+    files:
+      - label: "Informações da Clínica"
+        name: "clinica"
+        file: "_data/clinica.json"
+        fields:
+          - {label: "Nome da Clínica", name: "nome", widget: "string"}
+          - {label: "Slogan", name: "slogan", widget: "string"}
+          - {label: "Telefone Principal", name: "telefone", widget: "string"}
+          - {label: "Email Principal", name: "email", widget: "string"}
+          - {label: "WhatsApp", name: "whatsapp", widget: "string"}
+          - {label: "Descrição", name: "descricao", widget: "text"}
+          - label: "Redes Sociais"
+            name: "redes_sociais"
+            widget: "object"
+            fields:
+              - {label: "Facebook", name: "facebook", widget: "string", required: false}
+              - {label: "Instagram", name: "instagram", widget: "string", required: false}
+              - {label: "YouTube", name: "youtube", widget: "string", required: false}
+              - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
+
+      - label: "Unidades"
+        name: "unidades"
+        file: "_data/unidades.json"
+        fields:
+          - label: "Unidades"
+            name: "unidades"
+            widget: "list"
+            fields:
+              - {label: "Nome", name: "nome", widget: "string"}
+              - {label: "Endereço", name: "endereco", widget: "text"}
+              - {label: "Telefone", name: "telefone", widget: "string"}
+              - {label: "Email", name: "email", widget: "string"}
+              - {label: "Horário", name: "horario", widget: "string"}
+              - {label: "WhatsApp", name: "whatsapp", widget: "string"}

@@ -1,0 +1,14 @@
+{
+  "nome": "FISIO - Clínica de Fisioterapia",
+  "slogan": "Excelência em Fisioterapia Esportiva",
+  "telefone": "(11) 99999-9999",
+  "email": "contato@clinicafisio.com.br",
+  "whatsapp": "5511999999999",
+  "descricao": "Transformando vidas na região com profissionais altamente qualificados, tecnologia de ponta e resultados comprovados em nossas unidades especializadas.",
+  "redes_sociais": {
+    "facebook": "https://facebook.com/clinicafisio",
+    "instagram": "https://instagram.com/clinicafisio",
+    "youtube": "https://youtube.com/@clinicafisio",
+    "linkedin": "https://linkedin.com/company/clinicafisio"
+  }
+}
