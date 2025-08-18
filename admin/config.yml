@@ -1,98 +1,331 @@
+# ================================
+# NETLIFY CMS - CONFIGURAÇÃO COMPLETA
+# Painel Administrativo para Clínica FISIO
+# ================================
+
 backend:
   name: git-gateway
   branch: main
 
+# Configurações de mídia
 media_folder: "imagens"
 public_folder: "/imagens"
 
+# Localização em português
+locale: 'pt'
+
+# Interface personalizada
+display_url: https://fisioclinica.netlify.app
+logo_url: https://fisioclinica.netlify.app/imagens/logo.png
+
+# Modo de publicação
+publish_mode: editorial_workflow
+
+# Configurações do editor
+editor:
+  preview: true
+
+# Configurações de mídia avançadas
+media_library:
+  name: uploadcare
+  config:
+    publicKey: "demopublickey"
+
 collections:
-  # FISIOTERAPEUTAS
+  # ================================
+  # 📝 BLOG - PRIORIDADE MÁXIMA
+  # ================================
+  - name: "blog"
+    label: "📝 Blog e Notícias"
+    label_singular: "Post do Blog"
+    folder: "_data/blog"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    summary: "{{titulo}} - {{data}}"
+    sortable_fields: ["data", "titulo", "categoria"]
+    view_filters:
+      - label: "Posts Publicados"
+        field: publicado
+        pattern: true
+      - label: "Rascunhos"
+        field: publicado
+        pattern: false
+      - label: "Fisioterapia Esportiva"
+        field: categoria
+        pattern: "esportiva"
+    view_groups:
+      - label: "Categoria"
+        field: categoria
+    fields:
+      - {label: "📰 Título do Post", name: "titulo", widget: "string", hint: "Título que aparecerá no site"}
+      - {label: "📅 Data de Publicação", name: "data", widget: "datetime", default: "{{now}}", format: "DD/MM/YYYY", picker_utc: false}
+      - {label: "✏️ Autor", name: "autor", widget: "string", default: "Equipe FISIO"}
+      - {label: "🖼️ Imagem de Capa", name: "imagem", widget: "image", hint: "Imagem principal do post (recomendado: 800x600px)"}
+      - {label: "📄 Resumo", name: "resumo", widget: "text", hint: "Breve descrição do post (máximo 200 caracteres)", pattern: ['.{1,200}', "Máximo 200 caracteres"]}
+      - {label: "📖 Conteúdo Completo", name: "conteudo", widget: "markdown", hint: "Use o editor para formatar o texto"}
+      - label: "🏷️ Categoria"
+        name: "categoria"
+        widget: "select"
+        options: 
+          - {label: "🏃 Fisioterapia Esportiva", value: "esportiva"}
+          - {label: "🏥 Reabilitação Ortopédica", value: "reabilitacao"}
+          - {label: "🧘 Pilates Clínico", value: "pilates"}
+          - {label: "💡 Dicas de Saúde", value: "dicas"}
+          - {label: "📢 Novidades da Clínica", value: "novidades"}
+          - {label: "🔬 Tecnologia e Inovação", value: "tecnologia"}
+      - {label: "🏷️ Tags", name: "tags", widget: "list", allow_add: true, hint: "Palavras-chave do post (opcional)", field: {label: "Tag", name: "tag", widget: "string"}}
+      - {label: "✅ Status", name: "publicado", widget: "boolean", default: true, hint: "Desmarque para salvar como rascunho"}
+      - {label: "🌟 Post em Destaque", name: "destaque", widget: "boolean", default: false, hint: "Marque para destacar na página principal"}
+
+  # ================================
+  # 👨‍⚕️ FISIOTERAPEUTAS - PRIORIDADE MÁXIMA  
+  # ================================
   - name: "fisioterapeutas"
     label: "👨‍⚕️ Fisioterapeutas"
+    label_singular: "Fisioterapeuta"
     folder: "_data/fisioterapeutas"
     create: true
+    delete: true
     slug: "{{slug}}"
+    editor:
+      preview: true
+    summary: "{{nome}} - {{especialidade}} - {{unidade}}"
+    sortable_fields: ["nome", "especialidade", "unidade"]
+    view_groups:
+      - label: "Unidade"
+        field: unidade
+      - label: "Especialidade"
+        field: especialidade
     fields:
-      - {label: "Nome Completo", name: "nome", widget: "string"}
-      - {label: "Especialidade", name: "especialidade", widget: "string"}
-      - {label: "CRM/CREFITO", name: "registro", widget: "string"}
-      - {label: "Foto", name: "foto", widget: "image", required: false}
-      - {label: "Descrição", name: "descricao", widget: "text"}
-      - {label: "Unidade", name: "unidade", widget: "select", options: ["Jundiaí", "Itatiba", "Várzea Paulista"]}
-      - {label: "Experiência (anos)", name: "experiencia", widget: "number"}
-      - {label: "Telefone", name: "telefone", widget: "string", required: false}
-      - {label: "Email", name: "email", widget: "string", required: false}
-      - {label: "Status", name: "ativo", widget: "boolean", default: true}
+      - {label: "👤 Nome Completo", name: "nome", widget: "string"}
+      - {label: "🎯 Especialidade Principal", name: "especialidade", widget: "string", hint: "Ex: Fisioterapia Esportiva, Pilates Clínico"}
+      - {label: "📜 CREFITO", name: "crefito", widget: "string", hint: "Número do registro profissional"}
+      - label: "🏥 Unidade Principal"
+        name: "unidade"
+        widget: "select"
+        options:
+          - {label: "🏛️ Jundiaí Centro", value: "jundiai"}
+          - {label: "🏃 Itatiba Esportiva", value: "itatiba"}
+          - {label: "🤝 Várzea Humanizada", value: "varzea"}
+          - {label: "🌊 Campo Limpo Aquática", value: "campo_limpo"}
+      - {label: "📸 Foto Profissional", name: "foto", widget: "image", hint: "Foto do profissional (recomendado: 400x400px)"}
+      - {label: "📝 Biografia", name: "bio", widget: "text", hint: "Breve apresentação do profissional"}
+      - {label: "⏰ Anos de Experiência", name: "experiencia", widget: "number", min: 0, max: 50, value_type: "int"}
+      - {label: "📞 Telefone", name: "telefone", widget: "string", required: false, hint: "Opcional - telefone direto"}
+      - {label: "📧 Email", name: "email", widget: "string", required: false, hint: "Opcional - email profissional"}
+      - label: "🎓 Formação Acadêmica"
+        name: "formacao"
+        widget: "list"
+        allow_add: true
+        required: false
+        hint: "Graduação, especializações, cursos"
+        fields:
+          - {label: "🏫 Instituição", name: "instituicao", widget: "string"}
+          - {label: "📜 Curso/Título", name: "curso", widget: "string"}
+          - {label: "📅 Ano", name: "ano", widget: "number", min: 1990, max: 2030, value_type: "int"}
+      - {label: "✅ Ativo", name: "ativo", widget: "boolean", default: true, hint: "Desmarque para ocultar do site"}
 
-  # POSTS DO BLOG
-  - name: "blog"
-    label: "📝 Blog Posts"
-    folder: "_data/posts"
-    create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    fields:
-      - {label: "Título", name: "titulo", widget: "string"}
-      - {label: "Data de Publicação", name: "data", widget: "datetime"}
-      - {label: "Autor", name: "autor", widget: "string"}
-      - {label: "Imagem de Capa", name: "imagem", widget: "image"}
-      - {label: "Resumo", name: "resumo", widget: "text"}
-      - {label: "Conteúdo", name: "conteudo", widget: "markdown"}
-      - {label: "Categoria", name: "categoria", widget: "select", options: ["Fisioterapia Esportiva", "Reabilitação", "Pilates", "Dicas de Saúde", "Novidades"]}
-      - {label: "Tags", name: "tags", widget: "list", required: false}
-      - {label: "Publicado", name: "publicado", widget: "boolean", default: true}
-
-  # TRATAMENTOS
+  # ================================
+  # 🏥 TRATAMENTOS
+  # ================================
   - name: "tratamentos"
     label: "🏥 Tratamentos"
+    label_singular: "Tratamento"
     folder: "_data/tratamentos"
     create: true
+    delete: true
     slug: "{{slug}}"
+    editor:
+      preview: true
+    summary: "{{nome}} - R$ {{preco}}"
+    sortable_fields: ["nome", "preco", "categoria"]
+    view_groups:
+      - label: "Categoria"
+        field: categoria
     fields:
-      - {label: "Nome do Tratamento", name: "nome", widget: "string"}
-      - {label: "Descrição Curta", name: "descricao_curta", widget: "text"}
-      - {label: "Descrição Completa", name: "descricao_completa", widget: "markdown"}
-      - {label: "Imagem", name: "imagem", widget: "image"}
-      - {label: "Duração da Sessão", name: "duracao", widget: "string"}
-      - {label: "Preço (R$)", name: "preco", widget: "number", required: false}
-      - {label: "Indicações", name: "indicacoes", widget: "list"}
-      - {label: "Benefícios", name: "beneficios", widget: "list"}
-      - {label: "Disponível em", name: "unidades", widget: "select", multiple: true, options: ["Jundiaí", "Itatiba", "Várzea Paulista"]}
-      - {label: "Ativo", name: "ativo", widget: "boolean", default: true}
+      - {label: "🎯 Nome do Tratamento", name: "nome", widget: "string"}
+      - {label: "📄 Descrição Resumida", name: "descricao_curta", widget: "text", hint: "Descrição que aparece nos cards (máximo 150 caracteres)", pattern: ['.{1,150}', "Máximo 150 caracteres"]}
+      - {label: "📖 Descrição Detalhada", name: "descricao_completa", widget: "markdown", hint: "Explicação completa do tratamento"}
+      - {label: "🖼️ Imagem do Tratamento", name: "imagem", widget: "image", hint: "Imagem representativa (recomendado: 600x400px)"}
+      - {label: "⏰ Duração da Sessão", name: "duracao", widget: "string", hint: "Ex: 45 minutos, 1 hora"}
+      - {label: "💰 Preço (R$)", name: "preco", widget: "number", required: false, hint: "Opcional - valor da sessão", min: 0, step: 0.01}
+      - label: "🏷️ Categoria"
+        name: "categoria"
+        widget: "select"
+        options:
+          - {label: "🏃 Fisioterapia Esportiva", value: "esportiva"}
+          - {label: "🏥 Reabilitação Ortopédica", value: "reabilitacao"}
+          - {label: "🧘 Pilates Clínico", value: "pilates"}
+          - {label: "👶 Fisioterapia Pediátrica", value: "pediatrica"}
+          - {label: "👵 Fisioterapia Geriátrica", value: "geriatrica"}
+          - {label: "🧠 Fisioterapia Neurológica", value: "neurologica"}
+      - label: "🔥 Cor do Card"
+        name: "cor_card"
+        widget: "select"
+        hint: "Escolha a cor do card no site"
+        default: "azul"
+        options:
+          - {label: "🔵 Azul", value: "azul"}
+          - {label: "🟢 Verde", value: "verde"}
+          - {label: "🟠 Laranja", value: "laranja"}
+          - {label: "🟣 Roxo", value: "roxo"}
+          - {label: "🔴 Vermelho", value: "vermelho"}
+      - label: "📋 Indicações"
+        name: "indicacoes"
+        widget: "list"
+        allow_add: true
+        hint: "Para quem é indicado este tratamento"
+        field: {label: "Indicação", name: "indicacao", widget: "string"}
+      - label: "✨ Benefícios"
+        name: "beneficios"
+        widget: "list"
+        allow_add: true
+        hint: "Principais benefícios do tratamento"
+        field: {label: "Benefício", name: "beneficio", widget: "string"}
+      - label: "⚠️ Contraindicações"
+        name: "contraindicacoes"
+        widget: "list"
+        allow_add: true
+        required: false
+        hint: "Quando não é recomendado (opcional)"
+        field: {label: "Contraindicação", name: "contraindicacao", widget: "string"}
+      - {label: "📊 Ordem de Exibição", name: "ordem", widget: "number", hint: "Número para ordenar os tratamentos (1, 2, 3...)", min: 1, value_type: "int"}
+      - {label: "✅ Ativo", name: "ativo", widget: "boolean", default: true}
 
-  # CONFIGURAÇÕES GERAIS
+  # ================================
+  # 🏠 QUEM SOMOS - Seção "Conheça Nossa Estrutura"
+  # ================================
+  - name: "quem_somos_estrutura"
+    label: "🏠 Quem Somos - Nossa Estrutura"
+    label_singular: "Card de Estrutura"
+    folder: "_data/estrutura"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    summary: "{{titulo}} - {{icone}}"
+    sortable_fields: ["titulo", "ordem"]
+    fields:
+      - {label: "📋 Título do Card", name: "titulo", widget: "string", hint: "Ex: Espaço de Treino, Sala de Avaliação"}
+      - {label: "📝 Descrição", name: "descricao", widget: "text", hint: "Breve descrição do espaço"}
+      - {label: "🖼️ Imagem", name: "imagem", widget: "image", hint: "Foto do espaço (recomendado: 600x400px)"}
+      - label: "🎨 Ícone"
+        name: "icone"
+        widget: "select"
+        hint: "Ícone que representa o espaço"
+        options: 
+          - {label: "🏋️ Musculação", value: "fa-dumbbell"}
+          - {label: "🏥 Procedimentos", value: "fa-procedures"}
+          - {label: "🧘 Relaxamento", value: "fa-spa"}
+          - {label: "👥 Atendimento em Grupo", value: "fa-users"}
+          - {label: "🏥 Hospital/Clínica", value: "fa-hospital"}
+          - {label: "⚙️ Equipamentos", value: "fa-tools"}
+          - {label: "🏃 Atividade Física", value: "fa-running"}
+          - {label: "❤️ Cardiologia", value: "fa-heart"}
+          - {label: "🧠 Neurologia", value: "fa-brain"}
+          - {label: "🦴 Ortopedia", value: "fa-bone"}
+      - {label: "📊 Ordem de Exibição", name: "ordem", widget: "number", hint: "Número para ordenar os cards (1, 2, 3...)", min: 1, value_type: "int"}
+      - {label: "✅ Ativo", name: "ativo", widget: "boolean", default: true}
+
+  # ================================
+  # 🏢 UNIDADES
+  # ================================
+  - name: "unidades"
+    label: "🏢 Unidades"
+    label_singular: "Unidade"
+    folder: "_data/unidades"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    editor:
+      preview: true
+    summary: "{{nome}} - {{cidade}}"
+    sortable_fields: ["nome", "cidade"]
+    fields:
+      - {label: "🏥 Nome da Unidade", name: "nome", widget: "string"}
+      - {label: "🏙️ Cidade", name: "cidade", widget: "string"}
+      - {label: "📍 Endereço Completo", name: "endereco", widget: "text"}
+      - {label: "📞 Telefone", name: "telefone", widget: "string"}
+      - {label: "📱 WhatsApp", name: "whatsapp", widget: "string", hint: "Apenas números: 5511999999999"}
+      - {label: "📧 Email", name: "email", widget: "string", required: false}
+      - {label: "🕒 Horário de Funcionamento", name: "horario", widget: "text"}
+      - {label: "📄 Descrição", name: "descricao", widget: "text"}
+      - {label: "🖼️ Foto da Fachada", name: "foto_fachada", widget: "image"}
+      - label: "🎯 Especialidades"
+        name: "especialidades"
+        widget: "list"
+        allow_add: true
+        hint: "Principais especialidades desta unidade"
+        field: {label: "Especialidade", name: "especialidade", widget: "string"}
+      - label: "🚗 Facilidades"
+        name: "facilidades"
+        widget: "object"
+        fields:
+          - {label: "🅿️ Estacionamento", name: "estacionamento", widget: "boolean", default: true}
+          - {label: "♿ Acessibilidade", name: "acessibilidade", widget: "boolean", default: true}
+      - {label: "✅ Ativa", name: "ativa", widget: "boolean", default: true}
+
+  # ================================
+  # ⚙️ CONFIGURAÇÕES GERAIS
+  # ================================
   - name: "configuracoes"
-    label: "⚙️ Configurações"
+    label: "⚙️ Configurações do Site"
+    editor:
+      preview: false
     files:
-      - label: "Informações da Clínica"
+      - label: "🏢 Informações da Clínica"
         name: "clinica"
         file: "_data/clinica.json"
         fields:
-          - {label: "Nome da Clínica", name: "nome", widget: "string"}
-          - {label: "Slogan", name: "slogan", widget: "string"}
-          - {label: "Telefone Principal", name: "telefone", widget: "string"}
-          - {label: "Email Principal", name: "email", widget: "string"}
-          - {label: "WhatsApp", name: "whatsapp", widget: "string"}
-          - {label: "Descrição", name: "descricao", widget: "text"}
-          - label: "Redes Sociais"
+          - {label: "🏥 Nome da Clínica", name: "nome", widget: "string"}
+          - {label: "💫 Slogan", name: "slogan", widget: "string"}
+          - {label: "📞 Telefone Principal", name: "telefone", widget: "string"}
+          - {label: "📧 Email Principal", name: "email", widget: "string"}
+          - {label: "📱 WhatsApp", name: "whatsapp", widget: "string", hint: "Apenas números: 5511999999999"}
+          - {label: "📝 Descrição da Clínica", name: "descricao", widget: "text"}
+          - {label: "📍 Endereço Principal", name: "endereco_principal", widget: "text"}
+          - {label: "🕐 Horário de Funcionamento", name: "horario_funcionamento", widget: "text"}
+          - label: "🌐 Redes Sociais"
             name: "redes_sociais"
             widget: "object"
             fields:
-              - {label: "Facebook", name: "facebook", widget: "string", required: false}
-              - {label: "Instagram", name: "instagram", widget: "string", required: false}
-              - {label: "YouTube", name: "youtube", widget: "string", required: false}
-              - {label: "LinkedIn", name: "linkedin", widget: "string", required: false}
-
-      - label: "Unidades"
-        name: "unidades"
-        file: "_data/unidades.json"
-        fields:
-          - label: "Unidades"
-            name: "unidades"
-            widget: "list"
+              - {label: "📘 Facebook", name: "facebook", widget: "string", required: false, hint: "URL completa"}
+              - {label: "📸 Instagram", name: "instagram", widget: "string", required: false, hint: "URL completa"}
+              - {label: "📺 YouTube", name: "youtube", widget: "string", required: false, hint: "URL completa"}
+              - {label: "💼 LinkedIn", name: "linkedin", widget: "string", required: false, hint: "URL completa"}
+              - {label: "🐦 Twitter", name: "twitter", widget: "string", required: false, hint: "URL completa"}
+          - label: "🎯 SEO e Marketing"
+            name: "seo"
+            widget: "object"
             fields:
-              - {label: "Nome", name: "nome", widget: "string"}
-              - {label: "Endereço", name: "endereco", widget: "text"}
-              - {label: "Telefone", name: "telefone", widget: "string"}
-              - {label: "Email", name: "email", widget: "string"}
-              - {label: "Horário", name: "horario", widget: "string"}
-              - {label: "WhatsApp", name: "whatsapp", widget: "string"}
+              - {label: "🔍 Palavras-chave principais", name: "keywords", widget: "string", hint: "Separadas por vírgula"}
+              - {label: "📝 Meta descrição", name: "meta_description", widget: "text", hint: "Descrição para motores de busca"}
+              - {label: "🏷️ Tags do Google Analytics", name: "google_analytics", widget: "string", required: false}
+
+# ================================
+# CONFIGURAÇÕES DE INTERFACE
+# ================================
+
+# Mensagens personalizadas
+messages:
+  publish: "Publicar"
+  publishAndCreateNew: "Publicar e criar novo"
+  publishAndDuplicate: "Publicar e duplicar"
+  deleteEntry: "Deletar entrada"
+  saved: "Salvo"
+  deleting: "Deletando..."
+  publishing: "Publicando..."
+  draft: "Rascunho"
+
+# Configurações de busca
+search: true
+
+# Configurações de slug
+slug:
+  encoding: "unicode"
+  clean_accents: true
+  sanitize_replacement: "-"

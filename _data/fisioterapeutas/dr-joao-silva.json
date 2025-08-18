@@ -1,0 +1,24 @@
+{
+  "nome": "Dr. João Silva",
+  "especialidade": "Fisioterapia Esportiva",
+  "crefito": "CREFITO-3/123456-F",
+  "unidade": "jundiai",
+  "foto": "/imagens/dr-joao-silva.jpg",
+  "bio": "Especialista em fisioterapia esportiva com mais de 10 anos de experiência. Formado pela USP com especializações em lesões esportivas.",
+  "experiencia": 10,
+  "telefone": "(11) 98888-8888",
+  "email": "joao.silva@fisioclinica.com.br",
+  "formacao": [
+    {
+      "instituicao": "USP",
+      "curso": "Fisioterapia",
+      "ano": 2014
+    },
+    {
+      "instituicao": "UNIFESP",
+      "curso": "Especialização em Fisioterapia Esportiva",
+      "ano": 2016
+    }
+  ],
+  "ativo": true
+}

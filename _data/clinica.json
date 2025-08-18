@@ -1,14 +1,22 @@
 {
-  "nome": "FISIO - Clínica de Fisioterapia",
+  "nome": "Clínica FISIO",
   "slogan": "Excelência em Fisioterapia Esportiva",
   "telefone": "(11) 99999-9999",
-  "email": "contato@clinicafisio.com.br",
+  "email": "contato@fisioclinica.com.br",
   "whatsapp": "5511999999999",
-  "descricao": "Transformando vidas na região com profissionais altamente qualificados, tecnologia de ponta e resultados comprovados em nossas unidades especializadas.",
+  "descricao": "Clínica especializada em fisioterapia esportiva e reabilitação com 4 unidades na região.",
+  "endereco_principal": "Rua Principal, 123 - Centro - Jundiaí/SP",
+  "horario_funcionamento": "Segunda a Sexta: 6h às 22h | Sábado: 7h às 13h",
   "redes_sociais": {
-    "facebook": "https://facebook.com/clinicafisio",
-    "instagram": "https://instagram.com/clinicafisio",
-    "youtube": "https://youtube.com/@clinicafisio",
-    "linkedin": "https://linkedin.com/company/clinicafisio"
+    "facebook": "https://facebook.com/fisioclinica",
+    "instagram": "https://instagram.com/fisioclinica",
+    "youtube": "",
+    "linkedin": "",
+    "twitter": ""
+  },
+  "seo": {
+    "keywords": "fisioterapia, fisioterapia esportiva, reabilitação, pilates, jundiaí, itatiba",
+    "meta_description": "Clínica FISIO - Especializada em fisioterapia esportiva e reabilitação com 4 unidades. Profissionais experientes e tecnologia de ponta.",
+    "google_analytics": ""
   }
 }
