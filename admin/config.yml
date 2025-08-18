@@ -32,7 +32,7 @@ media_library:
     publicKey: "demopublickey"
 
 collections:
-  # ================================
+ # ================================
   # 📝 BLOG - PRIORIDADE MÁXIMA
   # ================================
   - name: "blog"
@@ -44,6 +44,7 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
       preview: true
+    preview_path: "blog.html?preview={{slug}}"
     summary: "{{titulo}} - {{data}}"
     sortable_fields: ["data", "titulo", "categoria"]
     view_filters:
@@ -56,9 +57,17 @@ collections:
       - label: "Fisioterapia Esportiva"
         field: categoria
         pattern: "esportiva"
+      - label: "Novidades da Clínica"
+        field: categoria
+        pattern: "novidades"
+      - label: "Tratamentos"
+        field: categoria
+        pattern: "reabilitacao"
     view_groups:
       - label: "Categoria"
         field: categoria
+      - label: "Status"
+        field: publicado
     fields:
       - {label: "📰 Título do Post", name: "titulo", widget: "string", hint: "Título que aparecerá no site"}
       - {label: "📅 Data de Publicação", name: "data", widget: "datetime", default: "{{now}}", format: "DD/MM/YYYY", picker_utc: false}
@@ -69,32 +78,26 @@ collections:
       - label: "🏷️ Categoria"
         name: "categoria"
         widget: "select"
+        hint: "Escolha onde o post aparecerá no blog"
         options: 
+          - {label: "📢 Novidades da Clínica", value: "novidades"}
           - {label: "🏃 Fisioterapia Esportiva", value: "esportiva"}
           - {label: "🏥 Reabilitação Ortopédica", value: "reabilitacao"}
           - {label: "🧘 Pilates Clínico", value: "pilates"}
           - {label: "💡 Dicas de Saúde", value: "dicas"}
-          - {label: "📢 Novidades da Clínica", value: "novidades"}
           - {label: "🔬 Tecnologia e Inovação", value: "tecnologia"}
-      - {label: "🏷️ Tags", name: "tags", widget: "list", allow_add: true, hint: "Palavras-chave do post (opcional)", field: {label: "Tag", name: "tag", widget: "string"}}
+      - {label: "🏷️ Tags", name: "tags", widget: "list", allow_add: true, required: false, hint: "Palavras-chave do post (opcional)", field: {label: "Tag", name: "tag", widget: "string"}}
       - {label: "✅ Status", name: "publicado", widget: "boolean", default: true, hint: "Desmarque para salvar como rascunho"}
       - {label: "🌟 Post em Destaque", name: "destaque", widget: "boolean", default: false, hint: "Marque para destacar na página principal"}
-
-    collections:
-  - name: "blog"
-    label: "📝 Blog e Notícias"
-    label_singular: "Post do Blog"
-    folder: "_data/blog"
-    create: true
-    delete: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    editor:
-      preview: true
-    # ADICIONAR ESTAS LINHAS:
-    preview_path: "blog.html?preview={{slug}}"
-    summary: "{{titulo}} - {{data}}"
-    sortable_fields: ["data", "titulo", "categoria"]
-    # ... resto da configuração permanece igual
+      - label: "📍 Seção do Blog"
+        name: "secao_blog"
+        widget: "select"
+        hint: "Em qual seção do blog este post aparecerá"
+        default: "noticias-clinica"
+        options:
+          - {label: "📰 Notícias da Clínica", value: "noticias-clinica"}
+          - {label: "🏃 Novidades Fisioterapia", value: "novidades-fisioterapia"}
+          - {label: "🏥 Notícias Tratamentos", value: "noticias-tratamentos"}
 
   # ================================
   # 👨‍⚕️ FISIOTERAPEUTAS - PRIORIDADE MÁXIMA  
