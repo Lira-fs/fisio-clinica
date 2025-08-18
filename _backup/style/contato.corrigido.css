@@ -1,0 +1,548 @@
+/* ================================
+   CONTATO.CSS - ESTILOS ESPECÑFICOS DA PÑGINA
+   Utiliza as classes do global.css
+   ================================ */
+
+/* ================================
+   HERO CONTATO
+   ================================ */
+.hero {
+  min-height: 50vh;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.hero .hero-content h1 {
+  color: var(--white);
+  margin-bottom: var(--space-lg);
+}
+
+.hero .hero-content p {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: var(--text-lg);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* ================================
+   ÑCONES DE CONTATO
+   ================================ */
+.contact-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-lg);
+  font-size: var(--text-3xl);
+  color: var(--white);
+  transition: all 0.3s ease;
+}
+
+.whatsapp-icon {
+  background: linear-gradient(45deg, var(--success-green), var(--success-green-dark));
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
+}
+
+.phone-icon {
+  background: linear-gradient(45deg, var(--accent-orange), var(--accent-orange-dark));
+  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.3);
+}
+
+.email-icon {
+  background: linear-gradient(45deg, var(--primary-light), var(--primary-medium));
+  box-shadow: 0 8px 25px rgba(77, 166, 217, 0.3);
+}
+
+.card:hover .contact-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+/* ================================
+   INFORMAÇÑ•ES DE CONTATO
+   ================================ */
+.phone-number,
+.email-address {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--text-lg);
+  color: var(--primary-dark);
+  margin: var(--space-md) 0;
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--gray-50);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--primary-light);
+}
+
+/* ================================
+   CARDS DAS UNIDADES
+   ================================ */
+.unidade-card {
+  position: relative;
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.unidade-card:hover {
+  transform: translateY(-8px);
+}
+
+.unidade-card .card-header {
+  position: relative;
+  background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
+  color: var(--white);
+  text-align: center;
+  padding: var(--space-xl);
+  border-bottom: none;
+}
+
+.unidade-card .card-header h3 {
+  color: var(--white);
+  margin: 0;
+  font-size: var(--text-2xl);
+}
+
+.card-header{
+    border-radius: 20px 0px;
+}
+/* ================================
+   INFORMAÇÑ•ES DAS UNIDADES
+   ================================ */
+.unidade-info {
+  margin-bottom: var(--space-xl);
+}
+
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+  padding: var(--space-md);
+  background: var(--gray-50);
+  border-radius: var(--radius-md);
+  border-left: 3px solid var(--primary-light);
+}
+
+.info-item i {
+  color: var(--primary-medium);
+  font-size: var(--text-lg);
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.info-item span {
+  color: var(--gray-700);
+  line-height: 1.5;
+}
+
+/* ================================
+   BOTÑ•ES DAS UNIDADES
+   ================================ */
+.unidade-buttons {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.unidade-buttons .btn {
+  flex: 1;
+  min-width: 100px;
+}
+
+/* ================================
+   REDES SOCIAIS
+   ================================ */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
+}
+
+.social-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-xl);
+  padding: var(--space-2xl);
+  text-align: center;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.social-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  transform: scale(0);
+  transition: transform 0.5s ease;
+}
+
+.social-card:hover::before {
+  transform: scale(1);
+}
+
+.social-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.4);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* ================================
+   ÑCONES SOCIAIS
+   ================================ */
+.social-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto var(--space-lg);
+  font-size: var(--text-2xl);
+  color: var(--white);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.social-icon.instagram {
+  background: linear-gradient(45deg, #E4405F, #C13584);
+}
+
+.social-icon.facebook {
+  background: linear-gradient(45deg, #1877F2, #4267B2);
+}
+
+.social-icon.youtube {
+  background: linear-gradient(45deg, #FF0000, #CC0000);
+}
+
+.social-icon.linkedin {
+  background: linear-gradient(45deg, #0077B5, #005885);
+}
+
+.social-card:hover .social-icon {
+  transform: scale(1.1) rotate(10deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.social-card h4 {
+  color: var(--white);
+  margin-bottom: var(--space-md);
+  position: relative;
+  z-index: 2;
+}
+
+.social-card p {
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: var(--space-xl);
+  line-height: 1.6;
+  position: relative;
+  z-index: 2;
+}
+
+/* ================================
+   CTA FINAL VERDE (reutilizando)
+   ================================ */
+.cta-final-green {
+  background: linear-gradient(135deg, var(--success-green) 0%, var(--success-green-dark) 100%);
+  color: var(--white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final-green::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='2' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E") repeat;
+  animation: backgroundFloat 20s linear infinite;
+}
+
+@keyframes backgroundFloat {
+  0% { transform: translateX(0px) translateY(0px); }
+  100% { transform: translateX(-50px) translateY(-50px); }
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-final-green h2 {
+  color: var(--white);
+  margin-bottom: var(--space-lg);
+}
+
+.cta-final-green p {
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: var(--space-xl);
+  font-size: var(--text-lg);
+}
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+@media (max-width: 768px) {
+  .hero {
+    min-height: 40vh;
+  }
+
+  .contact-icon {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-2xl);
+  }
+
+  .phone-number,
+  .email-address {
+    font-size: var(--text-base);
+    padding: var(--space-sm);
+  }
+
+  .unidade-card .card-header {
+    padding: var(--space-lg);
+  }
+
+  .unidade-card .card-header h3 {
+    font-size: var(--text-xl);
+  }
+
+  .unidade-buttons {
+    flex-direction: column;
+  }
+
+  .unidade-buttons .btn {
+    width: 100%;
+  }
+
+  .info-item {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-sm);
+  }
+
+  .info-item i {
+    align-self: center;
+  }
+
+  .social-grid {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .social-card {
+    padding: var(--space-xl);
+  }
+
+  .social-icon {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-xl);
+  }
+}
+
+@media (max-width: 480px) {
+  .unidade-badge {
+    font-size: var(--text-xs);
+    padding: var(--space-xs) var(--space-md);
+  }
+
+  .nova-unidade-content i {
+    font-size: 3rem;
+  }
+
+  .social-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ================================
+   ANIMAÇÑ•ES E PERFORMANCE
+   ================================ */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animação especial para badges */
+.unidade-badge {
+  animation: badgeBounce 0.6s ease-out 0.3s both;
+}
+
+@keyframes badgeBounce {
+  0% {
+    transform: translateX(-50%) translateY(-20px) scale(0.8);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(-50%) translateY(-5px) scale(1.05);
+  }
+  100% {
+    transform: translateX(-50%) translateY(-10px) scale(1);
+    opacity: 1;
+  }
+}
+
+/* Hover suave nos cards */
+.card {
+  will-change: transform;
+}
+
+.unidade-card:hover .unidade-badge {
+  animation: badgePulse 1s ease-in-out infinite;
+}
+
+@keyframes badgePulse {
+  0%, 100% { transform: translateX(-50%) translateY(-10px) scale(1); }
+  50% { transform: translateX(-50%) translateY(-10px) scale(1.05); }
+}
+
+/* Efeito ripple nos botões sociais */
+.social-card .btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.social-card .btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s, height 0.3s;
+}
+
+.social-card .btn:hover::after {
+  width: 200px;
+  height: 200px;
+}
+
+/* Otimizações de performance */
+.contact-icon,
+.social-icon,
+.unidade-badge {
+  will-change: transform;
+}
+
+/* Estados de focus para acessibilidade */
+.btn:focus,
+.social-card:focus,
+.unidade-card:focus {
+  outline: 3px solid var(--primary-light);
+  outline-offset: 2px;
+}
+
+/* Modo de movimento reduzido */
+@media (prefers-reduced-motion: reduce) {
+  .contact-icon,
+  .social-icon,
+  .unidade-badge,
+  .social-card,
+  .unidade-card {
+    animation: none;
+    transition: none;
+  }
+  
+  .fade-in {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Efeitos especiais para desktop */
+@media (min-width: 769px) {
+  /* Paralax sutil no hero */
+  .hero {
+    background-attachment: fixed;
+  }
+  
+  /* Sombras mais pronunciadas em desktop */
+  .unidade-card:hover {
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  }
+  
+  .social-card:hover {
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* WhatsApp Flutuante (herdado do global.css) */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: var(--success-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.8rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-tooltip);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pulseWhats 3s infinite ease-in-out;
+}
+
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 3px solid var(--success-green);
+  border-radius: 50%;
+  opacity: 0;
+  animation: rippleEffect 2s infinite ease-out;
+}
+
+@keyframes pulseWhats {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+  color: white;
+}

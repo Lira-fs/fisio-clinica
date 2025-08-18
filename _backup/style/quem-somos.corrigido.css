@@ -1,0 +1,91 @@
+
+/* ===========================
+   QUEM SOMOS - AJUSTES FINAIS
+   =========================== */
+
+/* Hero sem vídeo */
+.hero.about-hero .hero-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem 1rem;
+}
+
+/* Nova seção do vídeo */
+.video-section {
+    padding: 3rem 1rem;
+    background-color: var(--white);
+    display: flex;
+    justify-content: center;
+}
+.video-wrapper {
+    max-width: 800px;
+    width: 100%;
+}
+.video-wrapper iframe,
+.video-wrapper video {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+}
+
+/* Galeria responsiva */
+.galeria-horizontal {
+    background-color: var(--gray-50);
+    padding: 2rem 0;
+    overflow: hidden;
+}
+.galeria-container {
+    display: flex;
+    gap: 1rem;
+    transition: transform 0.4s ease-in-out;
+}
+.galeria-item {
+    flex: 1 1 calc(33.333% - 1rem);
+    min-width: calc(33.333% - 1rem);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.galeria-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* Indicadores */
+.galeria-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1rem;
+}
+.galeria-indicators .indicator {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.galeria-indicators .indicator.active {
+    background-color: var(--primary-color);
+}
+
+/* Mobile First */
+@media (max-width: 768px) {
+    .galeria-container {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        gap: 0.5rem;
+    }
+    .galeria-item {
+        flex: 0 0 80%;
+        scroll-snap-align: center;
+    }
+}
