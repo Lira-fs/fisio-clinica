@@ -6,14 +6,66 @@ import chardet
 from pathlib import Path
 import shutil
 
-def detectar_e_corrigir_arquivo(caminho_arquivo):
+def mostrar_preview(conteudo, linhas=10):
     """
-    Detecta a codificação atual e converte para UTF-8
+    Mostra preview do conteúdo corrigido
     """
-    print(f"\n--- Processando: {caminho_arquivo.name} ---")
+    linhas_conteudo = conteudo.split('\n')
+    print(f"\n📄 PREVIEW (primeiras {linhas} linhas):")
+    print("=" * 50)
+    
+    for i, linha in enumerate(linhas_conteudo[:linhas], 1):
+        print(f"{i:2d}: {linha}")
+    
+    if len(linhas_conteudo) > linhas:
+        print(f"... (mais {len(linhas_conteudo) - linhas} linhas)")
+    print("=" * 50)
+
+def corrigir_caracteres_especiais(conteudo):
+    """
+    Corrige caracteres especiais mal codificados
+    """
+    correcoes = {
+        'Ã¡': 'á', 'Ã ': 'à', 'Ã¢': 'â', 'Ã£': 'ã',
+        'Ã©': 'é', 'Ãª': 'ê', 'Ã­': 'í', 'Ã³': 'ó',
+        'Ã´': 'ô', 'Ãµ': 'õ', 'Ãº': 'ú', 'Ã§': 'ç',
+        'Ã±': 'ñ', 'Ã¼': 'ü', 'Ã‡': 'Ç', 'Ã€': 'À',
+        'Ã�': 'Á', 'Ã‚': 'Â', 'Ãƒ': 'Ã', 'Ã‰': 'É',
+        'ÃŠ': 'Ê', 'Ã�': 'Í', 'Ã“': 'Ó', 'Ã”': 'Ô',
+        'Ã•': 'Õ', 'Ãš': 'Ú', 'Ã‘': 'Ñ',
+
+        # Correções específicas do seu projeto
+        'ClÃ­nica': 'Clínica',
+        'FisioterapÃªutico': 'Fisioterapêutico',
+        'ExcelÃªncia': 'Excelência',
+        'reabilitaÃ§Ã£o': 'reabilitação',
+        'avaliaÃ§Ã£o': 'avaliação',
+        'recuperaÃ§Ã£o': 'recuperação',
+        'tÃ©cnicas': 'técnicas',
+        'prÃ³prio': 'próprio',
+        'EspecializaÃ§Ã£o': 'Especialização',
+        'VÃ¡rzea': 'Várzea',
+        'JundiaÃ­': 'Jundiaí',
+        'histÃ³ria': 'história',
+    }
+
+    for errado, correto in correcoes.items():
+        conteudo = conteudo.replace(errado, correto)
+
+    return conteudo
+
+
+def processar_arquivo_interativo(caminho_arquivo):
+    """
+    Processa um arquivo com confirmação do usuário
+    """
+    print(f"\n{'='*60}")
+    print(f"📁 PROCESSANDO: {caminho_arquivo.name}")
+    print(f"🔍 Caminho: {caminho_arquivo}")
+    print(f"{'='*60}")
     
     try:
-        # Ler arquivo em modo binário para detectar codificação
+        # Ler arquivo em modo binário
         with open(caminho_arquivo, 'rb') as f:
             conteudo_bruto = f.read()
         
@@ -22,231 +74,174 @@ def detectar_e_corrigir_arquivo(caminho_arquivo):
         codificacao_detectada = resultado['encoding']
         confianca = resultado['confidence']
         
-        print(f"Codificação detectada: {codificacao_detectada} (confiança: {confianca:.2%})")
+        print(f"🔍 Codificação detectada: {codificacao_detectada} (confiança: {confianca:.1%})")
         
         # Lista de codificações para tentar
-        codificacoes_para_testar = [
-            codificacao_detectada,
-            'iso-8859-1',
-            'windows-1252',
-            'cp1252',
-            'latin1',
-            'utf-8'
-        ]
+        codificacoes = [codificacao_detectada, 'utf-8', 'iso-8859-1', 'windows-1252', 'latin1']
+        codificacoes = list(dict.fromkeys(filter(None, codificacoes)))
         
-        # Remover duplicatas mantendo ordem
-        codificacoes_para_testar = list(dict.fromkeys(filter(None, codificacoes_para_testar)))
+        conteudo_original = None
+        codificacao_usada = None
         
-        for codificacao in codificacoes_para_testar:
+        # Tentar ler com diferentes codificações
+        for codificacao in codificacoes:
             try:
-                print(f"Tentando codificação: {codificacao}")
-                
-                # Ler arquivo com a codificação específica
                 with open(caminho_arquivo, 'r', encoding=codificacao) as f:
-                    conteudo = f.read()
-                
-                # Corrigir caracteres problemáticos específicos
-                conteudo = corrigir_caracteres_especiais(conteudo)
-                
-                # Criar arquivo corrigido
-                arquivo_corrigido = caminho_arquivo.with_suffix(f'.corrigido{caminho_arquivo.suffix}')
-                
-                with open(arquivo_corrigido, 'w', encoding='utf-8') as f:
-                    f.write(conteudo)
-                
-                print(f"  ✅ Sucesso! Arquivo salvo como: {arquivo_corrigido}")
+                    conteudo_original = f.read()
+                codificacao_usada = codificacao
+                print(f"✅ Leitura bem-sucedida com: {codificacao}")
+                break
+            except UnicodeDecodeError:
+                print(f"❌ Falha com: {codificacao}")
+                continue
+        
+        if not conteudo_original:
+            print("❌ Não foi possível ler o arquivo com nenhuma codificação!")
+            return False
+        
+        # Verificar se precisa de correção
+        caracteres_problematicos = ['Ã¡', 'Ã§', 'Ã£', 'Ã©', 'ClÃ­nica', 'ExcelÃªncia', 'ÃƒÂ¡', 'ÃƒÂ§']
+        precisa_correcao = any(char in conteudo_original for char in caracteres_problematicos)
+        
+        if not precisa_correcao:
+            print("✅ Arquivo já está correto! Nenhuma correção necessária.")
+            input("\n⏸️  Pressione ENTER para continuar...")
+            return True
+        
+        print("\n⚠️  CARACTERES PROBLEMÁTICOS ENCONTRADOS!")
+        
+        # Mostrar preview do conteúdo original
+        print("\n📄 CONTEÚDO ATUAL (com problemas):")
+        mostrar_preview(conteudo_original)
+        
+        # Aplicar correções
+        print("\n🔧 APLICANDO CORREÇÕES...")
+        conteudo_corrigido = corrigir_caracteres_especiais(conteudo_original)
+        
+        # Mostrar preview do conteúdo corrigido
+        print("\n📄 CONTEÚDO CORRIGIDO:")
+        mostrar_preview(conteudo_corrigido)
+        
+        # Perguntar se quer aplicar
+        print(f"\n🤔 O que deseja fazer com {caminho_arquivo.name}?")
+        print("1 - ✅ Aplicar correções e substituir arquivo")
+        print("2 - 💾 Salvar como .corrigido (manter original)")
+        print("3 - ⏭️  Pular este arquivo")
+        print("4 - 🛑 Sair do programa")
+        
+        while True:
+            escolha = input("\nDigite sua escolha (1/2/3/4): ").strip()
+            
+            if escolha == '1':
+                # Substituir arquivo original
+                with open(caminho_arquivo, 'w', encoding='utf-8') as f:
+                    f.write(conteudo_corrigido)
+                print(f"✅ Arquivo {caminho_arquivo.name} atualizado com sucesso!")
                 return True
                 
-            except UnicodeDecodeError:
-                print(f"  ❌ Erro de decodificação com {codificacao}")
-                continue
-            except Exception as e:
-                print(f"  ❌ Erro: {e}")
-                continue
-        
-        print("  ❌ Nenhuma codificação funcionou")
-        return False
-        
+            elif escolha == '2':
+                # Salvar como .corrigido
+                arquivo_corrigido = caminho_arquivo.with_suffix(f'.corrigido{caminho_arquivo.suffix}')
+                with open(arquivo_corrigido, 'w', encoding='utf-8') as f:
+                    f.write(conteudo_corrigido)
+                print(f"💾 Salvo como: {arquivo_corrigido.name}")
+                return True
+                
+            elif escolha == '3':
+                print("⏭️ Arquivo pulado.")
+                return True
+                
+            elif escolha == '4':
+                print("🛑 Programa encerrado pelo usuário.")
+                return False
+                
+            else:
+                print("❌ Opção inválida! Digite 1, 2, 3 ou 4.")
+    
     except Exception as e:
-        print(f"  ❌ Erro ao processar arquivo: {e}")
-        return False
+        print(f"❌ Erro ao processar {caminho_arquivo.name}: {e}")
+        return True
 
-def corrigir_caracteres_especiais(conteudo):
+def selecionar_arquivos(pasta, extensoes=['.html', '.css', '.js']):
     """
-    Corrige caracteres especiais mal codificados
-    """
-    # Mapeamento de caracteres problemáticos
-    correções = {
-        'Ã¡': 'á',
-        'Ã ': 'à',
-        'Ã¢': 'â',
-        'Ã£': 'ã',
-        'Ã©': 'é',
-        'Ãª': 'ê',
-        'Ã­': 'í',
-        'Ã³': 'ó',
-        'Ã´': 'ô',
-        'Ãµ': 'õ',
-        'Ãº': 'ú',
-        'Ã§': 'ç',
-        'Ã±': 'ñ',
-        'Ã¼': 'ü',
-        'Ã‡': 'Ç',
-        'Ã€': 'À',
-        'Ã': 'Á',
-        'Ã‚': 'Â',
-        'Ãƒ': 'Ã',
-        'Ã‰': 'É',
-        'ÃŠ': 'Ê',
-        'Ã': 'Í',
-        'Ã"': 'Ó',
-        'Ã"': 'Ô',
-        'Ã•': 'Õ',
-        'Ãš': 'Ú',
-        'Ã±': 'ñ',
-        'Ã': 'Ñ',
-        'ClÃ­nica': 'Clínica',
-        'FisioterapÃªutico': 'Fisioterapêutico',
-        'ExcelÃªncia': 'Excelência',
-        'reabilitaÃ§Ã£o': 'reabilitação',
-        'avaliaÃ§Ã£o': 'avaliação',
-        'recuperaÃ§Ã£o': 'recuperação',
-        'tratamento': 'tratamento',
-        'tÃ©cnicas': 'técnicas',
-        'prÃ³prio': 'próprio',
-        'EspecializaÃ§Ã£o': 'Especialização',
-        'VÃ¡rzea': 'Várzea',
-        'JundiaÃ­': 'Jundiaí',
-        'histÃ³ria': 'história',
-        'âž': '→'
-    }
-    
-    # Aplicar correções
-    for errado, correto in correções.items():
-        conteudo = conteudo.replace(errado, correto)
-    
-    return conteudo
-
-def fazer_backup(pasta):
-    """
-    Cria backup da pasta original
-    """
-    pasta = Path(pasta)
-    backup_path = pasta.parent / f"{pasta.name}_backup"
-    
-    if not backup_path.exists():
-        shutil.copytree(pasta, backup_path)
-        print(f"✅ Backup criado em: {backup_path}")
-    else:
-        print(f"⚠️  Backup já existe em: {backup_path}")
-
-def processar_pasta(pasta, extensoes=['.html', '.css', '.js']):
-    """
-    Processa todos os arquivos da pasta com as extensões especificadas
+    Permite ao usuário selecionar quais arquivos processar
     """
     pasta = Path(pasta)
     
-    if not pasta.exists():
-        print(f"❌ Pasta não encontrada: {pasta}")
-        return
-    
-    # Fazer backup antes de processar
-    fazer_backup(pasta)
-    
+    # Encontrar todos os arquivos
     arquivos_encontrados = []
-    
-    # Buscar arquivos recursivamente
     for extensao in extensoes:
         arquivos_encontrados.extend(pasta.rglob(f"*{extensao}"))
     
     if not arquivos_encontrados:
         print(f"❌ Nenhum arquivo encontrado com extensões: {extensoes}")
-        return
+        return []
     
-    print(f"📁 Encontrados {len(arquivos_encontrados)} arquivos para processar")
+    print(f"\n🔍 ARQUIVOS ENCONTRADOS ({len(arquivos_encontrados)}):")
+    print("="*50)
     
-    sucessos = 0
-    for arquivo in arquivos_encontrados:
-        if detectar_e_corrigir_arquivo(arquivo):
-            sucessos += 1
+    for i, arquivo in enumerate(arquivos_encontrados, 1):
+        print(f"{i:2d}. {arquivo.name} ({arquivo.parent})")
     
-    print(f"\n{'='*50}")
-    print(f"📊 RESUMO")
-    print(f"{'='*50}")
-    print(f"Arquivos processados: {len(arquivos_encontrados)}")
-    print(f"✅ Sucessos: {sucessos}")
-    print(f"❌ Falhas: {len(arquivos_encontrados) - sucessos}")
-
-def substituir_originais(pasta):
-    """
-    Substitui arquivos originais pelos corrigidos
-    """
-    pasta = Path(pasta)
+    print("\n🎯 OPÇÕES:")
+    print("A - Processar TODOS os arquivos")
+    print("N - Escolher arquivos por NÚMERO (ex: 1,3,5)")
+    print("Q - Sair")
     
-    arquivos_corrigidos = list(pasta.rglob("*.corrigido.*"))
-    
-    if not arquivos_corrigidos:
-        print("❌ Nenhum arquivo corrigido encontrado!")
-        return
-    
-    print(f"🔄 Substituindo {len(arquivos_corrigidos)} arquivos...")
-    
-    for arquivo_corrigido in arquivos_corrigidos:
-        # Descobrir nome do arquivo original
-        nome_original = str(arquivo_corrigido).replace('.corrigido', '')
-        arquivo_original = Path(nome_original)
+    while True:
+        escolha = input("\nSua escolha: ").strip().upper()
         
-        try:
-            # Substituir
-            shutil.move(str(arquivo_corrigido), str(arquivo_original))
-            print(f"✅ Substituído: {arquivo_original.name}")
-        except Exception as e:
-            print(f"❌ Erro ao substituir {arquivo_original.name}: {e}")
+        if escolha == 'A':
+            return arquivos_encontrados
+            
+        elif escolha == 'Q':
+            return []
+            
+        elif escolha == 'N':
+            numeros = input("Digite os números separados por vírgula (ex: 1,3,5): ").strip()
+            try:
+                indices = [int(n.strip()) - 1 for n in numeros.split(',')]
+                arquivos_selecionados = [arquivos_encontrados[i] for i in indices if 0 <= i < len(arquivos_encontrados)]
+                return arquivos_selecionados
+            except (ValueError, IndexError):
+                print("❌ Números inválidos! Tente novamente.")
+        else:
+            print("❌ Opção inválida! Digite A, N ou Q.")
 
-def instalar_dependencias():
-    """
-    Instala dependências necessárias
-    """
-    try:
-        import chardet
-        print("✅ Dependência 'chardet' já instalada")
-    except ImportError:
-        print("📦 Instalando dependência 'chardet'...")
-        os.system("pip install chardet")
-
-# Função principal
 def main():
-    print("🔧 CORRETOR DE ENCODING UTF-8")
-    print("="*50)
+    print("🔧 CORRETOR INTERATIVO DE ENCODING UTF-8")
+    print("="*60)
+    print("🔍 Este script irá processar seus arquivos um por um")
+    print("👀 Você poderá ver as mudanças antes de aplicá-las")
+    print("="*60)
     
-    # Instalar dependências
-    instalar_dependencias()
-    
-    # Pasta atual por padrão
+    # Pasta atual
     pasta_projeto = Path(".")
+    print(f"📁 Pasta: {pasta_projeto.absolute()}")
     
-    print(f"📁 Pasta do projeto: {pasta_projeto.absolute()}")
+    # Selecionar arquivos
+    arquivos = selecionar_arquivos(pasta_projeto)
     
-    # Processar arquivos
-    processar_pasta(pasta_projeto, ['.html', '.css', '.js'])
+    if not arquivos:
+        print("🛑 Nenhum arquivo selecionado. Encerrando...")
+        return
     
-    print("\n" + "="*50)
-    print("📋 PRÓXIMOS PASSOS:")
-    print("="*50)
-    print("1. ✅ Verifique os arquivos .corrigido gerados")
-    print("2. ✅ Se estiverem corretos, execute a função substituir_originais()")
-    print("3. ✅ Ou renomeie manualmente:")
-    print("   - mv index.corrigido.html index.html")
-    print("   - mv style.corrigido.css style.css")
-    print("4. ✅ Delete os arquivos .corrigido após confirmar")
+    print(f"\n🚀 INICIANDO PROCESSAMENTO DE {len(arquivos)} ARQUIVO(S)...")
     
-    # Perguntar se quer substituir automaticamente
-    resposta = input("\n🤔 Deseja substituir os arquivos originais automaticamente? (s/N): ")
-    if resposta.lower() in ['s', 'sim', 'y', 'yes']:
-        substituir_originais(pasta_projeto)
-        print("✅ Arquivos substituídos com sucesso!")
-    else:
-        print("⚠️  Substitua manualmente quando estiver pronto")
+    # Processar arquivo por arquivo
+    processados = 0
+    for i, arquivo in enumerate(arquivos, 1):
+        print(f"\n📊 PROGRESSO: {i}/{len(arquivos)}")
+        
+        if not processar_arquivo_interativo(arquivo):
+            print("🛑 Processamento interrompido.")
+            break
+        
+        processados += 1
+    
+    print(f"\n🎉 CONCLUÍDO!")
+    print(f"📊 Arquivos processados: {processados}/{len(arquivos)}")
+    print("✅ Encoding UTF-8 aplicado com sucesso!")
 
 if __name__ == "__main__":
     main()
