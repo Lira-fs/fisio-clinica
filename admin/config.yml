@@ -80,6 +80,22 @@ collections:
       - {label: "✅ Status", name: "publicado", widget: "boolean", default: true, hint: "Desmarque para salvar como rascunho"}
       - {label: "🌟 Post em Destaque", name: "destaque", widget: "boolean", default: false, hint: "Marque para destacar na página principal"}
 
+    collections:
+  - name: "blog"
+    label: "📝 Blog e Notícias"
+    label_singular: "Post do Blog"
+    folder: "_data/blog"
+    create: true
+    delete: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    editor:
+      preview: true
+    # ADICIONAR ESTAS LINHAS:
+    preview_path: "blog.html?preview={{slug}}"
+    summary: "{{titulo}} - {{data}}"
+    sortable_fields: ["data", "titulo", "categoria"]
+    # ... resto da configuração permanece igual
+
   # ================================
   # 👨‍⚕️ FISIOTERAPEUTAS - PRIORIDADE MÁXIMA  
   # ================================
