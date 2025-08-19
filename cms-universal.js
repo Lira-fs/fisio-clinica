@@ -114,7 +114,7 @@ class UniversalCMS {
     }
 
     parseMarkdownPost(content) {
-        // Parse básico de markdown com frontmatter
+        // Parse melhorado de markdown com frontmatter
         const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
         const match = content.match(frontmatterRegex);
         
@@ -124,34 +124,99 @@ class UniversalCMS {
             
             const post = {};
             
-            // Parse das propriedades do frontmatter
-            frontmatter.split('\n').forEach(line => {
+            // Parse das propriedades do frontmatter - VERSÃO MELHORADA
+            const lines = frontmatter.split('\n');
+            let currentKey = null;
+            let currentValue = '';
+            let inMultilineValue = false;
+            
+            for (let line of lines) {
+                line = line.trim();
+                
+                // Pular linhas vazias
+                if (!line) continue;
+                
+                // Verificar se é uma nova propriedade (tem :)
                 const colonIndex = line.indexOf(':');
-                if (colonIndex > 0) {
-                    const key = line.substring(0, colonIndex).trim();
+                
+                if (colonIndex > 0 && !inMultilineValue) {
+                    // Salvar propriedade anterior se existir
+                    if (currentKey) {
+                        post[currentKey] = this.parseYamlValue(currentValue.trim());
+                    }
+                    
+                    // Nova propriedade
+                    currentKey = line.substring(0, colonIndex).trim();
                     let value = line.substring(colonIndex + 1).trim();
                     
-                    // Remover aspas
-                    if (value.startsWith('"') && value.endsWith('"')) {
-                        value = value.slice(1, -1);
+                    // Verificar se é valor multilinha (>- ou |)
+                    if (value === '>-' || value === '>' || value === '|' || value === '|-') {
+                        inMultilineValue = true;
+                        currentValue = '';
+                    } else {
+                        currentValue = value;
+                        inMultilineValue = false;
                     }
-                    if (value.startsWith("'") && value.endsWith("'")) {
-                        value = value.slice(1, -1);
+                } else if (inMultilineValue) {
+                    // Adicionar linha ao valor multilinha
+                    if (currentValue) {
+                        currentValue += ' ' + line;
+                    } else {
+                        currentValue = line;
                     }
-                    
-                    // Converter tipos
-                    if (value === 'true') value = true;
-                    if (value === 'false') value = false;
-                    
-                    post[key] = value;
                 }
+            }
+            
+            // Salvar última propriedade
+            if (currentKey) {
+                post[currentKey] = this.parseYamlValue(currentValue.trim());
+            }
+            
+            // Processar body (conteúdo após o frontmatter)
+            if (body.trim()) {
+                post.conteudo = this.cleanHtmlContent(body.trim());
+            }
+            
+            console.log('🔄 Post parseado:', {
+                titulo: post.titulo,
+                categoria: post.categoria,
+                temConteudo: !!post.conteudo,
+                conteudoLength: post.conteudo ? post.conteudo.length : 0
             });
             
-            post.conteudo = body.trim();
             return post;
         }
         
         return null;
+    }
+
+       parseYamlValue(value) {
+        // Limpar valor YAML
+        if (!value) return '';
+        
+        // Remover aspas
+        if ((value.startsWith('"') && value.endsWith('"')) || 
+            (value.startsWith("'") && value.endsWith("'"))) {
+            value = value.slice(1, -1);
+        }
+        
+        // Converter tipos
+        if (value === 'true') return true;
+        if (value === 'false') return false;
+        if (!isNaN(value) && !isNaN(parseFloat(value))) {
+            return parseFloat(value);
+        }
+        
+        return value;
+    }
+
+     cleanHtmlContent(content) {
+        // Limpar tags HTML desnecessárias
+        return content
+            .replace(/<!--StartFragment-->/g, '')
+            .replace(/<!--EndFragment-->/g, '')
+            .replace(/<!--.*?-->/g, '') // Remover todos os comentários HTML
+            .trim();
     }
 
     processPlaceholders() {
