@@ -223,99 +223,127 @@ class UniversalCMS {
     }
 
     createBlogCard(post, badgeClass = 'badge-primary') {
-        const categoryLabels = {
-            'novidades': 'Clínica',
-            'clinica': 'Clínica',
-            'esportiva': 'Fisioterapia',
-            'reabilitacao': 'Tratamentos',
-            'pilates': 'Pilates',
-            'dicas': 'Dicas',
-            'tecnologia': 'Tecnologia',
-            'tratamentos': 'Tratamentos'
-        };
+    const categoryLabels = {
+        'novidades': 'Clínica',
+        'clinica': 'Clínica',
+        'esportiva': 'Fisioterapia',
+        'reabilitacao': 'Tratamentos',
+        'pilates': 'Pilates',
+        'dicas': 'Dicas',
+        'tecnologia': 'Tecnologia',
+        'tratamentos': 'Tratamentos'
+    };
 
-        const categoryLabel = categoryLabels[post.categoria] || 'Notícias';
-        const imageUrl = post.imagem || 'https://via.placeholder.com/600x400/3498db/ffffff?text=Sem+Imagem';
-        const resumo = post.resumo || post.content || post.body || post.markdown || post.texto || 'Confira este post em nosso blog.';
-        const titulo = post.titulo || 'Post sem título';
+    const categoryLabel = categoryLabels[post.categoria] || 'Notícias';
+    const imageUrl = post.imagem || 'https://via.placeholder.com/600x400/3498db/ffffff?text=Sem+Imagem';
+    const titulo = post.titulo || 'Post sem título';
+    
+    // RESUMO/CONTEÚDO - VERSÃO CORRIGIDA
+    let resumo;
+    
+    // Debug do que temos disponível
+    console.log(`📖 Post "${post.titulo}" - campos disponíveis:`, {
+        resumo: post.resumo,
+        conteudo: post.conteudo ? post.conteudo.substring(0, 100) + '...' : 'vazio'
+    });
+    
+    // Usar conteúdo se resumo estiver vazio, senão usar resumo
+    if (post.resumo && post.resumo.trim()) {
+        resumo = post.resumo;
+        console.log(`✅ Usando resumo: ${resumo.substring(0, 50)}...`);
+    } else if (post.conteudo && post.conteudo.trim()) {
+        // Limpar markdown básico e truncar
+        resumo = post.conteudo
+            .replace(/#{1,6}\s/g, '') // Remover # dos títulos
+            .replace(/\*\*(.*?)\*\*/g, '$1') // Remover **negrito**
+            .replace(/\n+/g, ' ') // Substituir quebras de linha por espaços
+            .trim();
         
-        // Formatar data
-        // SUBSTITUA a seção "Formatar data" na função createBlogCard()
-
-        // Formatar data - CORREÇÃO PARA FORMATO AMERICANO
-        let dataFormatada = 'Recente';
-        if (post.data) {
-            try {
-                console.log(`📅 Data original do post "${post.titulo}":`, post.data);
-                
-                let date;
-                
-                if (typeof post.data === 'string') {
-                    // Formato do Netlify CMS: "08/17/2025 12:00 AM"
-                    if (post.data.includes('/') && post.data.includes(' ')) {
-                        // Separar data e hora
-                        const [datePart, timePart] = post.data.split(' ');
-                        
-                        // Parse da data MM/DD/YYYY
-                        const [mes, dia, ano] = datePart.split('/');
-                        
-                        // Criar data correta (mês é zero-indexado)
-                        date = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
-                        
-                        console.log(`🔄 Convertendo ${post.data} → ${date.toISOString()}`);
-                    }
-                    // Formato ISO padrão
-                    else if (post.data.includes('T')) {
-                        date = new Date(post.data);
-                    }
-                    // Formato simples YYYY-MM-DD
-                    else {
-                        date = new Date(post.data);
-                    }
-                } else {
+        // Truncar se muito longo
+        if (resumo.length > 150) {
+            resumo = resumo.substring(0, 150) + '...';
+        }
+        
+        console.log(`✅ Usando conteúdo processado: ${resumo.substring(0, 50)}...`);
+    } else {
+        resumo = 'Confira este post em nosso blog.';
+        console.log(`⚠️ Usando texto padrão`);
+    }
+    
+    // Formatar data - CORREÇÃO PARA FORMATO AMERICANO
+    let dataFormatada = 'Recente';
+    if (post.data) {
+        try {
+            console.log(`📅 Data original do post "${post.titulo}":`, post.data);
+            
+            let date;
+            
+            if (typeof post.data === 'string') {
+                // Formato do Netlify CMS: "08/17/2025 12:00 AM"
+                if (post.data.includes('/') && post.data.includes(' ')) {
+                    // Separar data e hora
+                    const [datePart, timePart] = post.data.split(' ');
+                    
+                    // Parse da data MM/DD/YYYY
+                    const [mes, dia, ano] = datePart.split('/');
+                    
+                    // Criar data correta (mês é zero-indexado)
+                    date = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
+                    
+                    console.log(`🔄 Convertendo ${post.data} → ${date.toISOString()}`);
+                }
+                // Formato ISO padrão
+                else if (post.data.includes('T')) {
                     date = new Date(post.data);
                 }
-                
-                // Verificar se a data é válida
-                if (date && !isNaN(date.getTime())) {
-                    dataFormatada = date.toLocaleDateString('pt-BR');
-                    console.log(`✅ Data formatada: ${dataFormatada}`);
-                } else {
-                    console.warn(`⚠️ Data inválida para post "${post.titulo}":`, post.data);
-                    dataFormatada = 'Data inválida';
+                // Formato simples YYYY-MM-DD
+                else {
+                    date = new Date(post.data);
                 }
-                
-            } catch (e) {
-                console.error(`❌ Erro ao formatar data do post "${post.titulo}":`, e);
-                dataFormatada = 'Erro na data';
+            } else {
+                date = new Date(post.data);
             }
-        }   
-
-        // Indicador de destaque
-        const destaqueClass = post.destaque ? 'post-destaque' : '';
-        const destaqueIcon = post.destaque ? '<i class="fas fa-star post-destaque-icon"></i>' : '';
-
-        return `
-            <article class="card fade-in cms-generated-card ${destaqueClass}">
-                <div class="card-image">
-                    <img src="${imageUrl}" alt="${titulo}" 
-                         onerror="this.style.display='none'; this.parentElement.setAttribute('data-placeholder', 'Imagem do Post');"
-                         onload="this.style.display='block';">
-                    ${destaqueIcon}
-                </div>
-                <div class="card-body">
-                    <span class="badge ${badgeClass}">${categoryLabel}</span>
-                    <h4>${titulo}</h4>
-                    <p>${resumo}</p>
-                    <small class="post-meta">
-                        <i class="fas fa-calendar"></i> ${dataFormatada}
-                        ${post.autor ? `• <i class="fas fa-user"></i> ${post.autor}` : ''}
-                        ${this.isPreviewMode ? '<span class="preview-tag">PREVIEW</span>' : ''}
-                    </small>
-                </div>
-            </article>
-        `;
+            
+            // Verificar se a data é válida
+            if (date && !isNaN(date.getTime())) {
+                dataFormatada = date.toLocaleDateString('pt-BR');
+                console.log(`✅ Data formatada: ${dataFormatada}`);
+            } else {
+                console.warn(`⚠️ Data inválida para post "${post.titulo}":`, post.data);
+                dataFormatada = 'Data inválida';
+            }
+            
+        } catch (e) {
+            console.error(`❌ Erro ao formatar data do post "${post.titulo}":`, e);
+            dataFormatada = 'Erro na data';
+        }
     }
+
+    // Indicador de destaque
+    const destaqueClass = post.destaque ? 'post-destaque' : '';
+    const destaqueIcon = post.destaque ? '<i class="fas fa-star post-destaque-icon"></i>' : '';
+
+    return `
+        <article class="card fade-in cms-generated-card ${destaqueClass}">
+            <div class="card-image">
+                <img src="${imageUrl}" alt="${titulo}" 
+                     onerror="this.style.display='none'; this.parentElement.setAttribute('data-placeholder', 'Imagem do Post');"
+                     onload="this.style.display='block';">
+                ${destaqueIcon}
+            </div>
+            <div class="card-body">
+                <span class="badge ${badgeClass}">${categoryLabel}</span>
+                <h4>${titulo}</h4>
+                <p>${resumo}</p>
+                <small class="post-meta">
+                    <i class="fas fa-calendar"></i> ${dataFormatada}
+                    ${post.autor ? `• <i class="fas fa-user"></i> ${post.autor}` : ''}
+                    ${this.isPreviewMode ? '<span class="preview-tag">PREVIEW</span>' : ''}
+                </small>
+            </div>
+        </article>
+    `;
+}
 
     truncateText(text, maxLength) {
         if (!text) return '';
