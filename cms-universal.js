@@ -64,92 +64,99 @@ class UniversalCMS {
 
     async loadBlogData() {
         try {
-            // Método 1: Tentar carregar posts consolidados
-            try {
-                const response = await fetch('./posts.json');
-                if (response.ok) {
-                    const data = await response.json();
-                    this.data.blog = data.posts || [];
-                    console.log('✅ Posts carregados de posts.json:', this.data.blog.length);
-                    return;
+            console.log('📡 Carregando posts reais do GitHub...');
+            
+            // Carregar posts reais do GitHub
+            const response = await fetch('https://api.github.com/repos/Lira-fs/fisio-clinica/contents/_data/blog');
+            
+            if (response.ok) {
+                const files = await response.json();
+                console.log('📂 Arquivos encontrados:', files.length);
+                
+                const posts = [];
+                
+                // Carregar cada arquivo
+                for (const file of files) {
+                    if (file.name.endsWith('.json') || file.name.endsWith('.md')) {
+                        try {
+                            console.log(`📖 Carregando: ${file.name}`);
+                            const fileResponse = await fetch(file.download_url);
+                            const fileContent = await fileResponse.text();
+                            
+                            let post;
+                            if (file.name.endsWith('.json')) {
+                                post = JSON.parse(fileContent);
+                            } else if (file.name.endsWith('.md')) {
+                                post = this.parseMarkdownPost(fileContent);
+                            }
+                            
+                            if (post && post.titulo) {
+                                post.filename = file.name;
+                                posts.push(post);
+                                console.log(`✅ Post carregado: ${post.titulo}`);
+                            }
+                        } catch (error) {
+                            console.warn(`⚠️ Erro ao carregar ${file.name}:`, error);
+                        }
+                    }
                 }
-            } catch (e) {
-                console.log('📄 posts.json não encontrado');
-            }
-
-            // Método 2: Posts de exemplo + localStorage
-            const savedPosts = localStorage.getItem('netlify-cms-blog');
-            if (savedPosts) {
-                this.data.blog = JSON.parse(savedPosts);
-                console.log('✅ Posts carregados do localStorage:', this.data.blog.length);
+                
+                this.data.blog = posts;
+                console.log(`✅ ${posts.length} posts reais carregados do GitHub`);
                 return;
             }
-
-            // Método 3: Posts de exemplo
-            this.data.blog = this.createExamplePosts();
-            console.log('✅ Posts de exemplo criados:', this.data.blog.length);
+            
+            throw new Error(`GitHub API retornou ${response.status}`);
             
         } catch (error) {
-            console.warn('⚠️ Erro ao carregar posts:', error);
-            this.data.blog = [];
+            console.warn('⚠️ Erro ao carregar posts reais:', error);
+            console.log('📝 Usando posts de exemplo como fallback');
+            
+            // Fallback para posts de exemplo
+            this.data.blog = this.createExamplePosts();
+            console.log('✅ Posts de exemplo criados:', this.data.blog.length);
         }
     }
 
-    createExamplePosts() {
-        const now = new Date();
-        return [
-            {
-                titulo: "🎉 Bem-vindos ao nosso novo blog!",
-                data: now.toISOString(),
-                autor: "Equipe FISIO",
-                imagem: "./imagens/hero-1.jpg",
-                resumo: "Confira nosso novo blog com dicas de fisioterapia e novidades da clínica.",
-                categoria: "novidades",
-                publicado: true,
-                conteudo: "Este é um exemplo de como os posts do Netlify CMS aparecerão no site. Você pode editar este conteúdo através do painel administrativo.",
-                destaque: true
-            },
-            {
-                titulo: "💪 Dicas para prevenção de lesões esportivas",
-                data: new Date(now.getTime() - 86400000).toISOString(),
-                autor: "Dr. João Silva",
-                imagem: "./imagens/hero-2.jpg",
-                resumo: "Aprenda técnicas simples para evitar lesões durante a prática esportiva.",
-                categoria: "esportiva",
-                publicado: true,
-                conteudo: "A prevenção é sempre melhor que o tratamento. Confira nossas dicas especializadas."
-            },
-            {
-                titulo: "🔬 Novos equipamentos de última geração",
-                data: new Date(now.getTime() - 172800000).toISOString(),
-                autor: "Equipe FISIO",
-                imagem: "./imagens/hero-3.jpg",
-                resumo: "Investimos em tecnologia de ponta para melhor atendimento aos pacientes.",
-                categoria: "tecnologia",
-                publicado: true,
-                conteudo: "Nossos novos equipamentos permitem tratamentos mais eficazes e rápidos."
-            },
-            {
-                titulo: "🧘 Pilates clínico: benefícios e indicações",
-                data: new Date(now.getTime() - 259200000).toISOString(),
-                autor: "Dra. Maria Santos",
-                imagem: "./imagens/hero-4.jpg",
-                resumo: "Entenda como o pilates clínico pode transformar sua qualidade de vida.",
-                categoria: "pilates",
-                publicado: true,
-                conteudo: "O pilates clínico é uma ferramenta poderosa na reabilitação e prevenção."
-            },
-            {
-                titulo: "🏥 Reabilitação pós-cirúrgica: o que esperar",
-                data: new Date(now.getTime() - 345600000).toISOString(),
-                autor: "Dr. Carlos Mendes",
-                imagem: "./imagens/hero-1.jpg",
-                resumo: "Guia completo sobre o processo de recuperação após cirurgias ortopédicas.",
-                categoria: "reabilitacao",
-                publicado: true,
-                conteudo: "A reabilitação adequada é fundamental para uma recuperação completa."
-            }
-        ];
+    parseMarkdownPost(content) {
+        // Parse básico de markdown com frontmatter
+        const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
+        const match = content.match(frontmatterRegex);
+        
+        if (match) {
+            const frontmatter = match[1];
+            const body = match[2];
+            
+            const post = {};
+            
+            // Parse das propriedades do frontmatter
+            frontmatter.split('\n').forEach(line => {
+                const colonIndex = line.indexOf(':');
+                if (colonIndex > 0) {
+                    const key = line.substring(0, colonIndex).trim();
+                    let value = line.substring(colonIndex + 1).trim();
+                    
+                    // Remover aspas
+                    if (value.startsWith('"') && value.endsWith('"')) {
+                        value = value.slice(1, -1);
+                    }
+                    if (value.startsWith("'") && value.endsWith("'")) {
+                        value = value.slice(1, -1);
+                    }
+                    
+                    // Converter tipos
+                    if (value === 'true') value = true;
+                    if (value === 'false') value = false;
+                    
+                    post[key] = value;
+                }
+            });
+            
+            post.conteudo = body.trim();
+            return post;
+        }
+        
+        return null;
     }
 
     processPlaceholders() {
