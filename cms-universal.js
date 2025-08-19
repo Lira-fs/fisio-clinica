@@ -1,5 +1,5 @@
 // ================================
-// CMS UNIVERSAL - SISTEMA DE PLACEHOLDERS
+// CMS UNIVERSAL LIMPO - SEM POSTS DE EXEMPLO
 // Gerencia todos os tipos de conteúdo CMS
 // ================================
 
@@ -17,7 +17,7 @@ class UniversalCMS {
     }
 
     async init() {
-        console.log('🚀 Iniciando Universal CMS...');
+        console.log('🚀 Iniciando Universal CMS LIMPO...');
         
         // Detectar modo preview
         this.detectPreviewMode();
@@ -51,14 +51,8 @@ class UniversalCMS {
         // Carregar dados de blog
         await this.loadBlogData();
         
-        // TODO: Adicionar outros tipos de dados
-        // await this.loadFisioterapeutasData();
-        // await this.loadTratamentosData();
-        
         console.log('✅ Dados carregados:', {
-            blog: this.data.blog.length,
-            // fisioterapeutas: this.data.fisioterapeutas.length,
-            // tratamentos: this.data.tratamentos.length
+            blog: this.data.blog.length
         });
     }
 
@@ -93,7 +87,7 @@ class UniversalCMS {
                             if (post && post.titulo) {
                                 post.filename = file.name;
                                 posts.push(post);
-                                console.log(`✅ Post carregado: ${post.titulo}`);
+                                console.log(`✅ Post carregado: "${post.titulo}" - Categoria: "${post.categoria}"`);
                             }
                         } catch (error) {
                             console.warn(`⚠️ Erro ao carregar ${file.name}:`, error);
@@ -103,18 +97,19 @@ class UniversalCMS {
                 
                 this.data.blog = posts;
                 console.log(`✅ ${posts.length} posts reais carregados do GitHub`);
-                return;
+                
+                // Log das categorias para debug
+                const categorias = [...new Set(posts.map(p => p.categoria))];
+                console.log('🏷️ Categorias encontradas:', categorias);
+                
+            } else {
+                throw new Error(`GitHub API retornou ${response.status}`);
             }
-            
-            throw new Error(`GitHub API retornou ${response.status}`);
             
         } catch (error) {
             console.warn('⚠️ Erro ao carregar posts reais:', error);
-            console.log('📝 Usando posts de exemplo como fallback');
-            
-            // Fallback para posts de exemplo
-            this.data.blog = this.createExamplePosts();
-            console.log('✅ Posts de exemplo criados:', this.data.blog.length);
+            console.log('📭 Nenhum post carregado - site mostrará conteúdo fallback');
+            this.data.blog = [];
         }
     }
 
@@ -165,10 +160,6 @@ class UniversalCMS {
         // Processar placeholders de blog
         const blogPlaceholders = document.querySelectorAll('[data-cms="blog-posts"]');
         blogPlaceholders.forEach(placeholder => this.processBlogPlaceholder(placeholder));
-
-        // TODO: Adicionar outros tipos de placeholders
-        // const fisioPlaceholders = document.querySelectorAll('[data-cms="fisioterapeutas"]');
-        // fisioPlaceholders.forEach(placeholder => this.processFisioPlaceholder(placeholder));
     }
 
     processBlogPlaceholder(placeholder) {
@@ -178,34 +169,39 @@ class UniversalCMS {
         const section = placeholder.getAttribute('data-cms-section');
 
         console.log(`📝 Processando seção: ${section}`);
+        console.log(`🏷️ Filtro de categoria: ${category}`);
 
-        // Filtrar posts
+        // Filtrar posts publicados
         let posts = this.data.blog.filter(post => post.publicado !== false);
+        console.log(`📊 Posts publicados disponíveis: ${posts.length}`);
 
         // Se estivermos em modo preview de um post específico
         if (this.isPreviewMode && this.previewPost) {
-            // Procurar o post específico
             const previewPostData = posts.find(post => 
                 post.titulo.toLowerCase().includes(this.previewPost.toLowerCase()) ||
                 post.slug === this.previewPost
             );
             
             if (previewPostData) {
-                // Mostrar apenas o post em preview
                 posts = [previewPostData];
                 console.log('👁️ Mostrando preview do post:', previewPostData.titulo);
             }
         }
 
-        // Filtrar por categoria se especificado
+        // Filtrar por categoria SE especificado
         if (category) {
             const categories = category.split(',').map(c => c.trim());
-            const categorizedPosts = posts.filter(post => 
-                categories.includes(post.categoria)
-            );
+            console.log(`🔍 Categorias aceitas para ${section}: [${categories.join(', ')}]`);
             
-            // Se não há posts da categoria, usar qualquer post como fallback
-            posts = categorizedPosts.length > 0 ? categorizedPosts : posts;
+            const categorizedPosts = posts.filter(post => {
+                const postCategory = post.categoria;
+                const match = categories.includes(postCategory);
+                console.log(`📄 Post "${post.titulo}" - Categoria: "${postCategory}" - Match: ${match}`);
+                return match;
+            });
+            
+            posts = categorizedPosts;
+            console.log(`📊 Posts filtrados para ${section}: ${posts.length}`);
         }
 
         // Ordenar por data (mais recente primeiro)
@@ -214,7 +210,7 @@ class UniversalCMS {
         // Limitar quantidade
         posts = posts.slice(0, limit);
 
-        // Renderizar posts
+        // Renderizar posts OU manter fallback
         if (posts.length > 0) {
             placeholder.innerHTML = posts.map(post => 
                 this.createBlogCard(post, badgeClass)
@@ -222,7 +218,7 @@ class UniversalCMS {
             
             console.log(`✅ ${section}: ${posts.length} posts renderizados`);
         } else {
-            console.log(`📄 ${section}: mantendo conteúdo fallback`);
+            console.log(`📄 ${section}: nenhum post encontrado - mantendo conteúdo fallback`);
         }
     }
 
@@ -239,7 +235,7 @@ class UniversalCMS {
         };
 
         const categoryLabel = categoryLabels[post.categoria] || 'Notícias';
-        const imageUrl = post.imagem || './imagens/hero-1.jpg';
+        const imageUrl = post.imagem || 'https://via.placeholder.com/600x400/3498db/ffffff?text=Sem+Imagem';
         const resumo = post.resumo || this.truncateText(post.conteudo, 120) || 'Confira este post em nosso blog.';
         const titulo = post.titulo || 'Post sem título';
         
@@ -324,13 +320,6 @@ class UniversalCMS {
     }
 
     // Métodos para desenvolvedores
-    addPost(post) {
-        this.data.blog.unshift(post);
-        localStorage.setItem('netlify-cms-blog', JSON.stringify(this.data.blog));
-        this.processPlaceholders();
-        console.log('✅ Post adicionado:', post.titulo);
-    }
-
     async reload() {
         console.log('🔄 Recarregando CMS...');
         this.data = { blog: [], fisioterapeutas: [], tratamentos: [], estrutura: [], unidades: [] };
@@ -357,7 +346,7 @@ class UniversalCMS {
 let universalCMS;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌐 DOM carregado, iniciando Universal CMS...');
+    console.log('🌐 DOM carregado, iniciando Universal CMS LIMPO...');
     
     universalCMS = new UniversalCMS();
     universalCMS.init();
@@ -368,7 +357,6 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('💡 Comandos disponíveis:');
     console.log('   window.universalCMS.reload() - Recarregar dados');
     console.log('   window.universalCMS.getStats() - Ver estatísticas');
-    console.log('   window.universalCMS.addPost({...}) - Adicionar post');
 });
 
 // ================================
