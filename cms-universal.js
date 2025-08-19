@@ -236,7 +236,7 @@ class UniversalCMS {
 
         const categoryLabel = categoryLabels[post.categoria] || 'Notícias';
         const imageUrl = post.imagem || 'https://via.placeholder.com/600x400/3498db/ffffff?text=Sem+Imagem';
-        const resumo = post.conteudo || post.resumo || 'Confira este post em nosso blog.';
+        const resumo = post.resumo || post.content || post.body || post.markdown || post.texto || 'Confira este post em nosso blog.';
         const titulo = post.titulo || 'Post sem título';
         
         // Formatar data
