@@ -240,15 +240,56 @@ class UniversalCMS {
         const titulo = post.titulo || 'Post sem título';
         
         // Formatar data
+        // SUBSTITUA a seção "Formatar data" na função createBlogCard()
+
+        // Formatar data - CORREÇÃO PARA FORMATO AMERICANO
         let dataFormatada = 'Recente';
         if (post.data) {
             try {
-                const date = new Date(post.data);
-                dataFormatada = date.toLocaleDateString('pt-BR');
+                console.log(`📅 Data original do post "${post.titulo}":`, post.data);
+                
+                let date;
+                
+                if (typeof post.data === 'string') {
+                    // Formato do Netlify CMS: "08/17/2025 12:00 AM"
+                    if (post.data.includes('/') && post.data.includes(' ')) {
+                        // Separar data e hora
+                        const [datePart, timePart] = post.data.split(' ');
+                        
+                        // Parse da data MM/DD/YYYY
+                        const [mes, dia, ano] = datePart.split('/');
+                        
+                        // Criar data correta (mês é zero-indexado)
+                        date = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
+                        
+                        console.log(`🔄 Convertendo ${post.data} → ${date.toISOString()}`);
+                    }
+                    // Formato ISO padrão
+                    else if (post.data.includes('T')) {
+                        date = new Date(post.data);
+                    }
+                    // Formato simples YYYY-MM-DD
+                    else {
+                        date = new Date(post.data);
+                    }
+                } else {
+                    date = new Date(post.data);
+                }
+                
+                // Verificar se a data é válida
+                if (date && !isNaN(date.getTime())) {
+                    dataFormatada = date.toLocaleDateString('pt-BR');
+                    console.log(`✅ Data formatada: ${dataFormatada}`);
+                } else {
+                    console.warn(`⚠️ Data inválida para post "${post.titulo}":`, post.data);
+                    dataFormatada = 'Data inválida';
+                }
+                
             } catch (e) {
-                dataFormatada = 'Recente';
+                console.error(`❌ Erro ao formatar data do post "${post.titulo}":`, e);
+                dataFormatada = 'Erro na data';
             }
-        }
+        }   
 
         // Indicador de destaque
         const destaqueClass = post.destaque ? 'post-destaque' : '';
