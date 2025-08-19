@@ -248,27 +248,27 @@ class UniversalCMS {
     });
     
     // Usar conteúdo se resumo estiver vazio, senão usar resumo
-    if (post.resumo && post.resumo.trim()) {
-        resumo = post.resumo;
-        console.log(`✅ Usando resumo: ${resumo.substring(0, 50)}...`);
-    } else if (post.conteudo && post.conteudo.trim()) {
-        // Limpar markdown básico e truncar
-        resumo = post.conteudo
-            .replace(/#{1,6}\s/g, '') // Remover # dos títulos
-            .replace(/\*\*(.*?)\*\*/g, '$1') // Remover **negrito**
-            .replace(/\n+/g, ' ') // Substituir quebras de linha por espaços
-            .trim();
-        
-        // Truncar se muito longo
-        if (resumo.length > 150) {
-            resumo = resumo.substring(0, 150) + '...';
-        }
-        
-        console.log(`✅ Usando conteúdo processado: ${resumo.substring(0, 50)}...`);
-    } else {
-        resumo = 'Confira este post em nosso blog.';
-        console.log(`⚠️ Usando texto padrão`);
+    if (post.conteudo && post.conteudo.trim()) {
+    // Limpar markdown básico e truncar
+    resumo = post.conteudo
+        .replace(/#{1,6}\s/g, '') // Remover # dos títulos
+        .replace(/\*\*(.*?)\*\*/g, '$1') // Remover **negrito**
+        .replace(/\n+/g, ' ') // Substituir quebras de linha por espaços
+        .trim();
+    
+    // Truncar se muito longo
+    if (resumo.length > 200) {
+        resumo = resumo.substring(0, 200) + '...';
     }
+    
+    console.log(`✅ Usando conteúdo: ${resumo.substring(0, 50)}...`);
+} else if (post.resumo && post.resumo.trim()) {
+    resumo = post.resumo;
+    console.log(`✅ Usando resumo: ${resumo.substring(0, 50)}...`);
+} else {
+    resumo = 'Confira este post em nosso blog.';
+    console.log(`⚠️ Usando texto padrão`);
+}
     
     // Formatar data - CORREÇÃO PARA FORMATO AMERICANO
     let dataFormatada = 'Recente';
