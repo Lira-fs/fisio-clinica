@@ -1,88 +1,73 @@
 // ================================
-// CMS UNIVERSAL LIMPO - SEM POSTS DE EXEMPLO
-// Gerencia todos os tipos de conteúdo CMS
+// UNIVERSAL CMS - VERSÃO LIMPA E CORRIGIDA
+// Sistema que conecta Netlify CMS ao site HTML
 // ================================
 
 class UniversalCMS {
     constructor() {
         this.data = {
             blog: [],
-            fisioterapeutas: [],
-            tratamentos: [],
             estrutura: [],
-            unidades: []
+            unidades: [],
+            tratamentos: []
         };
         this.isPreviewMode = false;
         this.previewPost = null;
     }
 
     async init() {
-        console.log('🚀 Iniciando Universal CMS LIMPO...');
+        console.log('🚀 Iniciando Universal CMS...');
         
-        // Detectar modo preview
         this.detectPreviewMode();
-        
-        // Carregar dados
-        await this.loadAllData();
-        
-        // Processar placeholders
+        await this.loadData();
         this.processPlaceholders();
         
-        // Configurar preview se necessário
-        if (this.isPreviewMode) {
-            this.setupPreviewMode();
-        }
+        console.log('✅ Universal CMS iniciado!');
     }
 
     detectPreviewMode() {
         const urlParams = new URLSearchParams(window.location.search);
-        this.isPreviewMode = urlParams.has('preview');
         this.previewPost = urlParams.get('preview');
+        this.isPreviewMode = !!this.previewPost;
         
         if (this.isPreviewMode) {
-            document.body.classList.add('cms-preview-mode');
-            console.log('👁️ Modo Preview ativo:', this.previewPost);
+            console.log('👁️ Modo preview ativo para:', this.previewPost);
+            this.showPreviewIndicator();
         }
     }
 
-    async loadAllData() {
-        console.log('📡 Carregando dados do CMS...');
-
-        // Carregar dados de blog
-        await this.loadBlogData();
-        
-        console.log('✅ Dados carregados:', {
-            blog: this.data.blog.length
-        });
+    showPreviewIndicator() {
+        const indicator = document.getElementById('cms-preview-indicator');
+        if (indicator) {
+            indicator.style.display = 'block';
+        }
     }
 
-    async loadBlogData() {
+    async loadData() {
+        console.log('📡 Carregando dados do GitHub...');
+        
+        await Promise.all([
+            this.loadBlogPosts(),
+            this.loadEstrutura(),
+            this.loadUnidades(),
+            this.loadTratamentos()
+        ]);
+    }
+
+    async loadBlogPosts() {
         try {
-            console.log('📡 Carregando posts reais do GitHub...');
-            
-            // Carregar posts reais do GitHub
             const response = await fetch('https://api.github.com/repos/Lira-fs/fisio-clinica/contents/_data/blog');
             
             if (response.ok) {
                 const files = await response.json();
-                console.log('📂 Arquivos encontrados:', files.length);
-                
                 const posts = [];
                 
-                // Carregar cada arquivo
                 for (const file of files) {
-                    if (file.name.endsWith('.json') || file.name.endsWith('.md')) {
+                    if (file.name.endsWith('.md')) {
                         try {
-                            console.log(`📖 Carregando: ${file.name}`);
                             const fileResponse = await fetch(file.download_url);
-                            const fileContent = await fileResponse.text();
-                            
-                            let post;
-                            if (file.name.endsWith('.json')) {
-                                post = JSON.parse(fileContent);
-                            } else if (file.name.endsWith('.md')) {
-                                post = this.parseMarkdownPost(fileContent);
-                            }
+                            const content = await fileResponse.text();
+                            const post = this.parseMarkdownPost(content);
                             
                             if (post && post.titulo) {
                                 post.filename = file.name;
@@ -96,11 +81,7 @@ class UniversalCMS {
                 }
                 
                 this.data.blog = posts;
-                console.log(`✅ ${posts.length} posts reais carregados do GitHub`);
-                
-                // Log das categorias para debug
-                const categorias = [...new Set(posts.map(p => p.categoria))];
-                console.log('🏷️ Categorias encontradas:', categorias);
+                console.log(`✅ ${posts.length} posts carregados do GitHub`);
                 
             } else {
                 throw new Error(`GitHub API retornou ${response.status}`);
@@ -108,81 +89,65 @@ class UniversalCMS {
             
         } catch (error) {
             console.warn('⚠️ Erro ao carregar posts reais:', error);
-            console.log('📭 Nenhum post carregado - site mostrará conteúdo fallback');
+            console.log('🔭 Nenhum post carregado - site mostrará conteúdo fallback');
             this.data.blog = [];
         }
     }
 
+    async loadEstrutura() {
+        // Similar ao loadBlogPosts, mas para estrutura
+        console.log('🏠 Carregando dados de estrutura...');
+        // Implementar quando necessário
+    }
+
+    async loadUnidades() {
+        // Similar ao loadBlogPosts, mas para unidades
+        console.log('🏥 Carregando dados de unidades...');
+        // Implementar quando necessário
+    }
+
+    async loadTratamentos() {
+        // Similar ao loadBlogPosts, mas para tratamentos
+        console.log('💊 Carregando dados de tratamentos...');
+        // Implementar quando necessário
+    }
+
     parseMarkdownPost(content) {
-        // Parse melhorado de markdown com frontmatter
         const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
         const match = content.match(frontmatterRegex);
         
-        if (match) {
-            const frontmatter = match[1];
-            const body = match[2];
-            
-            const post = {};
-            
-            // Parse das propriedades do frontmatter - VERSÃO MELHORADA
-            const lines = frontmatter.split('\n');
-            let currentKey = null;
-            let currentValue = '';
-            let inMultilineValue = false;
-            
-            for (let line of lines) {
-                line = line.trim();
-                
-                // Pular linhas vazias
-                if (!line) continue;
-                
-                // Verificar se é uma nova propriedade (tem :)
-                const colonIndex = line.indexOf(':');
-                
-                if (colonIndex > 0 && !inMultilineValue) {
-                    // Salvar propriedade anterior se existir
-                    if (currentKey) {
-                        post[currentKey] = this.parseYamlValue(currentValue.trim());
-                    }
-                    
-                    // Nova propriedade
-                    currentKey = line.substring(0, colonIndex).trim();
-                    let value = line.substring(colonIndex + 1).trim();
-                    
-                    // Verificar se é valor multilinha (>- ou |)
-                    if (value === '>-' || value === '>' || value === '|' || value === '|-') {
-                        inMultilineValue = true;
-                        currentValue = '';
-                    } else {
-                        currentValue = value;
-                        inMultilineValue = false;
-                    }
-                } else if (inMultilineValue) {
-                    // Adicionar linha ao valor multilinha
-                    if (currentValue) {
-                        currentValue += ' ' + line;
-                    } else {
-                        currentValue = line;
-                    }
-                }
+        if (!match) {
+            console.warn('⚠️ Post sem frontmatter válido');
+            return null;
+        }
+        
+        const [, frontmatter, body] = match;
+        const post = { body: body.trim() };
+        
+        // Parse do frontmatter YAML
+        const lines = frontmatter.split('\n');
+        for (const line of lines) {
+            const colonIndex = line.indexOf(':');
+            if (colonIndex !== -1) {
+                const key = line.substring(0, colonIndex).trim();
+                const value = line.substring(colonIndex + 1).trim();
+                post[key] = this.parseYamlValue(value);
+            }
+        }
+        
+        // Validações e correções
+        if (post.titulo && post.categoria) {
+            // Garantir que a categoria está nas opções válidas
+            const categoriasValidas = ['novidades', 'esportiva', 'reabilitacao', 'tecnologia'];
+            if (!categoriasValidas.includes(post.categoria)) {
+                console.warn(`⚠️ Categoria "${post.categoria}" inválida, alterando para "novidades"`);
+                post.categoria = 'novidades';
             }
             
-            // Salvar última propriedade
-            if (currentKey) {
-                post[currentKey] = this.parseYamlValue(currentValue.trim());
+            // Garantir formato de data correto
+            if (post.data) {
+                post.data = this.normalizarData(post.data);
             }
-            
-            // Processar body (conteúdo após o frontmatter)
-            if (body.trim()) {
-                post.conteudo = this.cleanHtmlContent(body.trim());
-            }
-            
-            console.log('🔄 Post parseado:', {
-                titulo: post.titulo,
-                categoria: post.categoria,
-                temConteudo: !!post.conteudo,
-                conteudoLength: post.conteudo ? post.conteudo.length : 0
-            });
             
             return post;
         }
@@ -190,7 +155,7 @@ class UniversalCMS {
         return null;
     }
 
-       parseYamlValue(value) {
+    parseYamlValue(value) {
         // Limpar valor YAML
         if (!value) return '';
         
@@ -210,13 +175,41 @@ class UniversalCMS {
         return value;
     }
 
-     cleanHtmlContent(content) {
-        // Limpar tags HTML desnecessárias
-        return content
-            .replace(/<!--StartFragment-->/g, '')
-            .replace(/<!--EndFragment-->/g, '')
-            .replace(/<!--.*?-->/g, '') // Remover todos os comentários HTML
-            .trim();
+    normalizarData(data) {
+        // Normalizar diferentes formatos de data para ISO
+        try {
+            let date;
+            
+            if (typeof data === 'string') {
+                // Formato Netlify CMS: "08/17/2025 12:00 AM"
+                if (data.includes('/') && data.includes(' ')) {
+                    const [datePart] = data.split(' ');
+                    const [mes, dia, ano] = datePart.split('/');
+                    date = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
+                }
+                // Formato ISO
+                else if (data.includes('T')) {
+                    date = new Date(data);
+                }
+                // Formato simples YYYY-MM-DD
+                else {
+                    date = new Date(data);
+                }
+            } else {
+                date = new Date(data);
+            }
+            
+            // Retornar em formato ISO se válida
+            if (date && !isNaN(date.getTime())) {
+                return date.toISOString();
+            }
+            
+        } catch (e) {
+            console.error('❌ Erro ao normalizar data:', e);
+        }
+        
+        // Fallback: data atual
+        return new Date().toISOString();
     }
 
     processPlaceholders() {
@@ -225,6 +218,11 @@ class UniversalCMS {
         // Processar placeholders de blog
         const blogPlaceholders = document.querySelectorAll('[data-cms="blog-posts"]');
         blogPlaceholders.forEach(placeholder => this.processBlogPlaceholder(placeholder));
+
+        // Processar outros placeholders conforme necessário
+        // this.processEstruturaPlaceholders();
+        // this.processUnidadesPlaceholders();
+        // this.processTratamentosPlaceholders();
     }
 
     processBlogPlaceholder(placeholder) {
@@ -233,7 +231,7 @@ class UniversalCMS {
         const badgeClass = placeholder.getAttribute('data-cms-badge') || 'badge-primary';
         const section = placeholder.getAttribute('data-cms-section');
 
-        console.log(`📝 Processando seção: ${section}`);
+        console.log(`🔍 Processando seção: ${section}`);
         console.log(`🏷️ Filtro de categoria: ${category}`);
 
         // Filtrar posts publicados
@@ -258,14 +256,13 @@ class UniversalCMS {
             const categories = category.split(',').map(c => c.trim());
             console.log(`🔍 Categorias aceitas para ${section}: [${categories.join(', ')}]`);
             
-            const categorizedPosts = posts.filter(post => {
-                const postCategory = post.categoria || 'novidades'; // fallback
+            posts = posts.filter(post => {
+                const postCategory = post.categoria || 'novidades';
                 const match = categories.includes(postCategory);
                 console.log(`📄 Post "${post.titulo}" - Categoria: "${postCategory}" - Match: ${match}`);
                 return match;
             });
             
-            posts = categorizedPosts;
             console.log(`📊 Posts filtrados para ${section}: ${posts.length}`);
         }
 
@@ -285,181 +282,82 @@ class UniversalCMS {
         } else {
             console.log(`📄 ${section}: nenhum post encontrado - mantendo conteúdo fallback`);
         }
-
-        console.log(`Debug: postCategory="${postCategory}", categories=[${categories.join(',')}], post completo:`, post);
     }
 
     createBlogCard(post, badgeClass = 'badge-primary') {
-    const categoryLabels = {
-        'novidades': 'Clínica',
-        'clinica': 'Clínica',
-        'esportiva': 'Fisioterapia',
-        'reabilitacao': 'Tratamentos',
-        'pilates': 'Pilates',
-        'dicas': 'Dicas',
-        'tecnologia': 'Tecnologia',
-        'tratamentos': 'Tratamentos'
-    };
+        const categoryLabels = {
+            'novidades': 'Clínica',
+            'esportiva': 'Fisioterapia',
+            'reabilitacao': 'Tratamentos',
+            'tecnologia': 'Tecnologia'
+        };
 
-    const categoryLabel = categoryLabels[post.categoria] || 'Notícias';
-    const imageUrl = post.imagem || 'https://via.placeholder.com/600x400/3498db/ffffff?text=Sem+Imagem';
-    const titulo = post.titulo || 'Post sem título';
-    
-    // RESUMO/CONTEÚDO - VERSÃO CORRIGIDA
-    let resumo;
-    
-    // Debug do que temos disponível
-    console.log(`📖 Post "${post.titulo}" - campos disponíveis:`, {
-        resumo: post.resumo,
-        conteudo: post.conteudo ? post.conteudo.substring(0, 100) + '...' : 'vazio'
-    });
-    
-    // Usar conteúdo se resumo estiver vazio, senão usar resumo
-    if (post.conteudo && post.conteudo.trim()) {
-    // Limpar markdown básico e truncar
-    resumo = post.conteudo
-        .replace(/#{1,6}\s/g, '') // Remover # dos títulos
-        .replace(/\*\*(.*?)\*\*/g, '$1') // Remover **negrito**
-        .replace(/\n+/g, ' ') // Substituir quebras de linha por espaços
-        .trim();
-    
-    // Truncar se muito longo
-    if (resumo.length > 200) {
-        resumo = resumo.substring(0, 200) + '...';
-    }
-    
-    console.log(`✅ Usando conteúdo: ${resumo.substring(0, 50)}...`);
-} else if (post.resumo && post.resumo.trim()) {
-    resumo = post.resumo;
-    console.log(`✅ Usando resumo: ${resumo.substring(0, 50)}...`);
-} else {
-    resumo = 'Confira este post em nosso blog.';
-    console.log(`⚠️ Usando texto padrão`);
-}
-    
-    // Formatar data - CORREÇÃO PARA FORMATO AMERICANO
-    let dataFormatada = 'Recente';
-    if (post.data) {
-        try {
-            console.log(`📅 Data original do post "${post.titulo}":`, post.data);
-            
-            let date;
-            
-            if (typeof post.data === 'string') {
-                // Formato do Netlify CMS: "08/17/2025 12:00 AM"
-                if (post.data.includes('/') && post.data.includes(' ')) {
-                    // Separar data e hora
-                    const [datePart, timePart] = post.data.split(' ');
-                    
-                    // Parse da data MM/DD/YYYY
-                    const [mes, dia, ano] = datePart.split('/');
-                    
-                    // Criar data correta (mês é zero-indexado)
-                    date = new Date(parseInt(ano), parseInt(mes) - 1, parseInt(dia));
-                    
-                    console.log(`🔄 Convertendo ${post.data} → ${date.toISOString()}`);
-                }
-                // Formato ISO padrão
-                else if (post.data.includes('T')) {
-                    date = new Date(post.data);
-                }
-                // Formato simples YYYY-MM-DD
-                else {
-                    date = new Date(post.data);
-                }
-            } else {
-                date = new Date(post.data);
-            }
-            
-            // Verificar se a data é válida
-            if (date && !isNaN(date.getTime())) {
-                dataFormatada = date.toLocaleDateString('pt-BR');
-                console.log(`✅ Data formatada: ${dataFormatada}`);
-            } else {
-                console.warn(`⚠️ Data inválida para post "${post.titulo}":`, post.data);
-                dataFormatada = 'Data inválida';
-            }
-            
-        } catch (e) {
-            console.error(`❌ Erro ao formatar data do post "${post.titulo}":`, e);
-            dataFormatada = 'Erro na data';
-        }
-    }
-
-    // Indicador de destaque
-    const destaqueClass = post.destaque ? 'post-destaque' : '';
-    const destaqueIcon = post.destaque ? '<i class="fas fa-star post-destaque-icon"></i>' : '';
-
-    return `
-        <article class="card fade-in cms-generated-card ${destaqueClass}">
-            <div class="card-image">
-                <img src="${imageUrl}" alt="${titulo}" 
-                     onerror="this.style.display='none'; this.parentElement.setAttribute('data-placeholder', 'Imagem do Post');"
-                     onload="this.style.display='block';">
-                ${destaqueIcon}
-            </div>
-            <div class="card-body">
-                <span class="badge ${badgeClass}">${categoryLabel}</span>
-                <h4>${titulo}</h4>
-                <p>${resumo}</p>
-                <small class="post-meta">
-                    <i class="fas fa-calendar"></i> ${dataFormatada}
-                    ${post.autor ? `• <i class="fas fa-user"></i> ${post.autor}` : ''}
-                    ${this.isPreviewMode ? '<span class="preview-tag">PREVIEW</span>' : ''}
-                </small>
-            </div>
-        </article>
-    `;
-}
-
-    truncateText(text, maxLength) {
-        if (!text) return '';
-        if (text.length <= maxLength) return text;
-        return text.substring(0, maxLength).trim() + '...';
-    }
-
-    setupPreviewMode() {
-        console.log('👁️ Configurando modo preview...');
+        const categoryLabel = categoryLabels[post.categoria] || 'Notícias';
+        const imageUrl = post.imagem || 'https://via.placeholder.com/600x400/3498db/ffffff?text=Sem+Imagem';
+        const titulo = post.titulo || 'Post sem título';
         
-        // Mostrar indicador de preview
-        const indicator = document.getElementById('cms-preview-indicator');
-        if (indicator) {
-            indicator.style.display = 'block';
+        // RESUMO/CONTEÚDO - Versão corrigida
+        let resumo;
+        
+        if (post.resumo && post.resumo.trim()) {
+            resumo = post.resumo;
+        } else if (post.body && post.body.trim()) {
+            // Gerar resumo do conteúdo
+            resumo = post.body
+                .replace(/[#*`]/g, '') // Remover markdown
+                .replace(/\n+/g, ' ') // Substituir quebras de linha
+                .trim();
+            
+            // Truncar se muito longo
+            if (resumo.length > 200) {
+                resumo = resumo.substring(0, 200) + '...';
+            }
+        } else {
+            resumo = 'Confira este post em nosso blog.';
+        }
+        
+        // Formatar data
+        let dataFormatada = 'Recente';
+        if (post.data) {
+            try {
+                const date = new Date(post.data);
+                if (date && !isNaN(date.getTime())) {
+                    dataFormatada = date.toLocaleDateString('pt-BR');
+                }
+            } catch (e) {
+                console.error('❌ Erro ao formatar data:', e);
+            }
         }
 
-        // Destacar seções editáveis
-        const sections = document.querySelectorAll('[data-cms]');
-        sections.forEach(section => {
-            section.style.position = 'relative';
-        });
+        // Indicador de destaque
+        const destaqueClass = post.destaque ? 'post-destaque' : '';
+        const destaqueIcon = post.destaque ? 
+            '<div class="post-destaque-icon"><i class="fas fa-star"></i></div>' : '';
 
-        // Adicionar botão de voltar ao admin
-        this.addBackToAdminButton();
+        return `
+            <article class="card cms-generated-card ${destaqueClass} fade-in">
+                ${destaqueIcon}
+                <div class="card-image" style="background-image: url('${imageUrl}');">
+                    <img src="${imageUrl}" alt="${titulo}" loading="lazy">
+                </div>
+                <div class="card-body">
+                    <span class="badge ${badgeClass}">${categoryLabel}</span>
+                    <h4>${titulo}</h4>
+                    <p>${resumo}</p>
+                    <div class="post-meta">
+                        <i class="fas fa-calendar"></i>
+                        <span>${dataFormatada}</span>
+                        ${post.autor ? `<i class="fas fa-user"></i><span>${post.autor}</span>` : ''}
+                        ${this.isPreviewMode ? '<span class="preview-tag">PREVIEW</span>' : ''}
+                    </div>
+                </div>
+            </article>
+        `;
     }
 
-    addBackToAdminButton() {
-        const backButton = document.createElement('div');
-        backButton.className = 'cms-back-to-admin';
-        backButton.innerHTML = `
-            <a href="/admin/" class="btn btn-primary">
-                <i class="fas fa-arrow-left"></i>
-                Voltar ao Painel
-            </a>
-        `;
-        backButton.style.cssText = `
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 10000;
-        `;
-        document.body.appendChild(backButton);
-    }
-
-    // Métodos para desenvolvedores
     async reload() {
         console.log('🔄 Recarregando CMS...');
-        this.data = { blog: [], fisioterapeutas: [], tratamentos: [], estrutura: [], unidades: [] };
-        await this.loadAllData();
+        await this.loadData();
         this.processPlaceholders();
         console.log('✅ CMS recarregado');
     }
@@ -482,7 +380,7 @@ class UniversalCMS {
 let universalCMS;
 
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🌐 DOM carregado, iniciando Universal CMS LIMPO...');
+    console.log('🌐 DOM carregado, iniciando Universal CMS...');
     
     universalCMS = new UniversalCMS();
     universalCMS.init();
@@ -552,6 +450,43 @@ style.textContent = `
         border-radius: 10px;
         font-size: 10px;
         font-weight: bold;
+    }
+
+    /* Indicador de preview do CMS */
+    .cms-preview-indicator {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(135deg, #e74c3c, #c0392b);
+        color: white;
+        padding: 8px;
+        text-align: center;
+        z-index: 1000;
+        font-size: 14px;
+        font-weight: 600;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .cms-preview-content {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .cms-refresh-btn {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .cms-refresh-btn:hover {
+        background: rgba(255,255,255,0.3);
     }
 
     /* Placeholders para imagens */
