@@ -1,8 +1,0 @@
-{
-  "titulo": "Sala de Pilates",
-  "descricao": "Espaço amplo e equipado para pilates clínico e terapêutico",
-  "imagem": "/imagens/sala-pilates.jpg",
-  "icone": "fa-spa",
-  "ordem": 1,
-  "ativo": true
-}
