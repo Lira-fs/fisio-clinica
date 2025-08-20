@@ -8,8 +8,14 @@ categoria: novidades
 publicado: true
 destaque: false
 ---
-<!--StartFragment-->
+A **fisioterapia** é uma área da saúde essencial para a prevenção, tratamento e reabilitação de disfunções do corpo humano.
 
-A **fisioterapia** é uma área da saúde essencial para a prevenção, tratamento e reabilitação de disfunções do corpo humano. Mais d
+Mais do que aliviar dores, ela promove qualidade de vida, devolvendo autonomia e bem-estar aos pacientes.
 
-<!--EndFragment-->
+O fisioterapeuta atua de forma individualizada em:
+
+* Recuperação de lesões
+* Fortalecimento muscular
+* Melhora da postura
+
+Sempre buscando o equilíbrio entre corpo e movimento.
