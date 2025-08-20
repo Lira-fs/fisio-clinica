@@ -10,326 +10,228 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
-
-    <!-- ====================================
-         INDICADORES DE PREVIEW CMS 
-         ==================================== -->
-    <div id="cms-preview-indicator" class="cms-preview-indicator" style="display: none;">
-        <div class="cms-preview-content">
-            <i class="fas fa-eye"></i>
-            <span>MODO PREVIEW - Visualizando suas edições</span>
-            <button onclick="location.reload()" class="cms-refresh-btn">
-                <i class="fas fa-sync-alt"></i>
-            </button>
-        </div>
-    </div>
-
     <!-- HEADER IMPORTADO -->
-    <!-- Incluir aqui o header padrão do site -->
-
+    
     <!-- Seção de título -->
     <section class="blog-hero">
         <h1>Blog da Clínica FISIO</h1>
         <p>Notícias, novidades e conteúdos exclusivos sobre fisioterapia, saúde e bem-estar.</p>
     </section>
 
-    <!-- ====================================
-         SEÇÃO: NOTÍCIAS DA CLÍNICA
-         PLACEHOLDER: noticias-clinica
-         ==================================== -->
-    <section class="section bg-gray-50">
-    <div class="container">
-        <div class="section-title">
-            <h3>Notícias Tratamentos</h3>
-            <!-- Indicador CMS -->
-            <div class="cms-section-indicator" data-cms-section="noticias-tratamentos">
-                <i class="fas fa-edit"></i>
-                <span>Editável: Notícias Tratamentos</span>
-            </div>
-        </div>
-        
-        <!-- PLACEHOLDER PRINCIPAL - CORRIGIDO: apenas "reabilitacao" -->
-        <div class="grid grid-3" 
-             data-cms="blog-posts" 
-             data-cms-category="reabilitacao" 
-             data-cms-limit="3"
-             data-cms-badge="badge-outline"
-             data-cms-section="noticias-tratamentos"
-             data-cms-label="Notícias Tratamentos">
-            
-            <!-- CONTEÚDO FALLBACK -->
-            <article class="card cms-fallback-card">
-                <div class="card-image" data-placeholder="Imagem do Post"></div>
-                <div class="card-body">
-                    <span class="badge badge-outline">Tratamentos</span>
-                    <h4>Novas Técnicas de Reabilitação</h4>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel tortor vitae arcu mollis tincidunt.</p>
-                    <small class="cms-fallback-notice">
-                        <i class="fas fa-info-circle"></i>
-                        Conteúdo de exemplo - Edite no painel admin
-                    </small>
-                </div>
-            </article>
-        </div>
-    </div>
-</section>
-
-    <!-- ====================================
-         SEÇÃO: NOVIDADES FISIOTERAPIA
-         PLACEHOLDER: novidades-fisioterapia
-         ==================================== -->
+    <!-- Notícias da Clínica -->
     <section class="section bg-white">
         <div class="container">
             <div class="section-title">
-                <h3>Novidades Fisioterapia</h3>
-                <!-- Indicador CMS -->
-                <div class="cms-section-indicator" data-cms-section="novidades-fisioterapia">
-                    <i class="fas fa-edit"></i>
-                    <span>Editável: Novidades Fisioterapia</span>
-                </div>
+                <h2>Notícias da Clínica</h2>
+                <p>Novidades, eventos e informações sobre nossa clínica</p>
             </div>
             
-            <!-- PLACEHOLDER PRINCIPAL -->
-            <div class="grid grid-3" 
-                 data-cms="blog-posts" 
-                 data-cms-category="esportiva" 
-                 data-cms-limit="3"
-                 data-cms-badge="badge-accent"
-                 data-cms-section="novidades-fisioterapia"
-                 data-cms-label="Novidades Fisioterapia">
-                
-                <!-- CONTEÚDO FALLBACK -->
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-accent">Fisioterapia</span>
-                        <h4>Novo Tratamento para Lesões</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel tortor vitae arcu mollis tincidunt.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
-                
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-accent">Fisioterapia</span>
-                        <h4>Dicas para Prevenção de Lesões</h4>
-                        <p>Quisque lacinia, elit at tincidunt varius, ligula purus viverra massa, a feugiat magna justo vel nunc.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
-                
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-accent">Fisioterapia</span>
-                        <h4>Exercícios para Recuperação</h4>
-                        <p>Donec a lectus et leo viverra pretium sed vel tortor. Sed bibendum arcu ut felis consequat, non varius sem semper.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
+            <div class="grid grid-3" id="clinica-posts">
+                <!-- Posts serão inseridos aqui dinamicamente -->
+                <div class="loading-placeholder">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando posts...</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- ====================================
-         SEÇÃO: NOTÍCIAS TRATAMENTOS
-         PLACEHOLDER: noticias-tratamentos
-         ==================================== -->
+    <!-- Notícias Fisioterapia -->
     <section class="section bg-gray-50">
         <div class="container">
             <div class="section-title">
-                <h3>Notícias Tratamentos</h3>
-                <!-- Indicador CMS -->
-                <div class="cms-section-indicator" data-cms-section="noticias-tratamentos">
-                    <i class="fas fa-edit"></i>
-                    <span>Editável: Notícias Tratamentos</span>
-                </div>
+                <h2>Notícias Fisioterapia</h2>
+                <p>Artigos e dicas sobre fisioterapia e reabilitação</p>
             </div>
             
-            <!-- PLACEHOLDER PRINCIPAL -->
-            <div class="grid grid-3" 
-                 data-cms="blog-posts" 
-                 data-cms-category="reabilitacao,tecnologia" 
-                 data-cms-limit="3"
-                 data-cms-badge="badge-outline"
-                 data-cms-section="noticias-tratamentos"
-                 data-cms-label="Notícias Tratamentos">
-                
-                <!-- CONTEÚDO FALLBACK -->
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-outline">Tratamentos</span>
-                        <h4>Novas Técnicas de Reabilitação</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel tortor vitae arcu mollis tincidunt.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
-                
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-outline">Tratamentos</span>
-                        <h4>Avanços em Fisioterapia Esportiva</h4>
-                        <p>Quisque lacinia, elit at tincidunt varius, ligula purus viverra massa, a feugiat magna justo vel nunc.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
-                
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-outline">Tratamentos</span>
-                        <h4>Terapias Personalizadas</h4>
-                        <p>Donec a lectus et leo viverra pretium sed vel tortor. Sed bibendum arcu ut felis consequat, non varius sem semper.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
+            <div class="grid grid-3" id="fisioterapia-posts">
+                <!-- Posts serão inseridos aqui dinamicamente -->
+                <div class="loading-placeholder">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando posts...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Notícias Tratamentos -->
+    <section class="section bg-white">
+        <div class="container">
+            <div class="section-title">
+                <h2>Notícias Tratamentos</h2>
+                <p>Informações sobre nossos tratamentos e técnicas</p>
+            </div>
+            
+            <div class="grid grid-3" id="tratamentos-posts">
+                <!-- Posts serão inseridos aqui dinamicamente -->
+                <div class="loading-placeholder">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Carregando posts...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Final -->
+    <section class="section cta-final-green">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Gostou do Conteúdo?</h2>
+                <p>Agende sua consulta e viva uma experiência de excelência em fisioterapia.</p>
+                <a href="https://wa.me/5511999999999?text=Olá! Vi o blog e gostaria de agendar uma consulta." 
+                   class="btn btn-accent btn-lg" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Agendar Consulta
+                </a>
             </div>
         </div>
     </section>
 
     <!-- FOOTER IMPORTADO -->
-    <!-- Incluir aqui o footer padrão do site -->
 
     <!-- Botão Flutuante WhatsApp -->
     <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
 
-    <!-- ====================================
-         SCRIPTS CMS
-         ==================================== -->
+    <!-- Scripts -->
     <script src="components/components.js"></script>
-    <script src="cms-universal.js"></script>
-    <script src="debug-posts.js"></script>
+    <script src="blog.js"></script>
 
-
-    <!-- CSS para indicadores CMS -->
     <style>
-        /* Indicador de Preview */
-        .cms-preview-indicator {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 10px;
-            z-index: 10000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        /* Estilos para loading */
+        .loading-placeholder {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-500);
         }
 
-        .cms-preview-content {
+        .loading-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--primary-medium);
+        }
+
+        /* Estilos para quando não há posts */
+        .no-posts {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 2rem;
+            color: var(--gray-600);
+            background: var(--gray-100);
+            border-radius: var(--radius-lg);
+        }
+
+        .no-posts i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--gray-400);
+        }
+
+        /* Card do post */
+        .post-card {
+            background: var(--white);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .post-image {
+            width: 100%;
+            height: 200px;
+            background: var(--gray-200);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .post-card:hover .post-image img {
+            transform: scale(1.05);
+        }
+
+        .post-content {
+            padding: var(--space-xl);
+        }
+
+        .post-category {
+            display: inline-block;
+            padding: var(--space-xs) var(--space-sm);
+            background: var(--primary-light);
+            color: var(--white);
+            border-radius: var(--radius-sm);
+            font-size: var(--text-xs);
+            font-weight: var(--font-weight-semibold);
+            text-transform: uppercase;
+            margin-bottom: var(--space-sm);
+        }
+
+        .post-title {
+            font-size: var(--text-lg);
+            font-weight: var(--font-weight-bold);
+            color: var(--primary-dark);
+            margin-bottom: var(--space-sm);
+            line-height: 1.3;
+        }
+
+        .post-summary {
+            color: var(--gray-600);
+            font-size: var(--text-sm);
+            line-height: 1.5;
+            margin-bottom: var(--space-md);
+        }
+
+        .post-date {
+            color: var(--gray-500);
+            font-size: var(--text-xs);
+            font-weight: var(--font-weight-medium);
+        }
+
+        .post-date i {
+            margin-right: var(--space-xs);
+        }
+
+        /* Placeholder de imagem */
+        .post-image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            font-weight: bold;
+            color: var(--gray-500);
+            font-size: var(--text-xl);
         }
 
-        .cms-refresh-btn {
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
+        /* Categorias específicas */
+        .post-category.clinica { background: var(--success-green); }
+        .post-category.fisioterapia { background: var(--primary-medium); }
+        .post-category.tratamentos { background: var(--accent-orange); }
 
-        .cms-refresh-btn:hover {
-            background: rgba(255,255,255,0.3);
-        }
-
-        /* Indicadores de Seção */
-        .cms-section-indicator {
-            display: none; /* Mostrado apenas em modo preview */
-            position: absolute;
-            top: -10px;
-            right: 10px;
-            background: #3498db;
-            color: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-            z-index: 100;
-            box-shadow: 0 2px 8px rgba(52, 152, 219, 0.3);
-        }
-
-        .section-title {
-            position: relative;
-        }
-
-        /* Cards Fallback */
-        .cms-fallback-card {
-            opacity: 0.8;
-            border: 2px dashed #ddd;
-        }
-
-        .cms-fallback-notice {
-            display: block;
-            color: #666;
-            font-size: 11px;
-            margin-top: 8px;
-            font-style: italic;
-        }
-
-        /* Modo Preview ativo */
-        body.cms-preview-mode .cms-section-indicator {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        body.cms-preview-mode .cms-preview-indicator {
-            display: block !important;
-        }
-
-        body.cms-preview-mode {
-            padding-top: 50px;
-        }
-
-        /* Hover effects para seções editáveis */
-        body.cms-preview-mode [data-cms]:hover {
-            outline: 2px dashed #3498db;
-            outline-offset: 4px;
-            position: relative;
-        }
-
-        body.cms-preview-mode [data-cms]:hover::before {
-            content: attr(data-cms-label);
-            position: absolute;
-            top: -25px;
-            left: 0;
-            background: #3498db;
-            color: white;
-            padding: 2px 8px;
-            font-size: 11px;
-            border-radius: 3px;
-            z-index: 1000;
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .grid-3 {
+                grid-template-columns: 1fr;
+                gap: var(--space-lg);
+            }
+            
+            .post-content {
+                padding: var(--space-lg);
+            }
         }
     </style>
-
 </body>
 </html>
