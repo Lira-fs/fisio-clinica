@@ -41,7 +41,7 @@ collections:
     folder: "_data/blog"
     create: true
     delete: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{fields.titulo}}"
     editor:
       preview: true
     preview_path: "blog.html?preview={{slug}}"
@@ -77,7 +77,7 @@ collections:
       - {label: "✍️ Autor", name: "autor", widget: "string", default: "Equipe FISIO"}
       - {label: "🖼️ Imagem de Capa", name: "imagem", widget: "image", hint: "Imagem principal do post (recomendado: 800x600px)", required: false}
       - {label: "📄 Resumo", name: "resumo", widget: "text", hint: "Breve descrição do post (máximo 200 caracteres)", pattern: ['.{1,200}', "Máximo 200 caracteres"], required: false}
-      - {label: "📖 Conteúdo Completo", name: "body", widget: "markdown", hint: "Use o editor para formatar o texto"}
+      - {label: "📖 Conteúdo Completo", name: "body", widget: "text", hint: "Escreva o conteúdo do post (máximo 800 caracteres)", pattern: ['.{1,800}', "Máximo 800 caracteres"]}
       - label: "🏷️ Categoria"
         name: "categoria"
         widget: "select"

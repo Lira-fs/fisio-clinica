@@ -56,7 +56,7 @@ class UniversalCMS {
 
     async loadBlogPosts() {
         try {
-            const response = await fetch('https://api.github.com/repos/[USUARIO]/[REPOSITORIO]/contents/_data/blog');
+            const response = await fetch('https://api.github.com/repos/Lira-fs/fisio-clinica/contents/_data/blog');
             
             if (response.ok) {
                 const files = await response.json();
