@@ -56,7 +56,7 @@ class UniversalCMS {
 
     async loadBlogPosts() {
         try {
-            const response = await fetch('https://api.github.com/repos/Lira-fs/fisio-clinica/contents/_data/blog');
+            const response = await fetch('https://api.github.com/repos/[USUARIO]/[REPOSITORIO]/contents/_data/blog');
             
             if (response.ok) {
                 const files = await response.json();
@@ -138,7 +138,7 @@ class UniversalCMS {
         // Validações e correções
         if (post.titulo && post.categoria) {
             // Garantir que a categoria está nas opções válidas
-            const categoriasValidas = ['novidades', 'esportiva', 'reabilitacao', 'tecnologia'];
+            const categoriasValidas = ['novidades', 'esportiva', 'reabilitacao'];
             if (!categoriasValidas.includes(post.categoria)) {
                 console.warn(`⚠️ Categoria "${post.categoria}" inválida, alterando para "novidades"`);
                 post.categoria = 'novidades';

@@ -38,69 +38,41 @@
          PLACEHOLDER: noticias-clinica
          ==================================== -->
     <section class="section bg-gray-50">
-        <div class="container">
-            <div class="section-title">
-                <h3>Notícias da Clínica</h3>
-                <!-- Indicador CMS -->
-                <div class="cms-section-indicator" data-cms-section="noticias-clinica">
-                    <i class="fas fa-edit"></i>
-                    <span>Editável: Notícias da Clínica</span>
-                </div>
-            </div>
-            
-            <!-- PLACEHOLDER PRINCIPAL -->
-            <div class="grid grid-3" 
-                 data-cms="blog-posts" 
-                 data-cms-category="novidades" 
-                 data-cms-limit="6"
-                 data-cms-badge="badge-primary"
-                 data-cms-section="noticias-clinica"
-                 data-cms-label="Notícias da Clínica">
-                
-                <!-- CONTEÚDO FALLBACK (mantido como backup) -->
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post">
-                        <!-- Placeholder para imagem -->
-                    </div>
-                    <div class="card-body">
-                        <span class="badge badge-primary">Clínica</span>
-                        <h4>Título da Notícia 1</h4>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel tortor vitae arcu mollis tincidunt.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
-                
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-primary">Clínica</span>
-                        <h4>Título da Notícia 2</h4>
-                        <p>Quisque lacinia, elit at tincidunt varius, ligula purus viverra massa, a feugiat magna justo vel nunc.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
-                
-                <article class="card cms-fallback-card">
-                    <div class="card-image" data-placeholder="Imagem do Post"></div>
-                    <div class="card-body">
-                        <span class="badge badge-primary">Clínica</span>
-                        <h4>Título da Notícia 3</h4>
-                        <p>Donec a lectus et leo viverra pretium sed vel tortor. Curabitur vel tortor vitae arcu mollis tincidunt.</p>
-                        <small class="cms-fallback-notice">
-                            <i class="fas fa-info-circle"></i>
-                            Conteúdo de exemplo - Edite no painel admin
-                        </small>
-                    </div>
-                </article>
+    <div class="container">
+        <div class="section-title">
+            <h3>Notícias Tratamentos</h3>
+            <!-- Indicador CMS -->
+            <div class="cms-section-indicator" data-cms-section="noticias-tratamentos">
+                <i class="fas fa-edit"></i>
+                <span>Editável: Notícias Tratamentos</span>
             </div>
         </div>
-    </section>
+        
+        <!-- PLACEHOLDER PRINCIPAL - CORRIGIDO: apenas "reabilitacao" -->
+        <div class="grid grid-3" 
+             data-cms="blog-posts" 
+             data-cms-category="reabilitacao" 
+             data-cms-limit="3"
+             data-cms-badge="badge-outline"
+             data-cms-section="noticias-tratamentos"
+             data-cms-label="Notícias Tratamentos">
+            
+            <!-- CONTEÚDO FALLBACK -->
+            <article class="card cms-fallback-card">
+                <div class="card-image" data-placeholder="Imagem do Post"></div>
+                <div class="card-body">
+                    <span class="badge badge-outline">Tratamentos</span>
+                    <h4>Novas Técnicas de Reabilitação</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel tortor vitae arcu mollis tincidunt.</p>
+                    <small class="cms-fallback-notice">
+                        <i class="fas fa-info-circle"></i>
+                        Conteúdo de exemplo - Edite no painel admin
+                    </small>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
 
     <!-- ====================================
          SEÇÃO: NOVIDADES FISIOTERAPIA

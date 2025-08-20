@@ -83,10 +83,9 @@ collections:
         widget: "select"
         hint: "Escolha onde o post aparecerá no blog"
         options: 
-          - {label: "📢 Novidades da Clínica", value: "novidades"}
-          - {label: "🏃 Fisioterapia Esportiva", value: "esportiva"}
-          - {label: "🏥 Reabilitação Ortopédica", value: "reabilitacao"}
-          - {label: "💡 Tecnologia e Inovação", value: "tecnologia"}
+          - {label: "Notícias da Clínica", value: "novidades"}
+          - {label: "Novidades Fisioterapia", value: "esportiva"}
+          - {label: "Notícias Tratamentos", value: "reabilitacao"}
       - {label: "🏷️ Tags", name: "tags", widget: "list", allow_add: true, required: false, hint: "Palavras-chave do post (opcional)", field: {label: "Tag", name: "tag", widget: "string"}}
       - {label: "✅ Status", name: "publicado", widget: "boolean", default: true, hint: "Desmarque para salvar como rascunho"}
       - {label: "🌟 Post em Destaque", name: "destaque", widget: "boolean", default: false, hint: "Marque para destacar na página principal"}
