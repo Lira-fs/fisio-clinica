@@ -13,7 +13,8 @@
 
 # Redirecionamentos
 [[redirects]]
-  from = "/admin/*"
+  # Redireciona a URL /admin para o arquivo /admin/index.html
+  from = "/admin"
   to = "/admin/index.html"
   status = 200
 
