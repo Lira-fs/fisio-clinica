@@ -259,8 +259,8 @@ class UniversalCMS {
             console.log(`🔍 Categorias aceitas para ${section}: [${categories.join(', ')}]`);
             
             const categorizedPosts = posts.filter(post => {
-                const postCategory = post.categoria;
-                const match = categories.includes(post.secao_blog);
+                const postCategory = post.categoria || 'novidades'; // fallback
+                const match = categories.includes(postCategory);
                 console.log(`📄 Post "${post.titulo}" - Categoria: "${postCategory}" - Match: ${match}`);
                 return match;
             });
@@ -285,6 +285,8 @@ class UniversalCMS {
         } else {
             console.log(`📄 ${section}: nenhum post encontrado - mantendo conteúdo fallback`);
         }
+
+        console.log(`Debug: postCategory="${postCategory}", categories=[${categories.join(',')}], post completo:`, post);
     }
 
     createBlogCard(post, badgeClass = 'badge-primary') {
