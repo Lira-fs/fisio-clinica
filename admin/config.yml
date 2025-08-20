@@ -1,5 +1,5 @@
 # ================================
-# NETLIFY CMS - CONFIGURAÇÃO CORRIGIDA
+# NETLIFY CMS - CONFIGURAÇÃO CORRIGIDA COMPLETA
 # Painel Administrativo para Clínica FISIO
 # ================================
 
@@ -41,11 +41,11 @@ collections:
     folder: "_data/blog"
     create: true
     delete: true
-    slug: "{{fields.titulo}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
       preview: true
     preview_path: "blog.html?preview={{slug}}"
-    summary: "{{titulo}} - {{data}}"
+    summary: "{{titulo}} - {{data}} - {{categoria}}"
     sortable_fields: ["data", "titulo", "categoria"]
     view_filters:
       - label: "Posts Publicados"
@@ -54,30 +54,27 @@ collections:
       - label: "Rascunhos"
         field: publicado
         pattern: false
-      - label: "Novidades"
+      - label: "Notícias da Clínica"
         field: categoria
         pattern: "novidades"
-      - label: "Fisioterapia Esportiva"
+      - label: "Novidades Fisioterapia"
         field: categoria
         pattern: "esportiva"
-      - label: "Reabilitação"
+      - label: "Notícias Tratamentos"
         field: categoria
         pattern: "reabilitacao"
-      - label: "Tecnologia"
-        field: categoria
-        pattern: "tecnologia"
     view_groups:
       - label: "Categoria"
         field: categoria
       - label: "Status"
         field: publicado
     fields:
-      - {label: "📰 Título do Post", name: "titulo", widget: "string", hint: "Título que aparecerá no site"}
-      - {label: "📅 Data de Publicação", name: "data", widget: "datetime", default: "", format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: false}
-      - {label: "✍️ Autor", name: "autor", widget: "string", default: "Equipe FISIO"}
+      - {label: "📝 Título do Post", name: "titulo", widget: "string", hint: "Título que aparecerá no site (máximo 80 caracteres)", pattern: ['.{1,80}', "Máximo 80 caracteres"]}
+      - {label: "📅 Data de Publicação", name: "data", widget: "datetime", default: "", format: "YYYY-MM-DDTHH:mm:ssZ", picker_utc: false, hint: "Data e hora da publicação"}
+      - {label: "✍️ Autor", name: "autor", widget: "string", default: "Equipe FISIO", hint: "Nome do autor do post"}
       - {label: "🖼️ Imagem de Capa", name: "imagem", widget: "image", hint: "Imagem principal do post (recomendado: 800x600px)", required: false}
-      - {label: "📄 Resumo", name: "resumo", widget: "text", hint: "Breve descrição do post (máximo 200 caracteres)", pattern: ['.{1,200}', "Máximo 200 caracteres"], required: false}
-      - {label: "📖 Conteúdo Completo", name: "body", widget: "text", hint: "Escreva o conteúdo do post (máximo 800 caracteres)", pattern: ['.{1,800}', "Máximo 800 caracteres"]}
+      - {label: "📄 Resumo", name: "resumo", widget: "text", hint: "Breve descrição do post (máximo 150 caracteres)", pattern: ['.{1,150}', "Máximo 150 caracteres"], required: false}
+      - {label: "📖 Conteúdo Completo", name: "body", widget: "text", hint: "Escreva o conteúdo do post (máximo 600 caracteres)", pattern: ['.{1,600}', "Máximo 600 caracteres"]}
       - label: "🏷️ Categoria"
         name: "categoria"
         widget: "select"
@@ -99,7 +96,7 @@ collections:
     folder: "_data/estrutura"
     create: true
     delete: true
-    slug: "{{slug}}"
+    slug: "{{ordem}}-{{slug}}"
     editor:
       preview: true
     summary: "{{titulo}} - {{icone}}"
@@ -146,14 +143,30 @@ collections:
       - {label: "🕒 Horário de Funcionamento", name: "horario", widget: "text"}
       - {label: "🖼️ Imagem Principal", name: "imagem_hero", widget: "image", hint: "Imagem principal da unidade"}
       - {label: "📝 Descrição", name: "descricao", widget: "text"}
-      - {label: "🎯 Especialidades", name: "especialidades", widget: "list", allow_add: true, field: {label: "Especialidade", name: "especialidade", widget: "string"}}
-      - {label: "⭐ Diferenciais", name: "diferenciais", widget: "list", allow_add: true, field: {label: "Diferencial", name: "diferencial", widget: "string"}}
-      - {label: "📸 Galeria de Fotos", name: "galeria", widget: "list", allow_add: true, field: {label: "Imagem", name: "imagem", widget: "image"}}
-      - {label: "📊 Ordem de Exibição", name: "ordem", widget: "number", hint: "Ordem que aparece no site", min: 1, value_type: "int"}
+      - {label: "🗺️ Mapa (Google Maps)", name: "mapa_embed", widget: "text", hint: "Código embed do Google Maps", required: false}
+      - label: "🏆 Especialidades"
+        name: "especialidades"
+        widget: "list"
+        hint: "Especialidades desta unidade"
+        field: {label: "Especialidade", name: "especialidade", widget: "string"}
+      - label: "👨‍⚕️ Profissionais"
+        name: "profissionais"
+        widget: "list"
+        hint: "Profissionais desta unidade"
+        fields:
+          - {label: "Nome", name: "nome", widget: "string"}
+          - {label: "Especialidade", name: "especialidade", widget: "string"}
+          - {label: "CRF", name: "crf", widget: "string"}
+          - {label: "Foto", name: "foto", widget: "image", required: false}
+      - label: "📸 Galeria de Fotos"
+        name: "galeria"
+        widget: "list"
+        hint: "Fotos da unidade"
+        field: {label: "Foto", name: "foto", widget: "image"}
       - {label: "✅ Ativa", name: "ativa", widget: "boolean", default: true}
 
   # ================================
-  # 💊 TRATAMENTOS
+  # 💊 TRATAMENTOS - Cards editáveis
   # ================================
   - name: "tratamentos"
     label: "💊 Tratamentos"
@@ -161,55 +174,125 @@ collections:
     folder: "_data/tratamentos"
     create: true
     delete: true
-    slug: "{{slug}}"
+    slug: "{{ordem}}-{{slug}}"
     editor:
       preview: true
-    summary: "{{nome}} - {{categoria}}"
-    sortable_fields: ["nome", "categoria", "ordem"]
-    view_groups:
-      - label: "Categoria"
-        field: "categoria"
+    summary: "{{titulo}} - {{categoria}}"
+    sortable_fields: ["titulo", "ordem", "categoria"]
+    view_filters:
+      - label: "Fisioterapia Esportiva"
+        field: categoria
+        pattern: "esportiva"
+      - label: "Reabilitação"
+        field: categoria
+        pattern: "reabilitacao"
+      - label: "Pilates"
+        field: categoria
+        pattern: "pilates"
+      - label: "Outros"
+        field: categoria
+        pattern: "outros"
     fields:
-      - {label: "💊 Nome do Tratamento", name: "nome", widget: "string"}
-      - {label: "📝 Descrição Breve", name: "descricao_breve", widget: "text", hint: "Resumo para os cards"}
-      - {label: "📖 Descrição Completa", name: "descricao_completa", widget: "markdown"}
-      - {label: "🖼️ Imagem Principal", name: "imagem", widget: "image"}
+      - {label: "📋 Título do Tratamento", name: "titulo", widget: "string", hint: "Nome do tratamento"}
+      - {label: "📝 Descrição Curta", name: "descricao", widget: "text", hint: "Breve descrição para o card"}
+      - {label: "📖 Descrição Completa", name: "descricao_completa", widget: "text", hint: "Descrição detalhada do tratamento"}
+      - {label: "🖼️ Imagem", name: "imagem", widget: "image", hint: "Imagem do tratamento"}
       - label: "🏷️ Categoria"
         name: "categoria"
         widget: "select"
         options:
-          - {label: "🏃 Fisioterapia Esportiva", value: "esportiva"}
-          - {label: "🏥 Reabilitação Ortopédica", value: "reabilitacao"}
-          - {label: "🧘 Pilates Clínico", value: "pilates"}
-          - {label: "💡 Tecnologia e Inovação", value: "tecnologia"}
-      - {label: "⏱️ Duração Média", name: "duracao", widget: "string", hint: "Ex: 45 minutos, 6 semanas"}
-      - {label: "💰 Valor", name: "valor", widget: "string", required: false, hint: "Ex: R$ 120,00"}
-      - {label: "✨ Benefícios", name: "beneficios", widget: "list", allow_add: true, hint: "Principais benefícios do tratamento", field: {label: "Benefício", name: "beneficio", widget: "string"}}
-      - {label: "⚠️ Contraindicações", name: "contraindicacoes", widget: "list", allow_add: true, required: false, hint: "Quando não é recomendado (opcional)", field: {label: "Contraindicação", name: "contraindicacao", widget: "string"}}
-      - {label: "🎨 Cor do Card", name: "cor", widget: "select", hint: "Cor do card na página", options: [{label: "Azul", value: "blue"}, {label: "Verde", value: "green"}, {label: "Laranja", value: "orange"}, {label: "Roxo", value: "purple"}]}
-      - {label: "📊 Ordem de Exibição", name: "ordem", widget: "number", hint: "Número para ordenar os tratamentos (1, 2, 3...)", min: 1, value_type: "int"}
+          - {label: "Fisioterapia Esportiva", value: "esportiva"}
+          - {label: "Reabilitação", value: "reabilitacao"}
+          - {label: "Pilates", value: "pilates"}
+          - {label: "Outros", value: "outros"}
+      - label: "🎨 Cor do Card"
+        name: "cor"
+        widget: "select"
+        hint: "Cor de fundo do card"
+        options:
+          - {label: "Azul Principal", value: "bg-primary"}
+          - {label: "Verde Sucesso", value: "bg-success"}
+          - {label: "Laranja Destaque", value: "bg-accent"}
+          - {label: "Cinza Neutro", value: "bg-neutral"}
+          - {label: "Roxo Moderno", value: "bg-purple"}
+      - label: "🎯 Benefícios"
+        name: "beneficios"
+        widget: "list"
+        hint: "Lista de benefícios do tratamento"
+        field: {label: "Benefício", name: "beneficio", widget: "string"}
+      - label: "👨‍⚕️ Profissionais"
+        name: "profissionais"
+        widget: "list"
+        hint: "Profissionais que realizam este tratamento"
+        field: {label: "Profissional", name: "profissional", widget: "string"}
+      - {label: "💰 Preço (opcional)", name: "preco", widget: "string", required: false, hint: "Ex: A partir de R$ 120"}
+      - {label: "🕒 Duração", name: "duracao", widget: "string", hint: "Ex: 50 minutos, 1 hora"}
+      - {label: "🔗 Link Personalizado", name: "link", widget: "string", required: false, hint: "Link para página específica do tratamento"}
+      - {label: "📊 Ordem de Exibição", name: "ordem", widget: "number", hint: "Ordem de exibição no site", min: 1}
       - {label: "✅ Ativo", name: "ativo", widget: "boolean", default: true}
+      - {label: "🌟 Destaque", name: "destaque", widget: "boolean", default: false, hint: "Marcar como tratamento em destaque"}
 
-# ================================
-# CONFIGURAÇÕES DE INTERFACE
-# ================================
+  # ================================
+  # 📄 PÁGINAS - Conteúdo das páginas
+  # ================================
+  - name: "paginas"
+    label: "📄 Páginas do Site"
+    label_singular: "Página"
+    files:
+      - label: "🏠 Página Inicial"
+        name: "home"
+        file: "_data/paginas/home.md"
+        fields:
+          - {label: "Título Principal", name: "titulo_hero", widget: "string"}
+          - {label: "Subtítulo", name: "subtitulo_hero", widget: "text"}
+          - {label: "Imagem Hero", name: "imagem_hero", widget: "image"}
+          - label: "Seções da Página"
+            name: "secoes"
+            widget: "list"
+            fields:
+              - {label: "Título da Seção", name: "titulo", widget: "string"}
+              - {label: "Conteúdo", name: "conteudo", widget: "text"}
+              - {label: "Imagem", name: "imagem", widget: "image", required: false}
+      
+      - label: "ℹ️ Sobre Nós"
+        name: "sobre"
+        file: "_data/paginas/sobre.md"
+        fields:
+          - {label: "Título", name: "titulo", widget: "string"}
+          - {label: "História", name: "historia", widget: "text"}
+          - {label: "Missão", name: "missao", widget: "text"}
+          - {label: "Visão", name: "visao", widget: "text"}
+          - {label: "Valores", name: "valores", widget: "text"}
 
-# Mensagens personalizadas
-messages:
-  publish: "Publicar"
-  publishAndCreateNew: "Publicar e criar novo"
-  publishAndDuplicate: "Publicar e duplicar"
-  deleteEntry: "Deletar entrada"
-  saved: "Salvo"
-  deleting: "Deletando..."
-  publishing: "Publicando..."
-  draft: "Rascunho"
-
-# Configurações de busca
-search: true
-
-# Configurações de slug
-slug:
-  encoding: "unicode"
-  clean_accents: true
-  sanitize_replacement: "-"
+  # ================================
+  # ⚙️ CONFIGURAÇÕES GERAIS
+  # ================================
+  - name: "configuracoes"
+    label: "⚙️ Configurações do Site"
+    label_singular: "Configuração"
+    files:
+      - label: "📞 Contato e Informações"
+        name: "contato"
+        file: "_data/config/contato.md"
+        fields:
+          - {label: "Telefone Principal", name: "telefone_principal", widget: "string"}
+          - {label: "WhatsApp", name: "whatsapp", widget: "string"}
+          - {label: "Email Principal", name: "email_principal", widget: "string"}
+          - {label: "Endereço Principal", name: "endereco_principal", widget: "text"}
+          - label: "Redes Sociais"
+            name: "redes_sociais"
+            widget: "object"
+            fields:
+              - {label: "Instagram", name: "instagram", widget: "string", required: false}
+              - {label: "Facebook", name: "facebook", widget: "string", required: false}
+              - {label: "YouTube", name: "youtube", widget: "string", required: false}
+      
+      - label: "🎨 Identidade Visual"
+        name: "identidade"
+        file: "_data/config/identidade.md"
+        fields:
+          - {label: "Logo Principal", name: "logo_principal", widget: "image"}
+          - {label: "Logo Alternativa", name: "logo_alternativa", widget: "image", required: false}
+          - {label: "Favicon", name: "favicon", widget: "image", required: false}
+          - {label: "Cor Principal", name: "cor_principal", widget: "string", hint: "Ex: #3498db"}
+          - {label: "Cor Secundária", name: "cor_secundaria", widget: "string", hint: "Ex: #2c3e50"}
