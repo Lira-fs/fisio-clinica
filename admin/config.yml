@@ -4,8 +4,8 @@ backend:
   branch: main # ou master, dependendo do seu repositório
 
 # Configuração de mídia
-media_folder: "imagens/blog" # Onde as imagens serão salvas
-public_folder: "/imagens/blog" # Caminho público das imagens
+media_folder: "imagens/posts" # Onde as imagens serão salvas
+public_folder: "/imagens/posts" # Caminho público das imagens
 
 # Configuração local para desenvolvimento
 # local_backend: true

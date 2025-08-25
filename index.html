@@ -17,45 +17,45 @@
             <!-- Slide 1 -->
             <div class="slide slide-1 active">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="imagens/hero-1.jpg">
+                    <source media="(max-width: 768px)" srcset="imagens/slide-1.jpg">
                     <source media="(max-width: 1200px)" srcset="imagens/hero-1.jpg">
-                    <img src="imagens/hero-1.jpg" alt="Clínica FISIO - Entrada Principal">
+                    <img src="imagens/slide-1.jpg" alt="Clínica FISIO - Entrada Principal">
                 </picture>
             </div>
             
             <!-- Slide 2 -->
             <div class="slide slide-2">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="imagens/hero-2.jpg">
+                    <source media="(max-width: 768px)" srcset="imagens/slide-2.jpg">
                     <source media="(max-width: 1200px)" srcset="imagens/hero-2.jpg">
-                    <img src="imagens/hero-2.jpg" alt="Equipamentos de Fisioterapia">
+                    <img src="imagens/slide-2.jpg" alt="Equipamentos de Fisioterapia">
                 </picture>
             </div>
             
             <!-- Slide 3 -->
             <div class="slide slide-3">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="imagens/hero-3.jpg">
+                    <source media="(max-width: 768px)" srcset="imagens/slide-3.jpg">
                     <source media="(max-width: 1200px)" srcset="imagens/hero-3.jpg">
-                    <img src="imagens/hero-3.jpg" alt="Atendimento Fisioterapêutico">
+                    <img src="imagens/slide-3.jpg" alt="Atendimento Fisioterapêutico">
                 </picture>
             </div>
             
             <!-- Slide 4 -->
             <div class="slide slide-4">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="imagens/hero-4.jpg">
+                    <source media="(max-width: 768px)" srcset="imagens/slide-4.jpg">
                     <source media="(max-width: 1200px)" srcset="imagens/hero-4.jpg">
-                    <img src="imagens/hero-4.jpg" alt="Espaço Pilates Clínico">
+                    <img src="imagens/slide-4.jpg" alt="Espaço Pilates Clínico">
                 </picture>
             </div>
             
             <!-- Slide 5 -->
             <div class="slide slide-5">
                 <picture>
-                    <source media="(max-width: 768px)" srcset="imagens/hero-5.jpg">
+                    <source media="(max-width: 768px)" srcset="imagens/slide-5.jpg">
                     <source media="(max-width: 1200px)" srcset="imagens/hero-5.jpg">
-                    <img src="imagens/hero-5.jpg" alt="Fisioterapia Esportiva">
+                    <img src="imagens/slide-5.jpg" alt="Fisioterapia Esportiva">
                 </picture>
             </div>
         </div>
@@ -381,5 +381,18 @@
             }
         });
     </script>
+
+    <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script> 
 </body>
 </html>

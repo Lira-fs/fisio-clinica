@@ -33,7 +33,7 @@ loadHeader() {
                 <div class="header-container">
                     <div class="logo">
                         <div class="logo-placeholder">
-                            <img src="logo.png" alt="Logo FISIO">
+                            <img src="imagens/logo.jpeg" alt="Logo FISIO">
                         </div>
                         <div class="logo-text">
                             <h1>FISIO</h1>
@@ -42,7 +42,7 @@ loadHeader() {
                     </div>
                     
                     <nav class="nav">
-                        <a href="index.html">InÃ­cio</a>
+                        <a href="index.html">Iní­cio</a>
                         <a href="quem-somos.html">Quem Somos</a>
                         
                         <!-- Dropdown Unidades -->
