@@ -124,58 +124,59 @@ class BlogManager {
   }
 
   showPostModal(post) {
+    // Cria modal
     const modal = document.createElement("div");
     modal.className = "post-modal-overlay";
-    modal.innerHTML = `
-            <div class="post-modal">
-                <button class="post-modal-close"><i class="fas fa-times"></i></button>
-                <div class="post-modal-content">
-                    ${
-                      post.imagem
-                        ? `<img src="${post.imagem}" class="post-modal-image">`
-                        : ""
-                    }
-                    <h1>${post.titulo}</h1>
-                    <div class="post-modal-info">
-                        <span><i class="fas fa-user"></i> ${
-                          post.autor || "Equipe FISIO"
-                        }</span>
-                        <span><i class="fas fa-calendar"></i> ${this.formatDate(
-                          post.data
-                        )}</span>
-                    </div>
-                    <div class="post-summary-modal">${post.resumo}</div>
-                    <div class="post-content-modal">${
-                      post.conteudo || "Conteúdo em breve..."
-                    }</div>
-                </div>
-                <div class="post-modal-footer">
-                    <a href="https://wa.me/5511999999999?text=Olá! Li o post '${
-                      post.titulo
-                    }' e gostaria de saber mais." class="btn btn-success" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Fale Conosco
-                    </a>
-                </div>
-            </div>
-        `;
+    modal.style.position = "fixed";
+    modal.style.top = 0;
+    modal.style.left = 0;
+    modal.style.width = "100%";
+    modal.style.height = "100%";
+    modal.style.background = "rgba(0,0,0,0.7)";
+    modal.style.zIndex = 9999;
+    modal.style.display = "flex";
+    modal.style.alignItems = "center";
+    modal.style.justifyContent = "center";
+    modal.style.overflowY = "auto";
 
-    modal
-      .querySelector(".post-modal-close")
-      .addEventListener("click", () => modal.remove());
+    modal.innerHTML = `
+    <div class="post-modal">
+      <button class="post-modal-close"><i class="fas fa-times"></i></button>
+      ${post.imagem ? `<img src="${post.imagem}" class="post-modal-image">` : ""}
+      <h1>${post.titulo}</h1>
+      <div class="post-modal-info">
+        <span><i class="fas fa-user"></i> ${post.autor || "Equipe FISIO"}</span>
+        <span><i class="fas fa-calendar"></i> ${this.formatDate(post.data)}</span>
+      </div>
+      <div class="post-summary-modal">${post.resumo}</div>
+      <div class="post-content-modal">${
+        post.conteudo || "Conteúdo em breve..."
+      }</div>
+      <div class="post-modal-footer">
+        <a href="https://wa.me/5511999999999?text=Olá! Li o post '${
+          post.titulo
+        }' e gostaria de saber mais."
+          class="btn btn-success" target="_blank">
+          <i class="fab fa-whatsapp"></i> Fale Conosco
+        </a>
+      </div>
+    </div> `;
+
+    // Fecha modal
+    modal.querySelector(".post-modal-close").addEventListener("click", () => {
+      modal.remove();
+      document.body.style.overflow = "auto";
+    });
+
     modal.addEventListener("click", (e) => {
-      if (e.target === modal) modal.remove();
+      if (e.target === modal) {
+        modal.remove();
+        document.body.style.overflow = "auto";
+      }
     });
 
     document.body.appendChild(modal);
     document.body.style.overflow = "hidden";
-
-    const observer = new MutationObserver(() => {
-      if (!document.querySelector(".post-modal-overlay")) {
-        document.body.style.overflow = "";
-        observer.disconnect();
-      }
-    });
-    observer.observe(document.body, { childList: true });
   }
 
   showErrorMessage() {

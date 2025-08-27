@@ -5,19 +5,17 @@
     <title>Blog Admin</title>
     <style>
       body {
-        font-family: Arial, sans-serif;
+        font-family: Arial;
         max-width: 900px;
         margin: 0 auto;
         padding: 20px;
         background-color: #f5f5f5;
       }
-
       h1,
       h2 {
         text-align: center;
         color: #333;
       }
-
       form {
         display: flex;
         flex-direction: column;
@@ -28,7 +26,6 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         margin-bottom: 30px;
       }
-
       input[type="text"],
       textarea,
       select {
@@ -39,12 +36,10 @@
         width: 100%;
         box-sizing: border-box;
       }
-
       textarea {
         resize: vertical;
         min-height: 100px;
       }
-
       button {
         padding: 10px;
         background-color: #4caf50;
@@ -54,16 +49,13 @@
         cursor: pointer;
         font-size: 16px;
       }
-
       button:hover {
         background-color: #45a049;
       }
-
       ul {
         list-style: none;
         padding: 0;
       }
-
       li {
         background-color: #fff;
         padding: 15px;
@@ -73,17 +65,14 @@
         display: flex;
         flex-direction: column;
       }
-
       li img {
         max-width: 200px;
         margin-top: 10px;
         border-radius: 5px;
       }
-
       .actions {
         margin-top: 10px;
       }
-
       .actions button {
         margin-right: 10px;
         padding: 5px 10px;
@@ -93,26 +82,22 @@
         border: none;
         color: white;
       }
-
       .edit-btn {
         background-color: #2196f3;
       }
-
       .edit-btn:hover {
         background-color: #1e88e5;
       }
-
       .delete-btn {
         background-color: #f44336;
       }
-
       .delete-btn:hover {
         background-color: #e53935;
       }
     </style>
   </head>
   <body>
-    <h1>Blog Admin</h1>
+    <h1>Controle dos Posts do Blog</h1>
 
     <form id="postForm">
       <input type="hidden" id="postId" />
@@ -133,8 +118,14 @@
     <ul id="postsList"></ul>
 
     <script>
-      const apiUrl = "http://localhost:3000/posts";
+      const token = sessionStorage.getItem("authToken");
+      if (!token) {
+        alert("Você precisa fazer login!");
+        window.location.href = "login.html";
+        throw new Error("Não autorizado");
+      }
 
+      const apiUrl = "http://localhost:3000/posts";
       const postForm = document.getElementById("postForm");
       const postsList = document.getElementById("postsList");
 
@@ -151,27 +142,25 @@
           if (!res.ok) throw new Error("Erro ao carregar posts");
           const posts = await res.json();
           postsList.innerHTML = "";
-
           posts.forEach((post) => {
             const li = document.createElement("li");
             li.innerHTML = `
-            <strong>${post.titulo}</strong> (${post.categoria})<br>
-            <em>${post.resumo}</em><br>
-            ${post.conteudo}<br>
-            ${
-              post.imagem
-                ? `<img src="${post.imagem}" alt="${post.titulo}">`
-                : ""
-            }
-            <div class="actions">
-              <button class="edit-btn" onclick="editPost(${
-                post.id
-              })">Editar</button>
-              <button class="delete-btn" onclick="deletePost(${
-                post.id
-              })">Excluir</button>
-            </div>
-          `;
+              <strong>${post.titulo}</strong> (${post.categoria})<br>
+              <em>${post.resumo}</em><br>
+              ${post.conteudo}<br>
+              ${
+                post.imagem
+                  ? `<img src="${post.imagem}" alt="${post.titulo}">`
+                  : ""
+              }
+              <div class="actions">
+                <button class="edit-btn" onclick="editPost(${
+                  post.id
+                })">Editar</button>
+                <button class="delete-btn" onclick="deletePost(${
+                  post.id
+                })">Excluir</button>
+              </div>`;
             postsList.appendChild(li);
           });
         } catch (err) {
@@ -189,22 +178,20 @@
           imagem: imageInput.value,
         };
 
+        const url = postIdInput.value
+          ? `${apiUrl}/${postIdInput.value}`
+          : apiUrl;
+        const method = postIdInput.value ? "PUT" : "POST";
+
         try {
-          if (postIdInput.value) {
-            // Editar post
-            await fetch(`${apiUrl}/${postIdInput.value}`, {
-              method: "PUT",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
-            });
-          } else {
-            // Criar post
-            await fetch(apiUrl, {
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify(data),
-            });
-          }
+          await fetch(url, {
+            method,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify(data),
+          });
           postForm.reset();
           postIdInput.value = "";
           loadPosts();
@@ -232,14 +219,18 @@
       async function deletePost(id) {
         if (!confirm("Tem certeza que deseja excluir este post?")) return;
         try {
-          await fetch(`${apiUrl}/${id}`, { method: "DELETE" });
+          await fetch(`${apiUrl}/${id}`, {
+            method: "DELETE",
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           loadPosts();
         } catch (err) {
           alert("Erro ao deletar post: " + err.message);
         }
       }
 
-      // Inicializa a lista
       loadPosts();
     </script>
   </body>

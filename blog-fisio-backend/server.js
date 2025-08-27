@@ -1,83 +1,118 @@
+require("dotenv").config();
 const express = require("express");
-const sqlite3 = require("sqlite3").verbose();
+const mysql = require("mysql2");
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const helmet = require("helmet");
+const morgan = require("morgan");
+const jwt = require("jsonwebtoken");
 
 const app = express();
-app.use(cors());
+
+app.use(helmet());
+app.use(cors({ origin: process.env.CORS_ORIGIN }));
 app.use(bodyParser.json());
+app.use(morgan("combined"));
 
-// Banco de dados SQLite (arquivo local)
-const db = new sqlite3.Database("./blog.db");
+// Conexão com MySQL
+const db = mysql.createConnection({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+});
 
-// Criar tabela de posts se não existir
-db.run(`CREATE TABLE IF NOT EXISTS posts (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    titulo TEXT,
-    resumo TEXT,
-    conteudo TEXT,
-    categoria TEXT,
-    imagem TEXT,
-    data TEXT
-)`);
+db.connect((err) => {
+  if (err) {
+    console.error("❌ Erro ao conectar ao MySQL:", err);
+    process.exit(1);
+  }
+  console.log("✅ Conectado ao MySQL");
+});
 
-// Rota: Listar posts
+// Middleware de autenticação JWT
+function authMiddleware(req, res, next) {
+  const authHeader = req.headers.authorization;
+  if (!authHeader) return res.status(401).json({ message: "Não autorizado" });
+
+  const token = authHeader.split(" ")[1];
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.user = decoded;
+    next();
+  } catch (err) {
+    return res.status(401).json({ message: "Token inválido" });
+  }
+}
+
+// Login retorna token
+app.post("/login", (req, res) => {
+  const { usuario, senha } = req.body;
+
+  if (usuario === process.env.ADMIN_USER && senha === process.env.ADMIN_PASS) {
+    const token = jwt.sign({ usuario }, process.env.JWT_SECRET, {
+      expiresIn: "2h",
+    });
+    return res.json({ token });
+  }
+
+  res.status(401).json({ message: "Usuário ou senha incorretos" });
+});
+
+// Rotas públicas
 app.get("/posts", (req, res) => {
-  db.all("SELECT * FROM posts ORDER BY id DESC", [], (err, rows) => {
-    if (err) res.status(500).json(err);
-    else res.json(rows);
+  db.query("SELECT * FROM posts ORDER BY id DESC", (err, results) => {
+    if (err) return res.status(500).json(err);
+    res.json(results);
   });
 });
 
-// Rota: Obter post específico
 app.get("/posts/:id", (req, res) => {
   const { id } = req.params;
-  db.get("SELECT * FROM posts WHERE id = ?", [id], (err, row) => {
+  db.query("SELECT * FROM posts WHERE id = ?", [id], (err, result) => {
     if (err) return res.status(500).json(err);
-    if (!row) return res.status(404).json({ message: "Post não encontrado" });
-    res.json(row);
+    if (!result.length)
+      return res.status(404).json({ message: "Post não encontrado" });
+    res.json(result[0]);
   });
 });
 
-// Rota: Criar post
-app.post("/posts", (req, res) => {
+// Rotas protegidas (JWT)
+app.post("/posts", authMiddleware, (req, res) => {
   const { titulo, resumo, conteudo, categoria, imagem } = req.body;
   const data = new Date().toISOString().split("T")[0];
-
-  db.run(
-    `INSERT INTO posts (titulo, resumo, conteudo, categoria, imagem, data) VALUES (?, ?, ?, ?, ?, ?)`,
+  db.query(
+    "INSERT INTO posts (titulo, resumo, conteudo, categoria, imagem, data) VALUES (?, ?, ?, ?, ?, ?)",
     [titulo, resumo, conteudo, categoria, imagem, data],
-    function (err) {
-      if (err) res.status(500).json(err);
-      else res.json({ id: this.lastID });
+    (err, result) => {
+      if (err) return res.status(500).json(err);
+      res.json({ id: result.insertId });
     }
   );
 });
 
-// Rota: Editar post
-app.put("/posts/:id", (req, res) => {
+app.put("/posts/:id", authMiddleware, (req, res) => {
   const { id } = req.params;
   const { titulo, resumo, conteudo, categoria, imagem } = req.body;
-
-  db.run(
-    `UPDATE posts SET titulo=?, resumo=?, conteudo=?, categoria=?, imagem=? WHERE id=?`,
+  db.query(
+    "UPDATE posts SET titulo=?, resumo=?, conteudo=?, categoria=?, imagem=? WHERE id=?",
     [titulo, resumo, conteudo, categoria, imagem, id],
-    function (err) {
-      if (err) res.status(500).json(err);
-      else res.json({ updated: this.changes });
+    (err, result) => {
+      if (err) return res.status(500).json(err);
+      res.json({ updated: result.affectedRows });
     }
   );
 });
 
-// Rota: Deletar post
-app.delete("/posts/:id", (req, res) => {
+app.delete("/posts/:id", authMiddleware, (req, res) => {
   const { id } = req.params;
-  db.run(`DELETE FROM posts WHERE id=?`, id, function (err) {
-    if (err) res.status(500).json(err);
-    else res.json({ deleted: this.changes });
+  db.query("DELETE FROM posts WHERE id=?", [id], (err, result) => {
+    if (err) return res.status(500).json(err);
+    res.json({ deleted: result.affectedRows });
   });
 });
 
-app.listen(3000, () =>
-  console.log("🚀 Servidor rodando em http://localhost:3000")
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () =>
+  console.log(`🚀 Servidor rodando em http://localhost:${PORT}`)
 );

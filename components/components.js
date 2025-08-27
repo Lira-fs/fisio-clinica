@@ -1,32 +1,32 @@
-
 // COMPONENTS.JS - SISTEMA DE IMPORTAÇÑƒO
 // ================================
 
 class SiteComponents {
-    constructor() {
-        this.init();
-    }
+  constructor() {
+    this.init();
+  }
 
-    init() {
-        // Aguarda o DOM carregar
-        if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.loadComponents());
-        } else {
-            this.loadComponents();
-        }
+  init() {
+    // Aguarda o DOM carregar
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", () =>
+        this.loadComponents()
+      );
+    } else {
+      this.loadComponents();
     }
+  }
 
-    loadComponents() {
-        this.loadHeader();
-        this.loadFooter();
-        this.initDropdown(); 
-        this.initMobileMenu();
-        this.initScrollEffects();
-        this.initSmoothScrolling();
-    }
+  loadComponents() {
+    this.loadHeader();
+    this.loadFooter();
+    this.initDropdown();
+    this.initMobileMenu();
+    this.initScrollEffects();
+    this.initSmoothScrolling();
+  }
 
-    
-loadHeader() {
+  loadHeader() {
     const headerHTML = `
         <header class="header">
             <div class="container">
@@ -42,7 +42,7 @@ loadHeader() {
                     </div>
                     
                     <nav class="nav">
-                        <a href="index.html">In��cio</a>
+                        <a href="index.html">In��cio</a>
                         <a href="quem-somos.html">Quem Somos</a>
                         
                         <!-- Dropdown Unidades -->
@@ -107,11 +107,11 @@ loadHeader() {
     `;
 
     // Injeta o header no início do body
-    document.body.insertAdjacentHTML('afterbegin', headerHTML);
-}
+    document.body.insertAdjacentHTML("afterbegin", headerHTML);
+  }
 
-    loadFooter() {
-        const footerHTML = `
+  loadFooter() {
+    const footerHTML = `
             <footer id="contato" class="footer">
                 <div class="container">
                     <div class="footer-grid">
@@ -149,6 +149,11 @@ loadHeader() {
                             <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
                             <p><i class="fas fa-envelope"></i> contato@fisioclinica.com.br</p>
                             <p><i class="fas fa-clock"></i> Seg-Sex: 7h às 19h<br>Sáb: 8h às 13h</p>
+                            <a href="posts.html">
+                                <p id="editPosts" style="cursor: pointer;">
+                                    <i class="fas fa-edit"></i> Edição de Posts
+                                </p>
+                            </a>
                         </div>
                         
                         <div class="footer-section">
@@ -178,134 +183,137 @@ loadHeader() {
             </a>
         `;
 
-        // Injeta o footer no final do body
-        document.body.insertAdjacentHTML('beforeend', footerHTML);
-    }
+    // Injeta o footer no final do body
+    document.body.insertAdjacentHTML("beforeend", footerHTML);
+  }
 
-    initDropdown() {
+  initDropdown() {
     setTimeout(() => {
-        const dropdownToggles = document.querySelectorAll('.nav-dropdown-toggle');
-        const navItems = document.querySelectorAll('.nav-item');
+      const dropdownToggles = document.querySelectorAll(".nav-dropdown-toggle");
+      const navItems = document.querySelectorAll(".nav-item");
 
-        dropdownToggles.forEach((toggle, index) => {
-            const navItem = navItems[index];
-            
-            // Prevenir link padrão
-            toggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                navItem.classList.toggle('active');
-            });
-            
-            // Fechar dropdown ao clicar fora
-            document.addEventListener('click', (e) => {
-                if (!navItem.contains(e.target)) {
-                    navItem.classList.remove('active');
-                }
-            });
+      dropdownToggles.forEach((toggle, index) => {
+        const navItem = navItems[index];
+
+        // Prevenir link padrão
+        toggle.addEventListener("click", (e) => {
+          e.preventDefault();
+          navItem.classList.toggle("active");
         });
+
+        // Fechar dropdown ao clicar fora
+        document.addEventListener("click", (e) => {
+          if (!navItem.contains(e.target)) {
+            navItem.classList.remove("active");
+          }
+        });
+      });
     }, 100);
-    }
+  }
 
-initMobileMenu() {
-   setTimeout(() => {
-       const mobileToggle = document.querySelector('.mobile-menu-toggle');
-       const mobileMenu = document.querySelector('.mobile-menu');
-       const mobileLinks = document.querySelectorAll('.mobile-menu a');
+  initMobileMenu() {
+    setTimeout(() => {
+      const mobileToggle = document.querySelector(".mobile-menu-toggle");
+      const mobileMenu = document.querySelector(".mobile-menu");
+      const mobileLinks = document.querySelectorAll(".mobile-menu a");
 
-       if (!mobileToggle || !mobileMenu) return;
+      if (!mobileToggle || !mobileMenu) return;
 
-       // Botão de fechar
-       const closeButton = document.querySelector('.mobile-menu-close');
+      // Botão de fechar
+      const closeButton = document.querySelector(".mobile-menu-close");
 
-       if (closeButton) {
-           closeButton.addEventListener('click', () => {
-               mobileToggle.classList.remove('active');
-               mobileMenu.classList.remove('active');
-               document.body.classList.remove('menu-open');
-           });
-       }
+      if (closeButton) {
+        closeButton.addEventListener("click", () => {
+          mobileToggle.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          document.body.classList.remove("menu-open");
+        });
+      }
 
-       // Toggle do submenu mobile
-       const submenuToggle = document.querySelector('.mobile-submenu-toggle');
-       const submenu = document.querySelector('.mobile-submenu');
+      // Toggle do submenu mobile
+      const submenuToggle = document.querySelector(".mobile-submenu-toggle");
+      const submenu = document.querySelector(".mobile-submenu");
 
-       if (submenuToggle) {
-           submenuToggle.addEventListener('click', () => {
-               submenu.classList.toggle('active');
-               const icon = submenuToggle.querySelector('i');
-               icon.classList.toggle('fa-chevron-down');
-               icon.classList.toggle('fa-chevron-up');
-           });
-       }
+      if (submenuToggle) {
+        submenuToggle.addEventListener("click", () => {
+          submenu.classList.toggle("active");
+          const icon = submenuToggle.querySelector("i");
+          icon.classList.toggle("fa-chevron-down");
+          icon.classList.toggle("fa-chevron-up");
+        });
+      }
 
-       // Toggle do menu mobile
-       mobileToggle.addEventListener('click', () => {
-           mobileToggle.classList.toggle('active');
-           mobileMenu.classList.toggle('active');
-           document.body.classList.toggle('menu-open');
-       });
+      // Toggle do menu mobile
+      mobileToggle.addEventListener("click", () => {
+        mobileToggle.classList.toggle("active");
+        mobileMenu.classList.toggle("active");
+        document.body.classList.toggle("menu-open");
+      });
 
-       // Fechar menu ao clicar em um link
-       mobileLinks.forEach(link => {
-           link.addEventListener('click', () => {
-               mobileToggle.classList.remove('active');
-               mobileMenu.classList.remove('active');
-               document.body.classList.remove('menu-open');
-           });
-       });
+      // Fechar menu ao clicar em um link
+      mobileLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileToggle.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          document.body.classList.remove("menu-open");
+        });
+      });
 
-       // Fechar menu ao redimensionar janela
-       window.addEventListener('resize', () => {
-           if (window.innerWidth > 768) {
-               mobileToggle.classList.remove('active');
-               mobileMenu.classList.remove('active');
-               document.body.classList.remove('menu-open');
-           }
-       });
-   }, 100);
-}
+      // Fechar menu ao redimensionar janela
+      window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+          mobileToggle.classList.remove("active");
+          mobileMenu.classList.remove("active");
+          document.body.classList.remove("menu-open");
+        }
+      });
+    }, 100);
+  }
 
-    initScrollEffects() {
-        setTimeout(() => {
-            const header = document.querySelector('.header');
-            if (!header) return;
+  initScrollEffects() {
+    setTimeout(() => {
+      const header = document.querySelector(".header");
+      if (!header) return;
 
-            let lastScrollTop = 0;
+      let lastScrollTop = 0;
 
-            window.addEventListener('scroll', () => {
-                const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                
-                // Efeito de transparência no header
-                if (scrollTop > 100) {
-                    header.style.background = 'linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(43, 119, 173, 0.95) 50%, rgba(77, 166, 217, 0.95) 100%)';
-                    header.style.backdropFilter = 'blur(10px)';
-                } else {
-                    header.style.background = 'linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%)';
-                    header.style.backdropFilter = 'none';
-                }
-                
-                lastScrollTop = scrollTop;
+      window.addEventListener("scroll", () => {
+        const scrollTop =
+          window.pageYOffset || document.documentElement.scrollTop;
+
+        // Efeito de transparência no header
+        if (scrollTop > 100) {
+          header.style.background =
+            "linear-gradient(135deg, rgba(26, 54, 93, 0.95) 0%, rgba(43, 119, 173, 0.95) 50%, rgba(77, 166, 217, 0.95) 100%)";
+          header.style.backdropFilter = "blur(10px)";
+        } else {
+          header.style.background =
+            "linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%)";
+          header.style.backdropFilter = "none";
+        }
+
+        lastScrollTop = scrollTop;
+      });
+    }, 100);
+  }
+
+  initSmoothScrolling() {
+    setTimeout(() => {
+      // Smooth scrolling para links internos
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
             });
-        }, 100);
-    }
-
-    initSmoothScrolling() {
-        setTimeout(() => {
-            // Smooth scrolling para links internos
-            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const target = document.querySelector(this.getAttribute('href'));
-                    if (target) {
-                        target.scrollIntoView({
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                });
-            });
-        }, 100);
-    }
+          }
+        });
+      });
+    }, 100);
+  }
 }
 
 // Inicializa os componentes
