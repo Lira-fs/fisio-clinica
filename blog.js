@@ -3,7 +3,7 @@
 
 class BlogManager {
   constructor() {
-    this.apiUrl = "http://localhost:3000/posts"; // URL do backend
+    this.apiUrl = "https://blog-fisioclinica-back-end.onrender.com/posts"; // URL do backend
     this.maxPostsPerCategory = 3;
     this.posts = [];
     this.init();
@@ -142,11 +142,15 @@ class BlogManager {
     modal.innerHTML = `
     <div class="post-modal">
       <button class="post-modal-close"><i class="fas fa-times"></i></button>
-      ${post.imagem ? `<img src="${post.imagem}" class="post-modal-image">` : ""}
+      ${
+        post.imagem ? `<img src="${post.imagem}" class="post-modal-image">` : ""
+      }
       <h1>${post.titulo}</h1>
       <div class="post-modal-info">
         <span><i class="fas fa-user"></i> ${post.autor || "Equipe FISIO"}</span>
-        <span><i class="fas fa-calendar"></i> ${this.formatDate(post.data)}</span>
+        <span><i class="fas fa-calendar"></i> ${this.formatDate(
+          post.data
+        )}</span>
       </div>
       <div class="post-summary-modal">${post.resumo}</div>
       <div class="post-content-modal">${
