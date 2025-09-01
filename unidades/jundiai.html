@@ -33,64 +33,75 @@
 </head>
 <body>
     <!-- Hero da Unidade Jundiaí -->
-    <section class="hero-unidade">
-        <div class="container">
-            <div class="hero-unidade-content">
-                <div class="unidade-badge">Unidade Principal</div>
-                <h1>FISIO Jundiaí</h1>
-                <p>Nossa unidade principal, onde tudo começou. Localizada no coração de Jundiaí, oferecemos atendimento de excelência em fisioterapia esportiva e reabilitação ortopédica há mais de X anos.</p>
+<section class="hero-unidade hero-jundiai">
+    <!-- Background Image Container -->
+    <!-- <div class="hero-background">
+        <picture>
+            <source media="(max-width: 768px)" srcset="../imagens/hero-jundiai-mobile.webp">
+            <source media="(min-width: 769px)" srcset="../imagens/hero-jundiai.webp">
+            <img src="../imagens/hero-jundiai.webp" alt="Clínica FISIO Jundiaí">
+        </picture>
+    </div> -->
+    
+    <!-- Overlay azul -->
+    <div class="hero-overlay"></div>
+    
+    <div class="container">
+        <div class="hero-unidade-content">
+            <div class="unidade-badge">Unidade Principal</div>
+            <h1>FISIO Jundiaí</h1>
+            <p>Nossa unidade principal, onde tudo começou. Localizada no coração de Jundiaí, oferecemos atendimento de excelência em fisioterapia esportiva e reabilitação ortopédica há mais de X anos.</p>
+            
+            <div class="hero-buttons">
+                <a href="#contato" class="btn btn-accent btn-lg">
+                    <i class="fab fa-whatsapp"></i>
+                    Agendar Consulta
+                </a>
+                <a href="#sobre-unidade" class="btn btn-secondary btn-lg">
+                    <i class="fas fa-info-circle"></i>
+                    Conhecer a Unidade
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Formas decorativas específicas de Jundiaí -->
+    <div class="shape-unidade shape-jundiai-1"></div>
+    <div class="shape-unidade shape-jundiai-2"></div>
+</section>
+
+    <!-- Seção Sobre a Unidade -->
+   <section id="sobre-unidade" class="sobre-unidade section bg-white">
+    <div class="container">
+        <div class="sobre-unidade-grid fade-in">
+            <div class="sobre-unidade-content">
+                <h2>Nossa História em Jundiaí</h2>
+                <p>A unidade Jundiaí é o berço da clínica FISIO. Aqui começamos nossa jornada há X anos, atendendo atletas locais e pessoas que buscavam recuperação de lesões com excelência técnica.</p>
                 
-                <div class="hero-buttons">
-                    <a href="#contato" class="btn btn-accent btn-lg">
-                        <i class="fab fa-whatsapp"></i>
-                        Agendar Consulta
-                    </a>
-                    <a href="#sobre-unidade" class="btn btn-secondary btn-lg">
-                        <i class="fas fa-info-circle"></i>
-                        Conhecer a Unidade
-                    </a>
+                <p>Localizada em uma região privilegiada da cidade, nossa unidade conta com <strong>instalações modernas, equipamentos de última geração</strong> e uma equipe altamente qualificada que atende desde atletas profissionais até pessoas que buscam qualidade de vida.</p>
+            </div>
+            
+            <div class="sobre-unidade-visual fade-in">
+                <div class="unidade-image-main">
+                    <img src="../imagens/nossa-historia-jundiai.webp" alt="Fachada da Clínica FISIO Jundiaí">
                 </div>
             </div>
         </div>
         
-        <!-- Formas decorativas específicas de Jundiaí -->
-        <div class="shape-unidade shape-jundiai-1"></div>
-        <div class="shape-unidade shape-jundiai-2"></div>
-    </section>
-
-    <!-- Seção Sobre a Unidade -->
-    <section id="sobre-unidade" class="sobre-unidade section bg-white">
-        <div class="container">
-            <div class="sobre-unidade-grid fade-in">
-                <div class="sobre-unidade-content">
-                    <h2>Nossa História em Jundiaí</h2>
-                    <p>A unidade Jundiaí é o berço da clínica FISIO. Aqui começamos nossa jornada há X anos, atendendo atletas locais e pessoas que buscavam recuperação de lesões com excelência técnica.</p>
-                    
-                    <p>Localizada em uma região privilegiada da cidade, nossa unidade conta com <strong>instalações modernas, equipamentos de última geração</strong> e uma equipe altamente qualificada que atende desde atletas profissionais até pessoas que buscam qualidade de vida.</p>
-                    
-                    <div class="destaque-info">
-                        <h3><i class="fas fa-star"></i> Diferenciais da Unidade Jundiaí</h3>
-                        <p>- Primeira unidade da rede FISIO<br>
-                        - Equipamentos de alta tecnologia para diagnóstico<br>
-                        - Estúdio de Pilates Clínico completo<br>
-                        - Parcerias com equipes esportivas locais<br>
-                        - Estacionamento próprio</p>
-                    </div>
-                    
-                    <a href="#profissionais" class="btn btn-primary">
-                        <i class="fas fa-users"></i>
-                        Conheça Nossa Equipe
-                    </a>
-                </div>
-                
-                <div class="sobre-unidade-visual fade-in">
-                    <div class="unidade-image-main">
-                        <!-- <img src="imagens/jundiai-fachada.jpg" alt="Fachada da Clínica FISIO Jundiaí"> -->
-                    </div>
-                </div>
-            </div>
+        <!-- Nova seção de Diferenciais -->
+        <div class="diferenciais-section fade-in">
+            <h3>Diferenciais da Unidade Jundiaí</h3>
+            <ul class="diferenciais-lista">
+                <li>Primeira unidade da rede FISIO</li>
+                <li>Equipamentos de alta tecnologia para diagnóstico</li>
+                <li>Estúdio de Pilates Clínico completo</li>
+                <li>Parcerias com equipes esportivas locais</li>
+                <li>Estacionamento próprio</li>
+                <li>Informação complementar </li>
+            </ul>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- Seção Profissionais -->
     <section id="profissionais" class="profissionais-section">
@@ -213,21 +224,6 @@
         </div>
     </section>
 
-    <!-- Seção Agendamento -->
-    <section id="agendamento" class="agendamento-section">
-        <div class="container">
-            <div class="agendamento-content">
-                <h2>Pronto para sua Recuperação?</h2>
-                <p>Agende sua avaliação gratuita na unidade Jundiaí e descubra como nossa equipe pode acelerar sua recuperação com excelência e cuidado personalizado.</p>
-                
-                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma avaliação gratuita na unidade Jundiaí da Clínica FISIO." class="btn btn-accent btn-lg" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    Agendar Avaliação Gratuita
-                </a>
-            </div>
-        </div>
-    </section>
-
     <!-- Seção Contato e Localização -->
     <section id="contato" class="contato-localizacao bg-gray-50">
         <div class="container">
@@ -295,6 +291,21 @@
                     <i class="fas fa-map"></i>
                     <!-- Aqui seria integrado o Google Maps -->
                 </div>
+            </div>
+        </div>
+    </section>
+
+      <!-- Seção Agendamento -->
+    <section id="agendamento" class="agendamento-section">
+        <div class="container">
+            <div class="agendamento-content">
+                <h2>Pronto para sua Recuperação?</h2>
+                <p>Agende sua avaliação gratuita na unidade Jundiaí e descubra como nossa equipe pode acelerar sua recuperação com excelência e cuidado personalizado.</p>
+                
+                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma avaliação gratuita na unidade Jundiaí da Clínica FISIO." class="btn btn-accent btn-lg" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    Agendar Avaliação Gratuita
+                </a>
             </div>
         </div>
     </section>

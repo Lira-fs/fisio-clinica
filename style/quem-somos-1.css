@@ -158,12 +158,16 @@
   position: relative;
 }
 
+#historia-section{
+  padding-top: 20px;
+}
+
 .historia-content h3::after {
   content: '';
   position: absolute;
   bottom: -8px;
   left: 0;
-  width: 60px;
+  width: 100%;
   height: 3px;
   background: linear-gradient(45deg, var(--primary-light), var(--accent-orange));
   border-radius: 2px;
@@ -176,38 +180,13 @@
 }
 
 .btn-full-width {
-  width: 100%;
+  width: 50%;
   justify-content: center;
 }
 
-/* ================================
-   GALERIA HORIZONTAL - PLACEHOLDERS VISÑVEIS
-   ================================ */
-.galeria-horizontal {
-  position: relative;
-  width: 100%;
-  height: 400px;
-  overflow: hidden;
-  border-radius: var(--radius-xl);
-  cursor: grab;
-}
-
-.galeria-horizontal:active {
-  cursor: grabbing;
-}
-
-.galeria-container {
-  display: flex;
-  width: 800%; /* 8 slides x 100% */
-  height: 100%;
-  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.galeria-item {
-  width: 12.5%; /* 100% / 8 slides */
-  height: 100%;
-  flex-shrink: 0;
-  position: relative;
+.botao-trajetoria {
+  display: grid;
+  place-items: center;
 }
 
 /* PLACEHOLDER GALERIA - GARANTIR VISIBILIDADE */
@@ -583,80 +562,29 @@
 /* ================================
    MEDIA GRID APRIMORADA
    ================================ */
-.media-grid {
-  display: grid;
-  gap: var(--space-xl);
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+/* Nova grid de fotos simples */
+.fotos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-2xl);
 }
 
-.media-card {
-  transition: transform 0.3s ease;
+.foto-item {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: transform 0.3s ease;
 }
 
-.media-card:hover {
-  transform: translateY(-5px);
+.foto-item:hover {
+    transform: translateY(-5px);
 }
 
-.media-thumb {
-  position: relative;
-  width: 100%;
-  border-bottom: 1px solid var(--gray-200);
-}
-
-.media-caption {
-  padding: var(--space-lg);
-  color: var(--gray-700);
-  display: flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-weight: var(--font-weight-medium);
-  font-size: var(--text-sm);
-}
-
-.media-caption.highlighted {
-  background: linear-gradient(45deg, var(--primary-light), var(--primary-medium));
-  color: var(--white);
-}
-
-.media-caption.highlighted i {
-  color: var(--white);
-}
-
-/* Vídeo específico */
-.video-thumb {
-  display: block;
-  text-decoration: none;
-  position: relative;
-}
-
-.video-thumb::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent, rgba(0,0,0,0.3));
-}
-
-.play-badge {
-  position: absolute;
-  right: var(--space-lg);
-  bottom: var(--space-lg);
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: linear-gradient(45deg, var(--accent-orange), var(--accent-orange-dark));
-  box-shadow: var(--shadow-lg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--white);
-  font-size: var(--text-xl);
-  z-index: 3;
-  transition: all 0.3s ease;
-}
-
-.play-badge:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 25px rgba(245, 158, 11, 0.4);
+.foto-item img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
 }
 
 /* ================================
@@ -1151,18 +1079,15 @@
     border-bottom-color: var(--white);
   }
 
-  /* Media grid mobile */
-  .media-grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
-  }
-
-  .play-badge {
-    width: 50px;
-    height: 50px;
-    font-size: var(--text-lg);
-  }
-
+      .fotos-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .foto-item img {
+        height: 200px;
+    }
+    
   /* Valores mobile */
   .valor-card {
     padding: var(--space-xl);
@@ -1205,6 +1130,16 @@
     width: 8px;
     height: 8px;
   }
+
+  .btn-full-width {
+  width: 100%;
+  justify-content: center;
+}
+
+.botao-trajetoria {
+  display: grid;
+  place-items: center;
+}
 }
 
 @media (max-width: 480px) {

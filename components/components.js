@@ -28,7 +28,7 @@ class SiteComponents {
     
 loadHeader() {
     const headerHTML = `
-        <header class="header">
+       <header class="header">
             <div class="container">
                 <div class="header-container">
                     <div class="logo">
@@ -42,33 +42,30 @@ loadHeader() {
                     </div>
                     
                     <nav class="nav">
-                        <a href="index.html">In��cio</a>
-                        <a href="quem-somos.html">Quem Somos</a>
+                        <a href="/index.html">Início</a>
+                        <a href="/quem-somos.html">Quem Somos</a>
                         
                         <!-- Dropdown Unidades -->
                         <div class="nav-item">
                             <a href="#" class="nav-dropdown-toggle">Unidades</a>
                             <div class="nav-dropdown">
-                                <a href="unidades/jundiai.html" class="dropdown-item">
+                                <a href="/unidades/jundiai.html" class="dropdown-item">
                                     <span class="unit-name">Jundiaí</span>
-                                    <span class="unit-description">Unidade Principal</span>
                                 </a>
-                                <a href="unidades/itatiba.html" class="dropdown-item">
+                                <a href="/unidades/itatiba.html" class="dropdown-item">
                                     <span class="unit-name">Itatiba</span>
-                                    <span class="unit-description">Tecnologia Avançada</span>
                                 </a>
-                                <a href="unidades/varzea.html" class="dropdown-item">
+                                <a href="/unidades/varzea.html" class="dropdown-item">
                                     <span class="unit-name">Várzea Paulista</span>
-                                    <span class="unit-description">Atendimento Humanizado</span>
                                 </a>
                             </div>
                         </div>
 
-                         <a href="tratamentos.html">Tratamentos</a>
+                         <a href="/tratamentos.html">Tratamentos</a>
 
-                          <a href="blog.html">Blog</a>
+                          <a href="/blog.html">Blog</a>
                         
-                        <a href="contato.html">Contato</a>
+                        <a href="/contato.html">Contato</a>
                     </nav>
 
                     
@@ -85,19 +82,19 @@ loadHeader() {
                 <button class="mobile-menu-close" aria-label="Fechar menu">
                     <i class="fas fa-times"></i>
                 </button>
-                    <a href="index.html">Início</a>
-                    <a href="quem-somos.html">Quem Somos</a>
+                    <a href="/index.html">Início</a>
+                    <a href="/quem-somos.html">Quem Somos</a>
                     <div class="mobile-submenu">
                         <button class="mobile-submenu-toggle">Unidades <i class="fas fa-chevron-down"></i></button>
                         <div class="mobile-submenu-content">
-                            <a href="unidades/jundiai.html">Jundiaí</a>
-                            <a href="unidades/itatiba.html">Itatiba</a>
-                            <a href="unidades/varzea.html">Várzea Paulista</a>
+                            <a href="/unidades/jundiai.html">Jundiaí</a>
+                            <a href="/unidades/itatiba.html">Itatiba</a>
+                            <a href="/unidades/varzea.html">Várzea Paulista</a>
                         </div>
                     </div>
-                    <a href="tratamentos.html">Tratamentos</a>
-                    <a href="blog.html">Blog</a>
-                    <a href="contato.html">Contato</a>
+                    <a href="/tratamentos.html">Tratamentos</a>
+                    <a href="/blog.html">Blog</a>
+                    <a href="/contato.html">Contato</a>
                     <a href="#" class="btn btn-primary">
                         <i class="fas fa-calendar-alt"></i>
                         Agendar Consulta
@@ -112,7 +109,7 @@ loadHeader() {
 
     loadFooter() {
         const footerHTML = `
-            <footer id="contato" class="footer">
+           <footer id="contato" class="footer">
                 <div class="container">
                     <div class="footer-grid">
                         <div class="footer-section">

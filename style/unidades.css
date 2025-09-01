@@ -31,6 +31,14 @@
     animation: fadeInUp 1s ease-out;
 }
 
+.hero-unidade .hero-buttons {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-xl);
+}
+
 .unidade-badge {
     display: inline-block;
     padding: var(--space-sm) var(--space-xl);
@@ -105,7 +113,7 @@
     width: 100%;
     height: 400px;
     background: var(--gray-100);
-    border: 2px dashed var(--gray-300);
+    border: 2px solid var(--primary-light);
     border-radius: var(--radius-xl);
     display: flex;
     align-items: center;
@@ -134,55 +142,68 @@
     transform: scale(1.05);
 }
 
-.unidade-image-main::after {
-    content: 'FOTO DA UNIDADE';
-    font-size: var(--text-sm);
-    color: var(--gray-500);
-    font-weight: var(--font-weight-semibold);
-    text-align: center;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
-
 /* Destacar informações importantes */
-.destaque-info {
-    background: linear-gradient(135deg, var(--primary-light), var(--primary-medium));
-    color: var(--white);
-    padding: var(--space-xl);
-    border-radius: var(--radius-lg);
-    margin: var(--space-xl) 0;
-    position: relative;
-    overflow: hidden;
+/* Nova seção de diferenciais */
+.diferenciais-section {
+    margin-top: var(--space-2xl);
+    padding-top: var(--space-xl);
+    border-top: 2px solid var(--gray-200);
 }
 
-.destaque-info::before {
+.diferenciais-section h3 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-lg);
+    text-align: center;
+    font-size: var(--text-2xl);
+    position: relative;
+}
+
+.diferenciais-section h3::after {
     content: '';
     position: absolute;
-    top: -50%;
-    right: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    transform: scale(0);
-    transition: transform 0.6s ease;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(45deg, var(--primary-light), var(--accent-orange));
+    border-radius: 2px;
 }
 
-.destaque-info:hover::before {
-    transform: scale(1);
+.diferenciais-lista {
+    list-style: none;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--space-md);
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.destaque-info h3 {
+.diferenciais-lista li {
+    padding: var(--space-md) var(--space-lg);
+    background: var(--gray-50);
+    border-left: 4px solid var(--primary-light);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.diferenciais-lista li::before {
+    content: '✓';
+    color: var(--primary-medium);
+    font-weight: bold;
+    margin-right: var(--space-sm);
+}
+
+.diferenciais-lista li:hover {
+    background: var(--primary-light);
     color: var(--white);
-    margin-bottom: var(--space-md);
-    position: relative;
-    z-index: 2;
+    transform: translateY(-2px);
 }
 
-.destaque-info p {
-    color: rgba(255, 255, 255, 0.95);
-    margin: 0;
-    position: relative;
-    z-index: 2;
+.diferenciais-lista li:hover::before {
+    color: var(--white);
 }
 
 /* Seção de profissionais */
@@ -633,7 +654,7 @@
 /* Responsividade */
 @media (max-width: 768px) {
     .hero-unidade {
-        height: 60vh;
+        min-height: 80vh;
     }
 
     .sobre-unidade-grid,
@@ -656,8 +677,17 @@
         height: 200px;
     }
 
-    .video-container {
-        margin: 0 var(--space-md);
+    .video-placeholder {
+        text-align: center;
+        padding: var(--space-lg);
+    }
+    
+    .video-placeholder h3,
+    .video-placeholder p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 100%;
     }
 
     .contato-item {
@@ -668,6 +698,14 @@
 
     .mapa-container {
         height: 300px;
+    }
+
+    .diferenciais-lista {
+        grid-template-columns: 1fr;
+    }
+
+    .diferenciais-section h3::after {
+        width: 100%;
     }
 
     /* Reduzir formas decorativas em mobile */
@@ -681,6 +719,8 @@
     .contato-info:hover {
         transform: translateY(-3px);
     }
+
+
 }
 
 /* Performance */
