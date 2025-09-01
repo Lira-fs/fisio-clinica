@@ -1,97 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - Clínica FISIO</title>
-    <meta name="description" content="Notícias e novidades da Clínica FISIO, fisioterapia e tratamentos especializados.">
-    <link rel="stylesheet" href="style/global.css">
-    <link rel="stylesheet" href="style/blog.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
+    <meta
+      name="description"
+      content="Notícias e novidades da Clínica FISIO, fisioterapia e tratamentos especializados."
+    />
+    <link rel="stylesheet" href="style/global.css" />
+    <link rel="stylesheet" href="style/blog.css" />
+    <link rel="stylesheet" href="style/modal.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+  </head>
+  <body>
     <!-- HEADER IMPORTADO -->
-    
+
     <!-- Seção de título -->
     <section class="blog-hero">
-        <h1>Blog da Clínica FISIO</h1>
-        <p>Notícias, novidades e conteúdos exclusivos sobre fisioterapia, saúde e bem-estar.</p>
+      <h1>Blog da Clínica FISIO</h1>
+      <p>
+        Notícias, novidades e conteúdos exclusivos sobre fisioterapia, saúde e
+        bem-estar.
+      </p>
     </section>
 
     <!-- Notícias da Clínica -->
     <section class="section bg-white">
-        <div class="container">
-            <div class="section-title">
-                <h2>Notícias da Clínica</h2>
-                <p>Novidades, eventos e informações sobre nossa clínica</p>
-            </div>
-            
-            <div class="grid grid-3" id="clinica-posts">
-                <!-- Posts serão inseridos aqui dinamicamente -->
-                <div class="loading-placeholder">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Carregando posts...</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title">
+          <h2>Notícias da Clínica</h2>
+          <p>Novidades, eventos e informações sobre nossa clínica</p>
         </div>
+
+        <div class="grid grid-3" id="clinica-posts">
+          <!-- Posts serão inseridos aqui dinamicamente -->
+        </div>
+      </div>
     </section>
 
     <!-- Notícias Fisioterapia -->
     <section class="section bg-gray-50">
-        <div class="container">
-            <div class="section-title">
-                <h2>Notícias Fisioterapia</h2>
-                <p>Artigos e dicas sobre fisioterapia e reabilitação</p>
-            </div>
-            
-            <div class="grid grid-3" id="fisioterapia-posts">
-                <!-- Posts serão inseridos aqui dinamicamente -->
-                <div class="loading-placeholder">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Carregando posts...</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title">
+          <h2>Notícias Fisioterapia</h2>
+          <p>Artigos e dicas sobre fisioterapia e reabilitação</p>
         </div>
+
+        <div class="grid grid-3" id="fisioterapia-posts">
+          <!-- Posts serão inseridos aqui dinamicamente -->
+        </div>
+      </div>
     </section>
 
     <!-- Notícias Tratamentos -->
     <section class="section bg-white">
-        <div class="container">
-            <div class="section-title">
-                <h2>Notícias Tratamentos</h2>
-                <p>Informações sobre nossos tratamentos e técnicas</p>
-            </div>
-            
-            <div class="grid grid-3" id="tratamentos-posts">
-                <!-- Posts serão inseridos aqui dinamicamente -->
-                <div class="loading-placeholder">
-                    <i class="fas fa-spinner fa-spin"></i>
-                    <p>Carregando posts...</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title">
+          <h2>Notícias Tratamentos</h2>
+          <p>Informações sobre nossos tratamentos e técnicas</p>
         </div>
+
+        <div class="grid grid-3" id="tratamentos-posts">
+          <!-- Posts serão inseridos aqui dinamicamente -->
+        </div>
+      </div>
     </section>
 
     <!-- CTA Final -->
     <section class="section cta-final-green">
-        <div class="container">
-            <div class="cta-content">
-                <h2>Gostou do Conteúdo?</h2>
-                <p>Agende sua consulta e viva uma experiência de excelência em fisioterapia.</p>
-                <a href="https://wa.me/5511999999999?text=Olá! Vi o blog e gostaria de agendar uma consulta." 
-                   class="btn btn-accent btn-lg" target="_blank">
-                    <i class="fab fa-whatsapp"></i>
-                    Agendar Consulta
-                </a>
-            </div>
+      <div class="container">
+        <div class="cta-content">
+          <h2>Gostou do Conteúdo?</h2>
+          <p>
+            Agende sua consulta e viva uma experiência de excelência em
+            fisioterapia.
+          </p>
+          <a
+            href="https://wa.me/5511999999999"
+            class="btn btn-accent btn-lg"
+            target="_blank"
+          >
+            <i class="fab fa-whatsapp"></i>
+            Agendar Consulta
+          </a>
         </div>
+      </div>
     </section>
 
     <!-- FOOTER IMPORTADO -->
 
     <!-- Botão Flutuante WhatsApp -->
-    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+    <a
+      href="https://wa.me/5511999999999"
+      class="whatsapp-float"
+      target="_blank"
+    >
+      <i class="fab fa-whatsapp"></i>
     </a>
 
     <!-- Scripts -->
@@ -99,139 +107,145 @@
     <script src="blog.js"></script>
 
     <style>
-        /* Estilos para loading */
-        .loading-placeholder {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray-500);
-        }
+      /* Estilos para loading */
+      .loading-placeholder {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 2rem;
+        color: var(--gray-500);
+      }
 
-        .loading-placeholder i {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--primary-medium);
-        }
+      .loading-placeholder i {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--primary-medium);
+      }
 
-        /* Estilos para quando não há posts */
-        .no-posts {
-            grid-column: 1 / -1;
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray-600);
-            background: var(--gray-100);
-            border-radius: var(--radius-lg);
-        }
+      /* Estilos para quando não há posts */
+      .no-posts {
+        grid-column: 1 / -1;
+        text-align: center;
+        padding: 2rem;
+        color: var(--gray-600);
+        background: var(--gray-100);
+        border-radius: var(--radius-lg);
+      }
 
-        .no-posts i {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            color: var(--gray-400);
-        }
+      .no-posts i {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--gray-400);
+      }
 
-        /* Card do post */
-        .post-card {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
+      /* Card do post */
+      .post-card {
+        background: var(--white);
+        border-radius: var(--radius-xl);
+        box-shadow: var(--shadow-md);
+        overflow: hidden;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
 
-        .post-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
+      .post-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-xl);
+      }
 
-        .post-image {
-            width: 100%;
-            height: 200px;
-            background: var(--gray-200);
-            position: relative;
-            overflow: hidden;
-        }
+      .post-image {
+        width: 100%;
+        height: 200px;
+        background: var(--gray-200);
+        position: relative;
+        overflow: hidden;
+      }
 
-        .post-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
+      .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
 
-        .post-card:hover .post-image img {
-            transform: scale(1.05);
+      .post-card:hover .post-image img {
+        transform: scale(1.05);
+      }
+
+      .post-content {
+        padding: var(--space-xl);
+      }
+
+      .post-category {
+        display: inline-block;
+        padding: var(--space-xs) var(--space-sm);
+        background: var(--primary-light);
+        color: var(--white);
+        border-radius: var(--radius-sm);
+        font-size: var(--text-xs);
+        font-weight: var(--font-weight-semibold);
+        text-transform: uppercase;
+        margin-bottom: var(--space-sm);
+      }
+
+      .post-title {
+        font-size: var(--text-lg);
+        font-weight: var(--font-weight-bold);
+        color: var(--primary-dark);
+        margin-bottom: var(--space-sm);
+        line-height: 1.3;
+      }
+
+      .post-summary {
+        color: var(--gray-600);
+        font-size: var(--text-sm);
+        line-height: 1.5;
+        margin-bottom: var(--space-md);
+      }
+
+      .post-date {
+        color: var(--gray-500);
+        font-size: var(--text-xs);
+        font-weight: var(--font-weight-medium);
+      }
+
+      .post-date i {
+        margin-right: var(--space-xs);
+      }
+
+      /* Placeholder de imagem */
+      .post-image-placeholder {
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gray-500);
+        font-size: var(--text-xl);
+      }
+
+      /* Categorias específicas */
+      .post-category.clinica {
+        background: var(--success-green);
+      }
+      .post-category.fisioterapia {
+        background: var(--primary-medium);
+      }
+      .post-category.tratamentos {
+        background: var(--accent-orange);
+      }
+
+      /* Responsividade */
+      @media (max-width: 768px) {
+        .grid-3 {
+          grid-template-columns: 1fr;
+          gap: var(--space-lg);
         }
 
         .post-content {
-            padding: var(--space-xl);
+          padding: var(--space-lg);
         }
-
-        .post-category {
-            display: inline-block;
-            padding: var(--space-xs) var(--space-sm);
-            background: var(--primary-light);
-            color: var(--white);
-            border-radius: var(--radius-sm);
-            font-size: var(--text-xs);
-            font-weight: var(--font-weight-semibold);
-            text-transform: uppercase;
-            margin-bottom: var(--space-sm);
-        }
-
-        .post-title {
-            font-size: var(--text-lg);
-            font-weight: var(--font-weight-bold);
-            color: var(--primary-dark);
-            margin-bottom: var(--space-sm);
-            line-height: 1.3;
-        }
-
-        .post-summary {
-            color: var(--gray-600);
-            font-size: var(--text-sm);
-            line-height: 1.5;
-            margin-bottom: var(--space-md);
-        }
-
-        .post-date {
-            color: var(--gray-500);
-            font-size: var(--text-xs);
-            font-weight: var(--font-weight-medium);
-        }
-
-        .post-date i {
-            margin-right: var(--space-xs);
-        }
-
-        /* Placeholder de imagem */
-        .post-image-placeholder {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--gray-200), var(--gray-300));
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-500);
-            font-size: var(--text-xl);
-        }
-
-        /* Categorias específicas */
-        .post-category.clinica { background: var(--success-green); }
-        .post-category.fisioterapia { background: var(--primary-medium); }
-        .post-category.tratamentos { background: var(--accent-orange); }
-
-        /* Responsividade */
-        @media (max-width: 768px) {
-            .grid-3 {
-                grid-template-columns: 1fr;
-                gap: var(--space-lg);
-            }
-            
-            .post-content {
-                padding: var(--space-lg);
-            }
-        }
+      }
     </style>
-</body>
+  </body>
 </html>
