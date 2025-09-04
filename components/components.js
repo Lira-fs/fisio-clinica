@@ -33,7 +33,7 @@ class SiteComponents {
                 <div class="header-container">
                     <div class="logo">
                         <div class="logo-placeholder">
-                            <img src="imagens/logo.jpeg" alt="Logo FISIO">
+                            <img src="/imagens/logo.jpeg" alt="Logo FISIO">
                         </div>
                         <div class="logo-text">
                             <h1>FISIO</h1>
@@ -133,7 +133,7 @@ class SiteComponents {
                         <div class="footer-section">
                             <div class="logo mb-md">
                                 <div class="logo-placeholder">
-                                    <img src="logo.png" alt="Logo FISIO">
+                                    <img src="/imagens/logo.jpeg" alt="Logo FISIO">
                                 </div>
                                 <div class="logo-text">
                                     <h3>FISIO</h3>

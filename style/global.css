@@ -1424,3 +1424,7 @@ body.menu-open {
         display: none;
     }
 }
+
+@supports (-webkit-touch-callout: none) {
+    body { padding-top: 95px !important; }
+}
