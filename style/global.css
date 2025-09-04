@@ -1420,26 +1420,16 @@ body.menu-open {
     }
 }
 
-/* ADICIONAR: Fix para Safari iOS */
+/* ADICIONAR: Fix mais seguro para Safari iOS */
 @supports (-webkit-touch-callout: none) {
     .hero-unidade, .hero {
-        min-height: -webkit-fill-available;
-        min-height: fill-available;
-        /* Fallback para telas pequenas */
+        /* Usar altura fixa em vez de viewport units problemáticos */
         min-height: 450px;
     }
     
-    body {
-        /* Previne bounce scroll no Safari */
-        position: fixed;
-        overflow-x: hidden;
-        width: 100%;
-        min-height: -webkit-fill-available;
-        min-height: fill-available;
-    }
-    
-    html {
-        height: -webkit-fill-available;
-        height: fill-available;
+    @media (max-width: 768px) {
+        .hero-unidade, .hero {
+            min-height: 400px;
+        }
     }
 }
