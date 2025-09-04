@@ -24,6 +24,7 @@ class SiteComponents {
     this.initMobileMenu();
     this.initScrollEffects();
     this.initSmoothScrolling();
+    this.fixHighDPRScaling();
   }
 
   loadHeader() {
@@ -336,6 +337,17 @@ class SiteComponents {
         });
       });
     }, 100);
+  }
+  
+    fixHighDPRScaling() {
+      const dpr = window.devicePixelRatio || 1;
+      
+      if (dpr >= 1.5) {
+          // Ajustar font-size base para compensar DPR alto
+          const baseFontSize = 16 / dpr;
+          document.documentElement.style.fontSize = `${baseFontSize}px`;
+          console.log(`DPR Fix aplicado: ${baseFontSize}px base font`);
+      }
   }
 }
 
