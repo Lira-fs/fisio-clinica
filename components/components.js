@@ -15,19 +15,6 @@ class SiteComponents {
     } else {
       this.loadComponents();
     }
-
-    // Adicionar no final do init()
-    fixDevicePixelRatio() {
-        if (window.devicePixelRatio && window.devicePixelRatio !== 1) {
-            const viewport = document.querySelector('meta[name="viewport"]');
-            if (viewport) {
-                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
-            }
-            
-            // Force CSS pixel consistency
-            document.documentElement.style.zoom = `${1 / window.devicePixelRatio}`;
-        }
-    }
   }
 
   loadComponents() {
@@ -37,6 +24,7 @@ class SiteComponents {
     this.initMobileMenu();
     this.initScrollEffects();
     this.initSmoothScrolling();
+    this.fixDevicePixelRatio();
   }
 
   loadHeader() {
@@ -350,6 +338,19 @@ class SiteComponents {
       });
     }, 100);
   }
+
+  fixDevicePixelRatio() {
+        if (window.devicePixelRatio && window.devicePixelRatio !== 1) {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
+            }
+            
+            // Force CSS pixel consistency
+            document.documentElement.style.zoom = `${1 / window.devicePixelRatio}`;
+        }
+    }
+    
 }
 
 // Inicializa os componentes
