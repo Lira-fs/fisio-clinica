@@ -24,7 +24,6 @@ class SiteComponents {
     this.initMobileMenu();
     this.initScrollEffects();
     this.initSmoothScrolling();
-    this.fixDevicePixelRatio();
   }
 
   loadHeader() {
@@ -338,18 +337,6 @@ class SiteComponents {
       });
     }, 100);
   }
-
-    fixDevicePixelRatio() {
-        console.log('Device Pixel Ratio:', window.devicePixelRatio);
-        
-        if (window.devicePixelRatio && window.devicePixelRatio > 1.1) {
-            // TESTAR: Zoom menos agressivo
-            const zoomFactor = 0.8; // Fixo para teste
-            document.documentElement.style.zoom = zoomFactor;
-            
-            console.log('Zoom aplicado:', zoomFactor);
-        }
-    }
 }
 
 // Inicializa os componentes
