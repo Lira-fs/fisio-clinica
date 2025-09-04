@@ -89,6 +89,9 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    text-size-adjust: 100%;
 }
 
 body {
@@ -98,6 +101,8 @@ body {
     color: var(--gray-700);
     background-color: var(--white);
     overflow-x: hidden;
+    font-size: 1rem;
+    zoom: 1; /* Force zoom reset */
 }
 
 /* Tipografia Global */
@@ -1432,4 +1437,17 @@ body.menu-open {
             min-height: 400px;
         }
     }
+}
+
+/* Fix para diferentes DPRs */
+@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
+  html {
+    font-size: 16px;
+  }
+}
+
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+  html {
+    font-size: 16px;
+  }
 }
