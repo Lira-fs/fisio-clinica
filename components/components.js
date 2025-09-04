@@ -15,6 +15,19 @@ class SiteComponents {
     } else {
       this.loadComponents();
     }
+
+    // Adicionar no final do init()
+    fixDevicePixelRatio() {
+        if (window.devicePixelRatio && window.devicePixelRatio !== 1) {
+            const viewport = document.querySelector('meta[name="viewport"]');
+            if (viewport) {
+                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
+            }
+            
+            // Force CSS pixel consistency
+            document.documentElement.style.zoom = `${1 / window.devicePixelRatio}`;
+        }
+    }
   }
 
   loadComponents() {
