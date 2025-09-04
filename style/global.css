@@ -91,6 +91,100 @@ html {
     font-size: 16px;
 }
 
+/* ================================
+   FIXES PARA SAFARI MOBILE - NETLIFY
+   Adicionar no INÍCIO do global.css
+   ================================ */
+
+/* SOLUÇÃO 2: CSS Safe Area para iOS */
+body {
+    /* Safe area para notch do iPhone */
+    padding-top: max(80px, env(safe-area-inset-top));
+    padding-top: max(80px, constant(safe-area-inset-top)); /* iOS < 11.2 fallback */
+    
+    /* Padding extra para Safari mobile */
+    padding-top: 90px; /* Aumentado de 80px para 90px */
+}
+
+/* SOLUÇÃO 3: Header Sticky em vez de Fixed */
+.header {
+    /* Mudar de position: fixed para sticky */
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: var(--z-dropdown);
+    box-shadow: var(--shadow-lg);
+    
+    /* Backup caso sticky não funcione */
+    position: -webkit-sticky; /* Safari fallback */
+    
+    /* Garantir que fica no topo */
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+    color: var(--white);
+    padding: var(--space-md) 0;
+    transition: all var(--transition-normal);
+}
+
+/* FIX ESPECÍFICO SAFARI MOBILE */
+@supports (-webkit-touch-callout: none) {
+    /* Detecta Safari mobile */
+    body {
+        padding-top: 100px !important; /* Força mais espaço no Safari */
+    }
+    
+    .hero {
+        /* Altura específica para Safari */
+        min-height: 90vh; /* Reduzido de 100vh para 90vh */
+        min-height: 90svh; /* Safe viewport height para iOS 15+ */
+    }
+    
+    .header {
+        /* Força sticky no Safari */
+        position: -webkit-sticky;
+        position: sticky;
+        top: env(safe-area-inset-top, 0); /* Respeita notch */
+    }
+}
+
+/* FIX HEROES EM TODAS AS PÁGINAS */
+.hero,
+.about-hero,
+.hero-unidade {
+    /* Altura segura para mobile */
+    min-height: 85vh;
+    min-height: 85svh; /* iOS 15+ */
+    
+    /* Remove transform que pode estar sendo aplicado */
+    transform: none !important;
+}
+
+/* FIX ESPECÍFICO MOBILE REAL */
+@media (max-width: 768px) and (max-height: 1024px) {
+    body {
+        padding-top: 100px !important; /* Mais espaço em mobile real */
+    }
+    
+    .hero,
+    .about-hero, 
+    .hero-unidade {
+        min-height: 75vh; /* Altura menor em mobile real */
+        margin-top: 0;
+        position: relative;
+        z-index: 1; /* Menor que header */
+    }
+    
+    .header {
+        z-index: 1000; /* Sempre por cima */
+        position: sticky;
+        top: 0;
+    }
+}
+
+/* EMERGENCIAL: Remover qualquer transform inline */
+.hero[style*="transform"] {
+    transform: none !important;
+}
+
 body {
     font-family: var(--font-primary);
     font-weight: var(--font-weight-regular);
