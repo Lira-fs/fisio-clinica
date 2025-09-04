@@ -339,18 +339,17 @@ class SiteComponents {
     }, 100);
   }
 
-  fixDevicePixelRatio() {
-        if (window.devicePixelRatio && window.devicePixelRatio !== 1) {
-            const viewport = document.querySelector('meta[name="viewport"]');
-            if (viewport) {
-                viewport.content = 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes';
-            }
+    fixDevicePixelRatio() {
+        console.log('Device Pixel Ratio:', window.devicePixelRatio);
+        
+        if (window.devicePixelRatio && window.devicePixelRatio > 1.1) {
+            // TESTAR: Zoom menos agressivo
+            const zoomFactor = 0.8; // Fixo para teste
+            document.documentElement.style.zoom = zoomFactor;
             
-            // Force CSS pixel consistency
-            document.documentElement.style.zoom = `${1 / window.devicePixelRatio}`;
+            console.log('Zoom aplicado:', zoomFactor);
         }
     }
-    
 }
 
 // Inicializa os componentes
