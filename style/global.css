@@ -86,6 +86,25 @@
     box-sizing: border-box;
 }
 
+/* FIX PARA DEVICE PIXEL RATIO */
+@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
+    html {
+        font-size: 14px; /* Reduzir base font */
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    html {
+        font-size: 13px; /* Ainda menor para DPR 2 */
+    }
+}
+
+@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
+    html {
+        font-size: 12px; /* Para telas muito densas */
+    }
+}
+
 html {
     scroll-behavior: smooth;
     font-size: 16px;
