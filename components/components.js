@@ -109,13 +109,27 @@ class SiteComponents {
   }
      // ADICIONAR: Novo método
     applyHeaderSpacing() {
-        setTimeout(() => {
-            const header = document.querySelector('.header');
-            if (header) {
-                const headerHeight = header.offsetHeight;
-                document.body.style.paddingTop = `${headerHeight}px`;
-            }
-        }, 100);
+         setTimeout(() => {
+        const header = document.querySelector('.header');
+        if (header) {
+            const headerHeight = header.offsetHeight;
+            document.body.style.paddingTop = `${headerHeight}px`;
+            
+            // ADICIONAR: Fix para Safari mobile
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+            const heroSections = document.querySelectorAll('.hero-unidade, .hero');
+            
+            heroSections.forEach(hero => {
+                hero.style.marginTop = '0';
+                hero.style.transform = 'translateZ(0)'; // Force GPU
+                
+                if (isIOS) {
+                    // Fix para viewport do iOS
+                    hero.style.minHeight = window.innerHeight < 600 ? '400px' : '500px';
+                }
+            });
+        }
+    }, 200);
 }
 
 

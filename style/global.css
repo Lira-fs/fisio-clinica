@@ -1420,6 +1420,26 @@ body.menu-open {
     }
 }
 
+/* ADICIONAR: Fix para Safari iOS */
 @supports (-webkit-touch-callout: none) {
-    body { padding-top: 95px !important; }
+    .hero-unidade, .hero {
+        min-height: -webkit-fill-available;
+        min-height: fill-available;
+        /* Fallback para telas pequenas */
+        min-height: 450px;
+    }
+    
+    body {
+        /* Previne bounce scroll no Safari */
+        position: fixed;
+        overflow-x: hidden;
+        width: 100%;
+        min-height: -webkit-fill-available;
+        min-height: fill-available;
+    }
+    
+    html {
+        height: -webkit-fill-available;
+        height: fill-available;
+    }
 }

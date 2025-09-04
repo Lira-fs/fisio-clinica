@@ -5,12 +5,12 @@
 /* Hero específico das unidades */
 .hero-unidade {
     position: relative;
-    height: 70vh;
+    min-height: 500px;
     display: flex;
     align-items: center;
     overflow: hidden;
-    /* Remover o background fixo anterior */
-    /* background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%); */
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 
 /* Container da imagem de fundo */
@@ -662,8 +662,9 @@
 /* Responsividade */
 @media (max-width: 768px) {
     .hero-unidade {
-        min-height: 80svh;
-        height: 60vh;
+        min-height: 400px; /* Menor em mobile */
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
     
     .hero-background img {
