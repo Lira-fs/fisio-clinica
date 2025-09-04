@@ -135,10 +135,10 @@
 
           <div class="about-visual fade-in">
             <div class="about-image-main">
-              <!-- <picture>
-                            <source media="(max-width: 768px)" srcset="imagens/interior.jpg">
-                            <img src="imagens/interior.jpg" alt="Interior da Clínica FISIO">
-                        </picture> -->
+              <picture>
+                  <source media="(max-width: 768px)" srcset="imagens/equipe-jundiai.webp">
+                  <img src="imagens/equipe-jundiai.webp" alt="equipe de jundiai da Clínica FISIO">
+              </picture>
             </div>
             <div class="floating-shape shape-1"></div>
             <div class="floating-shape shape-2"></div>
@@ -248,7 +248,7 @@
     <section class="section pilates-section">
       <div class="pilates-background">
         <picture>
-          <source media="(max-width: 768px)" srcset="imagens/pilates.html" />
+          <source media="(max-width: 768px)" srcset="imagens/pilates-mobile.png" />
           <source media="(max-width: 1200px)" srcset="imagens/pilates.html" />
           <img src="imagens/pilates.png" alt="Estúdio de Pilates Clínico" />
         </picture>
@@ -256,7 +256,7 @@
 
       <div class="container">
         <div class="pilates-content">
-          <div class="pilates-badge">Novidade</div>
+          <div class="pilates-badge">Novidade em itatiba!</div>
           <h2>Agora com Pilates Clínico!</h2>
           <p>
             Expandimos nossos serviços com aulas de Pilates conduzidas por
@@ -440,15 +440,6 @@
       // Aplicar animações a elementos fade-in
       document.querySelectorAll(".fade-in").forEach((el) => {
         observer.observe(el);
-      });
-
-      // Efeito parallax sutil no hero
-      window.addEventListener("scroll", () => {
-        const scrolled = window.pageYOffset;
-        const hero = document.querySelector(".hero");
-        if (hero && scrolled < window.innerHeight) {
-          hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        }
       });
     </script>
 
