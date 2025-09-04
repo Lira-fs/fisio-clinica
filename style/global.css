@@ -98,7 +98,6 @@ body {
     color: var(--gray-700);
     background-color: var(--white);
     overflow-x: hidden;
-    padding-top: 80px;
 }
 
 /* Tipografia Global */
@@ -1346,10 +1345,6 @@ body.menu-open {
     :root {
         --space-3xl: 4rem;
         --space-2xl: 3rem;
-    }
-    
-    body {
-        padding-top: 70px;
     }
 
     .nav-item {

@@ -924,9 +924,6 @@
    ================================ */
 @media (max-width: 768px) {
   /* Correção para texto cortado */
-  body {
-    padding-top: 80px !important;
-  }
 
   .about-hero {
     min-height: 70vh;

@@ -10,7 +10,7 @@ body {
 /* Hero Slideshow com animações sutis */
 .hero {
     position: relative;
-    min-height: 100svh;
+    min-height: calc(100vh - 90px);
     display: flex;
     align-items: center;
     overflow: hidden;
@@ -832,6 +832,12 @@ body {
 @media (max-width: 768px) {
     body {
         padding-top: 70px;
+    }
+
+    .hero {
+        min-height: calc(100vh - 80px);
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
     
     .hero-buttons {

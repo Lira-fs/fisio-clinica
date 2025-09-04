@@ -105,25 +105,19 @@ class SiteComponents {
 
     // Injeta o header no início do body
     document.body.insertAdjacentHTML("afterbegin", headerHTML);
-
-     const isSafariMobile = /iPhone|iPad|iPod/.test(navigator.userAgent) && 
-                          /Safari/.test(navigator.userAgent) && 
-                          !/Chrome|CriOS|OPiOS|FxiOS/.test(navigator.userAgent);
-      
-       if (isSafariMobile) {
-        // Aplica padding maior APENAS no Safari mobile
-        setTimeout(() => {
-            document.body.style.paddingTop = '95px';
-            
-            // Força recalcular layout
-            document.querySelectorAll('.hero, .about-hero, .hero-unidade').forEach(hero => {
-                hero.style.marginTop = '0';
-                hero.style.position = 'relative';
-                hero.style.zIndex = '1';
-            });
-        }, 150);
-    }
+     this.applyHeaderSpacing();
   }
+     // ADICIONAR: Novo método
+    applyHeaderSpacing() {
+        setTimeout(() => {
+            const header = document.querySelector('.header');
+            if (header) {
+                const headerHeight = header.offsetHeight;
+                document.body.style.paddingTop = `${headerHeight}px`;
+            }
+        }, 100);
+}
+
 
     loadFooter() {
         const footerHTML = `
