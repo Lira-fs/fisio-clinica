@@ -3,6 +3,7 @@
    ================================ */
 
 /* Variáveis CSS Globais */
+/* Variáveis CSS Globais - CORRIGIDAS */
 :root {
     /* Cores Primárias */
     --primary-dark: #1a365d;
@@ -36,7 +37,7 @@
     --font-weight-semibold: 600;
     --font-weight-bold: 700;
     
-    /* Tamanhos de Fonte FIXOS - Sem clamp() problemático */
+    /* Tamanhos de Fonte - FIXOS E CONSISTENTES */
     --text-xs: 0.75rem;    /* 12px */
     --text-sm: 0.875rem;   /* 14px */
     --text-base: 1rem;     /* 16px */
@@ -46,14 +47,14 @@
     --text-3xl: 2rem;      /* 32px */
     --text-4xl: 2.5rem;    /* 40px */
     
-    /* Espaçamentos */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
-    --space-2xl: 4rem;
-    --space-3xl: 6rem;
+    /* Espaçamentos - CONSISTENTES */
+    --space-xs: 0.5rem;    /* 8px */
+    --space-sm: 1rem;      /* 16px */
+    --space-md: 1.5rem;    /* 24px */
+    --space-lg: 2rem;      /* 32px */
+    --space-xl: 3rem;      /* 48px */
+    --space-2xl: 4rem;     /* 64px */
+    --space-3xl: 6rem;     /* 96px */
     
     /* Bordas */
     --radius-sm: 8px;
@@ -86,25 +87,6 @@
     box-sizing: border-box;
 }
 
-/* FIX PARA DEVICE PIXEL RATIO */
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-    html {
-        font-size: 14px; /* Reduzir base font */
-    }
-}
-
-@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-    html {
-        font-size: 13px; /* Ainda menor para DPR 2 */
-    }
-}
-
-@media (-webkit-min-device-pixel-ratio: 3), (min-resolution: 288dpi) {
-    html {
-        font-size: 12px; /* Para telas muito densas */
-    }
-}
-
 html {
     scroll-behavior: smooth;
     font-size: 16px;
@@ -121,7 +103,6 @@ body {
     background-color: var(--white);
     overflow-x: hidden;
     font-size: 1rem;
-    zoom: 1; /* Force zoom reset */
 }
 
 /* Tipografia Global */
@@ -1366,19 +1347,6 @@ body.menu-open {
 /* Responsividade */
 /* Responsividade */
 @media (max-width: 768px) {
-    :root {
-        --space-3xl: 4rem;
-        --space-2xl: 3rem;
-        --text-xs: 0.7rem;
-        --text-sm: 0.8rem;
-        --text-base: 0.9rem;
-        --text-lg: 1rem;
-        --text-xl: 1.1rem;
-        --text-2xl: 1.3rem;
-        --text-3xl: 1.8rem;
-        --text-4xl: 2.2rem;
-    }
-
     .nav-item {
         display: none;
     }
@@ -1450,31 +1418,4 @@ body.menu-open {
     .mobile-submenu {
         display: none;
     }
-}
-
-/* ADICIONAR: Fix mais seguro para Safari iOS */
-@supports (-webkit-touch-callout: none) {
-    .hero-unidade, .hero {
-        /* Usar altura fixa em vez de viewport units problemáticos */
-        min-height: 450px;
-    }
-    
-    @media (max-width: 768px) {
-        .hero-unidade, .hero {
-            min-height: 400px;
-        }
-    }
-}
-
-/* Fix para diferentes DPRs */
-@media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
-  html {
-    font-size: 16px;
-  }
-}
-
-@media (-webkit-min-device-pixel-ratio: 1.5), (min-resolution: 144dpi) {
-  html {
-    font-size: 16px;
-  }
 }
