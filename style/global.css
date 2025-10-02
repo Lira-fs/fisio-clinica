@@ -665,6 +665,12 @@ body.menu-open {
     box-shadow: var(--shadow-md);
 }
 
+.btn-accent2 {
+    background: linear-gradient(45deg, var(--accent-orange), var(--accent-orange-dark));
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+}
+
 .btn-accent:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
@@ -1037,6 +1043,19 @@ body.menu-open {
     box-shadow: var(--shadow-md);
 }
 
+.btn-accent-green {
+    background: linear-gradient(45deg, var(--success-green), var(--success-green-dark));
+    color: var(--white);
+    box-shadow: var(--shadow-md);
+    margin-top: 7px;
+}
+
+.btn-accent-green:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px rgba(0, 221, 48, 0.4);
+    color: var(--white);
+}
+
 .btn-accent:hover {
     transform: translateY(-2px);
     box-shadow: 0 12px 30px rgba(245, 158, 11, 0.4);
@@ -1074,7 +1093,7 @@ body.menu-open {
 }
 
 .btn-lg {
-    padding: var(--space-lg) var(--space-2xl);
+    padding: var(--space-sm) var(--space-2xl);
     font-size: var(--text-lg);
 }
 

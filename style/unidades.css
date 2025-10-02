@@ -194,7 +194,7 @@
     color: var(--primary-dark);
     margin-bottom: var(--space-lg);
     text-align: center;
-    font-size: var(--text-2xl);
+    font-size: var(--text-3xl);
     position: relative;
 }
 
@@ -214,7 +214,7 @@
     list-style: none;
     padding: 0;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: var(--space-md);
     max-width: 800px;
     margin: 0 auto;
@@ -244,6 +244,198 @@
 
 .diferenciais-lista li:hover::before {
     color: var(--white);
+}
+
+/* ================================
+   TRATAMENTOS OFERECIDOS - UNIDADES
+   ================================ */
+
+.tratamentos-oferecidos-section {
+    padding: var(--space-3xl) 0;
+    background: var(--gray-50);
+}
+
+/* Grid de Tratamentos */
+.tratamentos-unidade-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+}
+
+/* Card de Tratamento */
+.tratamento-unidade-card {
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    box-shadow: var(--shadow-md);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    border: 2px solid var(--gray-200);
+}
+
+.tratamento-unidade-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 0;
+    background: linear-gradient(180deg, var(--primary-light), var(--primary-medium));
+    transition: height 0.4s ease;
+}
+
+.tratamento-unidade-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--primary-light);
+}
+
+.tratamento-unidade-card:hover::before {
+    height: 100%;
+}
+
+/* Ícone do Tratamento */
+.tratamento-unidade-icon {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--text-2xl);
+    color: var(--white);
+    margin: 0 auto var(--space-lg);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.tratamento-unidade-card:hover .tratamento-unidade-icon {
+    transform: scale(1.1) rotate(10deg);
+    box-shadow: var(--shadow-lg);
+}
+
+.esportiva-bg {
+    background: linear-gradient(45deg, var(--accent-orange), var(--accent-orange-dark));
+}
+
+.recovery-bg {
+    background: linear-gradient(45deg, var(--success-green), var(--success-green-dark));
+}
+
+.ortopedico-bg {
+    background: linear-gradient(45deg, var(--primary-light), var(--primary-medium));
+}
+
+.acupuntura-bg {
+    background: linear-gradient(45deg, #8B5CF6, #7C3AED);
+}
+
+.prevencao-bg {
+    background: linear-gradient(45deg, #3B82F6, #2563EB);
+}
+
+.bfr-bg {
+    background: linear-gradient(45deg, #EF4444, #DC2626);
+}
+
+/* Conteúdo do Card */
+.tratamento-unidade-content {
+    text-align: center;
+}
+
+.tratamento-unidade-content h4 {
+    color: var(--primary-dark);
+    font-size: var(--text-xl);
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-bold);
+}
+
+.tratamento-unidade-content > p {
+    color: var(--gray-600);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+}
+
+/* Lista de Itens */
+.tratamento-unidade-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+.tratamento-unidade-items li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-sm) 0;
+    font-size: var(--text-sm);
+    color: var(--gray-700);
+    border-bottom: 1px solid var(--gray-200);
+    transition: all 0.3s ease;
+}
+
+.tratamento-unidade-items li:last-child {
+    border-bottom: none;
+}
+
+.tratamento-unidade-items li i {
+    color: var(--success-green);
+    font-size: var(--text-xs);
+    flex-shrink: 0;
+}
+
+.tratamento-unidade-card:hover .tratamento-unidade-items li {
+    padding-left: var(--space-sm);
+}
+
+/* CTA Box */
+.tratamentos-cta-box {
+    margin-top: var(--space-3xl);
+    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
+    border-radius: var(--radius-xl);
+    padding: var(--space-2xl);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+}
+
+.tratamentos-cta-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath d='M20,80 Q40,20 60,80 T100,80' fill='none' stroke='rgba(255,255,255,0.1)' stroke-width='1'/%3E%3C/svg%3E") repeat;
+    opacity: 0.3;
+    animation: backgroundDrift 15s linear infinite;
+}
+
+@keyframes backgroundDrift {
+    0% { transform: translateX(0px) translateY(0px); }
+    100% { transform: translateX(-100px) translateY(-30px); }
+}
+
+.tratamentos-cta-content {
+    position: relative;
+    z-index: 2;
+}
+
+.tratamentos-cta-content h3 {
+    color: var(--white);
+    margin-bottom: var(--space-md);
+    font-size: var(--text-2xl);
+}
+
+.tratamentos-cta-content p {
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: var(--space-xl);
+    font-size: var(--text-lg);
 }
 
 /* Seção de profissionais */
@@ -376,60 +568,6 @@
     transform: scale(1.1);
 }
 
-/* Seção de vídeo */
-.video-section {
-    background: var(--gray-100);
-    padding: var(--space-3xl) 0;
-}
-
-.video-container {
-    position: relative;
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    border-radius: var(--radius-xl);
-    overflow: hidden;
-    box-shadow: var(--shadow-xl);
-    background: var(--gray-200);
-    aspect-ratio: 16/9;
-}
-
-.video-placeholder {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, var(--primary-medium), var(--primary-light));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: var(--space-md);
-    color: var(--white);
-    position: relative;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.video-placeholder:hover {
-    transform: scale(1.02);
-}
-
-.video-placeholder i {
-    font-size: 4rem;
-    margin-bottom: var(--space-md);
-    animation: pulsePlay 2s ease-in-out infinite;
-}
-
-@keyframes pulsePlay {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.1); opacity: 0.8; }
-}
-
-.video-placeholder h3 {
-    color: var(--white);
-    margin: 0;
-    text-align: center;
-}
-
 /* Seção de agendamento */
 .agendamento-section {
     background: linear-gradient(135deg, var(--success-green) 0%, var(--success-green-dark) 100%);
@@ -533,7 +671,7 @@
 .contato-info-card p {
     color: var(--gray-600);
     margin: 0;
-    font-size: var(--text-sm);
+    font-size: 1.0rem;
     line-height: 1.5;
 }
 
@@ -576,6 +714,266 @@
     height: 100% !important;
     border: none;
     border-radius: var(--radius-xl);
+}
+
+/* ================================
+   SEÇÃO AVALIAÇÃO FISIOTERAPÊUTICA
+   ================================ */
+
+.avaliacao-section {
+    padding: var(--space-3xl) 0;
+    background: var(--white);
+    position: relative;
+}
+
+.avaliacao-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.02) 0%, rgba(255, 255, 255, 0) 50%);
+    pointer-events: none;
+}
+
+.avaliacao-wrapper {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: var(--space-3xl);
+    align-items: center;
+    position: relative;
+}
+
+/* Cards Empilhados */
+.avaliacao-image {
+    position: relative;
+}
+
+.avaliacao-cards-stack {
+    position: relative;
+    width: 100%;
+    height: 400px;
+}
+
+.avaliacao-mini-card {
+    position: absolute;
+    width: 220px;
+    height: 160px;
+    background: var(--white);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    border: 3px solid var(--primary-light);
+    transition: all 0.3s ease;
+}
+
+.avaliacao-mini-card:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-xl);
+}
+
+.avaliacao-mini-card i {
+    font-size: 45px;
+    color: var(--primary-medium);
+    margin-bottom: var(--space-xs);
+}
+
+.avaliacao-mini-card span {
+    font-size: var(--text-base);
+    font-weight: var(--font-weight-semibold);
+    color: var(--gray-700);
+}
+
+/* Posicionamento dos Cards */
+.avaliacao-mini-card.card-1 {
+    top: 0;
+    left: 0;
+    z-index: 3;
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.05), var(--white));
+}
+
+.avaliacao-mini-card.card-2 {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    background: var(--primary-light);
+    border-color: var(--primary-medium);
+}
+
+.avaliacao-mini-card.card-2:hover {
+    transform: translate(-50%, -50%) scale(1.05);
+}
+
+.avaliacao-mini-card.card-2 i,
+.avaliacao-mini-card.card-2 span {
+    color: var(--white);
+}
+
+.avaliacao-mini-card.card-3 {
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    background: linear-gradient(135deg, var(--white), rgba(0, 102, 204, 0.05));
+}
+
+/* Conteúdo da Avaliação */
+.avaliacao-content {
+    position: relative;
+}
+
+.section-label {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: var(--primary-light);
+    color: var(--white);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: var(--font-weight-semibold);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: var(--space-md);
+}
+
+.avaliacao-content h2 {
+    color: var(--primary-dark);
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-lg);
+    line-height: 1.2;
+}
+
+.avaliacao-intro {
+    color: var(--gray-700);
+    font-size: var(--text-lg);
+    line-height: 1.7;
+    margin-bottom: var(--space-2xl);
+}
+
+/* Processo de Avaliação */
+.avaliacao-processo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-2xl);
+}
+
+.avaliacao-item {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-lg);
+    background: var(--gray-50);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-light);
+    transition: all 0.3s ease;
+}
+
+.avaliacao-item:hover {
+    background: var(--white);
+    box-shadow: var(--shadow-md);
+    transform: translateX(8px);
+    border-left-color: var(--primary-medium);
+}
+
+.avaliacao-item-icon {
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary-light), var(--primary-medium));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    font-size: var(--text-xl);
+    box-shadow: var(--shadow-sm);
+}
+
+.avaliacao-item-text h4 {
+    color: var(--primary-dark);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-xs);
+    font-weight: var(--font-weight-semibold);
+}
+
+.avaliacao-item-text p {
+    color: var(--gray-600);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Destaque Final */
+.avaliacao-destaque {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    background: linear-gradient(135deg, rgba(0, 102, 204, 0.1) 0%, rgba(0, 102, 204, 0.05) 100%);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--primary-light);
+}
+
+.avaliacao-destaque i {
+    font-size: var(--text-3xl);
+    color: var(--accent-orange);
+    flex-shrink: 0;
+}
+
+.avaliacao-destaque p {
+    color: var(--gray-700);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.avaliacao-destaque strong {
+    color: var(--primary-dark);
+    font-weight: var(--font-weight-bold);
+}
+
+/* Adicione isso no unidades.css, na seção de avaliação */
+
+.avaliacao-recursos {
+    background: var(--gray-50);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--primary-medium);
+    margin: var(--space-xl) 0;
+}
+
+.avaliacao-recursos h4 {
+    color: var(--primary-dark);
+    font-size: var(--text-lg);
+    margin-bottom: var(--space-md);
+    font-weight: var(--font-weight-semibold);
+}
+
+.recursos-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.recursos-lista li {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    color: var(--gray-700);
+    font-size: var(--text-base);
+}
+
+.recursos-lista li i {
+    color: var(--primary-medium);
+    font-size: var(--text-sm);
+    flex-shrink: 0;
 }
 
 /* Formas decorativas específicas das unidades */
@@ -660,9 +1058,25 @@
 }
 
 /* Responsividade */
+
+@media (max-width: 1024px) {
+    .avaliacao-wrapper {
+        grid-template-columns: 300px 1fr;
+        gap: var(--space-2xl);
+    }
+    
+    .avaliacao-image-box i {
+        font-size: 90px;
+    }
+    
+    .avaliacao-content h2 {
+        font-size: var(--text-2xl);
+    }
+}
+
 @media (max-width: 768px) {
     .hero-unidade {
-        min-height: 400px; /* Menor em mobile */
+        min-height: 400px;
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
@@ -682,6 +1096,52 @@
         gap: var(--space-xl);
     }
 
+    .tratamentos-oferecidos-section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .tratamentos-unidade-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+    }
+    
+    .tratamento-unidade-card {
+        padding: var(--space-xl);
+    }
+    
+    .tratamento-unidade-icon {
+        width: 60px;
+        height: 60px;
+        font-size: var(--text-xl);
+        margin-bottom: var(--space-md);
+    }
+    
+    .tratamento-unidade-content h4 {
+        font-size: var(--text-lg);
+    }
+    
+    .tratamento-unidade-content > p {
+        font-size: var(--text-sm);
+    }
+    
+    .tratamento-unidade-items li {
+        font-size: var(--text-xs);
+    }
+    
+    .tratamentos-cta-box {
+        padding: var(--space-xl) var(--space-lg);
+        margin-top: var(--space-2xl);
+    }
+    
+    .tratamentos-cta-content h3 {
+        font-size: var(--text-xl);
+    }
+    
+    .tratamentos-cta-content p {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-lg);
+    }
+
     .profissionais-grid {
         grid-template-columns: 1fr;
         gap: var(--space-lg);
@@ -696,19 +1156,6 @@
         height: 200px;
     }
 
-    .video-placeholder {
-        text-align: center;
-        padding: var(--space-lg);
-    }
-    
-    .video-placeholder h3,
-    .video-placeholder p {
-        text-align: center;
-        margin-left: auto;
-        margin-right: auto;
-        max-width: 100%;
-    }
-
     .contato-item {
         flex-direction: column;
         text-align: center;
@@ -719,6 +1166,91 @@
         height: 300px;
     }
 
+    /* AVALIAÇÃO - ESCONDE OS CARDS EM MOBILE */
+    .avaliacao-section {
+        padding: var(--space-2xl) 0;
+    }
+    
+    .avaliacao-wrapper {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    /* ESCONDE COMPLETAMENTE OS CARDS DECORATIVOS */
+    .avaliacao-image {
+        display: none;
+    }
+    
+    .avaliacao-content {
+        width: 100%;
+        max-width: 100%;
+    }
+    
+    .avaliacao-content h2 {
+        font-size: var(--text-xl);
+    }
+    
+    .avaliacao-intro {
+        font-size: var(--text-base);
+        margin-bottom: 20px;
+    }
+    
+    .avaliacao-processo {
+        gap: var(--space-lg);
+    }
+    
+    .avaliacao-item {
+        flex-direction: row;
+        gap: var(--space-md);
+        padding: var(--space-md);
+    }
+    
+    .avaliacao-item:hover {
+        transform: translateX(4px);
+    }
+    
+    .avaliacao-item-icon {
+        width: 45px;
+        height: 45px;
+        font-size: var(--text-lg);
+    }
+    
+    .avaliacao-item-text h4 {
+        font-size: var(--text-base);
+    }
+    
+    .avaliacao-item-text p {
+        font-size: var(--text-sm);
+    }
+    
+    .avaliacao-destaque {
+        flex-direction: row;
+        gap: var(--space-md);
+        padding: var(--space-md);
+    }
+    
+    .avaliacao-destaque i {
+        font-size: var(--text-2xl);
+    }
+    
+    .avaliacao-destaque p {
+        font-size: var(--text-sm);
+        text-align: left;
+    }
+
+    .avaliacao-recursos {
+        padding: var(--space-md);
+        margin: var(--space-lg) 0;
+    }
+    
+    .avaliacao-recursos h4 {
+        font-size: var(--text-base);
+    }
+    
+    .recursos-lista li {
+        font-size: var(--text-sm);
+    }
+    
     .diferenciais-lista {
         grid-template-columns: 1fr;
     }
@@ -727,12 +1259,10 @@
         width: 100%;
     }
 
-    /* Reduzir formas decorativas em mobile */
     .shape-unidade {
         display: none;
     }
 
-    /* Ajustar animações para mobile */
     .profissional-card:hover,
     .galeria-item:hover,
     .contato-info:hover {
@@ -740,12 +1270,74 @@
     }
 
 
+    .section-label {
+        display: block;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
-/* Performance */
-.profissional-card,
-.galeria-item,
-.contato-info,
-.video-placeholder {
-    will-change: transform;
+
+@media (max-width: 480px) {
+    .tratamento-unidade-card {
+        padding: var(--space-lg);
+    }
+    
+    .tratamento-unidade-icon {
+        width: 50px;
+        height: 50px;
+        font-size: var(--text-lg);
+    }
+    
+    .tratamentos-cta-box {
+        padding: var(--space-lg);
+    }
+    
+    .tratamentos-cta-content h3 {
+        font-size: var(--text-lg);
+    }
+
+    .avaliacao-wrapper {
+        grid-template-columns: 350px 1fr;
+        gap: var(--space-2xl);
+    }
+    
+    .avaliacao-cards-stack {
+        height: 350px;
+    }
+    
+    .avaliacao-mini-card {
+        width: 180px;
+        height: 140px;
+    }
+    
+    .avaliacao-mini-card i {
+        font-size: 38px;
+    }
+    
+    .avaliacao-mini-card span {
+        font-size: var(--text-sm);
+    }
+    
+    .avaliacao-content h2 {
+        font-size: var(--text-2xl);
+    }
+
+    .section-label {
+        font-size: var(--text-xs);
+        padding: var(--space-xs) var(--space-sm);
+    }
+    
+    .avaliacao-content h2 {
+        font-size: var(--text-lg);
+    }
+    
+    .avaliacao-intro {
+        font-size: var(--text-sm);
+    }
+    
+    .avaliacao-processo {
+        gap: var(--space-md);
+    }
 }
