@@ -152,7 +152,7 @@ class SiteComponents {
                             <div class="social-links">
                                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp js-open-whatsapp-modal"></i></a>
                                 <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                             </div>
                         </div>
@@ -198,12 +198,11 @@ class SiteComponents {
             </footer>
             
             <!-- WhatsApp Flutuante -->
-            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre os serviços da Clínica FISIO." 
-               class="whatsapp-float" 
-               target="_blank" 
-               aria-label="Falar no WhatsApp">
-                <i class="fab fa-whatsapp"></i>
-            </a>
+              <a href="#" 
+                class="whatsapp-float js-open-whatsapp-modal" 
+                aria-label="Falar no WhatsApp">
+                  <i class="fab fa-whatsapp"></i>
+              </a>
         `;
 
     // Injeta o footer no final do body
@@ -341,3 +340,10 @@ class SiteComponents {
 
 // Inicializa os componentes
 new SiteComponents();
+
+(function() {
+  const script = document.createElement('script');
+  script.src = 'components/whatsapp-modal.js';
+  script.async = true;
+  document.head.appendChild(script);
+})();
