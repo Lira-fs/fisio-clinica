@@ -80,6 +80,34 @@
     --z-tooltip: 1100;
 }
 
+@media (max-width: 768px) {
+    :root {
+        /* Reduzir textos no mobile */
+        --text-2xl: 1.375rem;  /* 22px */
+        --text-3xl: 1.625rem;  /* 26px */
+        --text-4xl: 2rem;      /* 32px */
+        
+        /* Reduzir espaçamentos no mobile */
+        --space-xl: 1.5rem;    /* 24px */
+        --space-2xl: 2rem;     /* 32px */
+        --space-3xl: 2.5rem;   /* 40px */
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        /* Textos ainda menores */
+        --text-2xl: 1.25rem;   /* 20px */
+        --text-3xl: 1.5rem;    /* 24px */
+        --text-4xl: 1.75rem;   /* 28px */
+        
+        /* Espaçamentos menores */
+        --space-xl: 1.25rem;   /* 20px */
+        --space-2xl: 1.75rem;  /* 28px */
+        --space-3xl: 2rem;     /* 32px */
+    }
+}
+
 /* Reset e Base */
 * {
     margin: 0;
@@ -1436,5 +1464,126 @@ body.menu-open {
 @media (min-width: 769px) {
     .mobile-submenu {
         display: none;
+    }
+}
+
+/* ======================
+FIZ DOS BOTÕES EM MOBILE
+=========================== */
+
+/* ================================
+   OTIMIZAÇÃO DE BOTÕES PARA MOBILE
+   Adicione este bloco no final do global.css
+   ================================ */
+
+@media (max-width: 768px) {
+    /* BOTÕES: Reduzir tamanho geral */
+    .btn {
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--text-sm);
+        gap: var(--space-xs);
+    }
+    
+    /* Botões grandes ficam médios */
+    .btn-lg {
+        padding: var(--space-sm) var(--space-xl);
+        font-size: var(--text-base);
+    }
+    
+    /* Botões pequenos ficam menores */
+    .btn-sm {
+        padding: var(--space-xs) var(--space-md);
+        font-size: var(--text-xs);
+    }
+    
+    /* Ícones dentro dos botões */
+    .btn i {
+        font-size: 1rem;
+    }
+    
+    /* HERO BUTTONS: Ajuste específico */
+    .hero-buttons {
+        flex-direction: column;
+        gap: var(--space-md);
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        max-width: 280px;
+        padding: var(--space-sm) var(--space-lg);
+    }
+    
+    /* CTA BUTTONS: Botões de call-to-action */
+    .cta-section .btn,
+    .agendamento-btn,
+    .tratamento-btn {
+        width: 100%;
+        max-width: 300px;
+        padding: var(--space-sm) var(--space-lg);
+        font-size: var(--text-sm);
+    }
+    
+    /* HEADER CTA: Manter escondido */
+    .header-cta {
+        display: none !important;
+    }
+    
+    /* WHATSAPP FLOAT: Reduzir tamanho */
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+        bottom: 15px;
+        right: 15px;
+    }
+    
+    /* SECTION TITLES: Reduzir títulos */
+    .section-title h2 {
+        font-size: var(--text-2xl);
+    }
+    
+    .section-title p {
+        font-size: var(--text-base);
+    }
+    
+    /* CARD BUTTONS: Botões dentro de cards */
+    .card .btn,
+    .tratamento-card .btn,
+    .unidade-card .btn {
+        width: 100%;
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--text-sm);
+    }
+}
+
+@media (max-width: 480px) {
+    /* Mobile muito pequeno: ainda menor */
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.875rem;
+    }
+    
+    .btn-lg {
+        padding: 12px 24px;
+        font-size: 0.9375rem;
+    }
+    
+    .hero-buttons .btn {
+        max-width: 260px;
+        padding: 10px 20px;
+    }
+    
+    .whatsapp-float {
+        width: 48px;
+        height: 48px;
+        font-size: 1.4rem;
+        bottom: 12px;
+        right: 12px;
+    }
+    
+    /* Títulos ainda menores */
+    .section-title h2 {
+        font-size: 1.75rem;
     }
 }

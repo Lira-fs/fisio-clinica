@@ -1,14 +1,13 @@
 /**
- * GALERIA.JS
- * Sistema de galeria de fotos para a seção "Nosso Espaço"
- * Mobile-first com swipe, navegação por teclado e modal
+ * GALERIA.JS - VERSÃO OTIMIZADA
+ * Sistema de galeria com lazy loading e pré-carregamento
  */
 
 (function() {
   'use strict';
 
   // ================================
-  // DADOS DAS IMAGENS (EDITÁVEL)
+  // DADOS DAS IMAGENS
   // ================================
   const IMAGENS_GALERIA = [
     {
@@ -87,6 +86,10 @@
   let previewItems;
   let touchStartX = 0;
   let touchEndX = 0;
+  
+  // Cache de imagens pré-carregadas
+  const imageCache = new Map();
+  let isTransitioning = false;
 
   // ================================
   // INICIALIZAÇÃO
@@ -100,7 +103,6 @@
   }
 
   function setup() {
-    // Buscar elementos do DOM
     modal = document.getElementById('galeriaModal');
     imagemEl = document.getElementById('galeriaImagem');
     legendaEl = document.getElementById('galeriaLegenda');
@@ -113,26 +115,55 @@
     
     previewItems = document.querySelectorAll('.galeria-preview-item');
 
-    // Verificar se elementos existem
     if (!modal || !imagemEl) {
       console.warn('Galeria: Elementos não encontrados');
       return;
     }
 
-    // Configurar eventos
     bindEvents();
+  }
+
+  // ================================
+  // PRÉ-CARREGAMENTO INTELIGENTE
+  // ================================
+  function preloadImage(src) {
+    // Se já está no cache, retorna a promessa existente
+    if (imageCache.has(src)) {
+      return imageCache.get(src);
+    }
+
+    // Cria nova promessa de carregamento
+    const promise = new Promise((resolve, reject) => {
+      const img = new Image();
+      
+      img.onload = () => resolve(img);
+      img.onerror = () => reject(new Error(`Falha ao carregar: ${src}`));
+      
+      img.src = src;
+    });
+
+    // Salva no cache
+    imageCache.set(src, promise);
+    return promise;
+  }
+
+  function preloadAdjacentImages(index) {
+    // Pré-carrega próxima e anterior
+    const nextIndex = (index + 1) % IMAGENS_GALERIA.length;
+    const prevIndex = (index - 1 + IMAGENS_GALERIA.length) % IMAGENS_GALERIA.length;
+
+    preloadImage(IMAGENS_GALERIA[nextIndex].src).catch(e => console.warn(e));
+    preloadImage(IMAGENS_GALERIA[prevIndex].src).catch(e => console.warn(e));
   }
 
   // ================================
   // EVENT LISTENERS
   // ================================
   function bindEvents() {
-    // Botão "Ver Galeria Completa"
     if (btnVerGaleria) {
       btnVerGaleria.addEventListener('click', () => abrirGaleria(0));
     }
 
-    // Clique nos thumbnails
     previewItems.forEach(item => {
       item.addEventListener('click', () => {
         const index = parseInt(item.getAttribute('data-index'));
@@ -140,24 +171,18 @@
       });
     });
 
-    // Botões do modal
     if (btnClose) btnClose.addEventListener('click', fecharGaleria);
     if (btnPrev) btnPrev.addEventListener('click', imagemAnterior);
     if (btnNext) btnNext.addEventListener('click', proximaImagem);
 
-    // Clique no fundo escuro fecha
     if (modal) {
       modal.addEventListener('click', (e) => {
-        if (e.target === modal) {
-          fecharGaleria();
-        }
+        if (e.target === modal) fecharGaleria();
       });
     }
 
-    // Navegação por teclado
     document.addEventListener('keydown', handleKeyboard);
 
-    // Swipe no mobile
     if (modal) {
       modal.addEventListener('touchstart', handleTouchStart, { passive: true });
       modal.addEventListener('touchend', handleTouchEnd, { passive: true });
@@ -167,11 +192,13 @@
   // ================================
   // FUNÇÕES DE NAVEGAÇÃO
   // ================================
-  function abrirGaleria(index) {
+  async function abrirGaleria(index) {
     currentIndex = index;
-    mostrarImagem(currentIndex);
     modal.classList.add('active');
     document.body.style.overflow = 'hidden';
+    
+    // Carrega a imagem atual
+    await mostrarImagem(currentIndex);
   }
 
   function fecharGaleria() {
@@ -179,27 +206,59 @@
     document.body.style.overflow = '';
   }
 
-  function mostrarImagem(index) {
+  async function mostrarImagem(index) {
+    if (isTransitioning) return;
+    
     const imagem = IMAGENS_GALERIA[index];
     
-    imagemEl.src = imagem.src;
-    imagemEl.alt = imagem.alt;
-    legendaEl.textContent = imagem.legenda;
+    // Atualiza contador e legenda imediatamente
     counterEl.textContent = `${index + 1} / ${IMAGENS_GALERIA.length}`;
+    legendaEl.textContent = imagem.legenda;
 
-    // Trigger animação
-    imagemEl.style.animation = 'none';
-    setTimeout(() => {
-      imagemEl.style.animation = '';
-    }, 10);
+    try {
+      isTransitioning = true;
+      
+      // Pré-carrega a imagem ANTES de começar a transição
+      await preloadImage(imagem.src);
+      
+      // Fade out rápido
+      imagemEl.style.opacity = '0';
+      
+      // Aguarda o fade out completar (150ms)
+      await new Promise(resolve => setTimeout(resolve, 150));
+      
+      // Troca a imagem enquanto está invisível
+      imagemEl.src = imagem.src;
+      imagemEl.alt = imagem.alt;
+      
+      // Força o browser a processar a mudança
+      imagemEl.offsetHeight;
+      
+      // Fade in rápido
+      imagemEl.style.opacity = '1';
+      
+      // Pré-carrega imagens adjacentes em background
+      preloadAdjacentImages(index);
+      
+    } catch (error) {
+      console.error('Erro ao carregar imagem:', error);
+      imagemEl.style.opacity = '1';
+    } finally {
+      // Libera após a transição completar
+      setTimeout(() => {
+        isTransitioning = false;
+      }, 200);
+    }
   }
 
   function imagemAnterior() {
+    if (isTransitioning) return;
     currentIndex = (currentIndex - 1 + IMAGENS_GALERIA.length) % IMAGENS_GALERIA.length;
     mostrarImagem(currentIndex);
   }
 
   function proximaImagem() {
+    if (isTransitioning) return;
     currentIndex = (currentIndex + 1) % IMAGENS_GALERIA.length;
     mostrarImagem(currentIndex);
   }
@@ -238,30 +297,27 @@
   function handleSwipe() {
     const swipeThreshold = 50;
     
-    // Swipe left (próxima)
     if (touchEndX < touchStartX - swipeThreshold) {
       proximaImagem();
     }
     
-    // Swipe right (anterior)
     if (touchEndX > touchStartX + swipeThreshold) {
       imagemAnterior();
     }
   }
 
   // ================================
-  // API PÚBLICA (OPCIONAL)
+  // API PÚBLICA
   // ================================
   window.Galeria = {
     abrir: abrirGaleria,
     fechar: fecharGaleria,
     anterior: imagemAnterior,
-    proxima: proximaImagem
+    proxima: proximaImagem,
+    preloadAll: () => {
+      IMAGENS_GALERIA.forEach(img => preloadImage(img.src));
+    }
   };
 
-  // ================================
-  // INICIAR
-  // ================================
   init();
-
 })();
