@@ -1481,24 +1481,27 @@ FIZ DOS BOTÕES EM MOBILE
     .btn {
         padding: var(--space-sm) var(--space-lg);
         font-size: var(--text-sm);
-        gap: var(--space-xs);
     }
     
     /* Botões grandes ficam médios */
     .btn-lg {
-        padding: var(--space-sm) var(--space-xl);
+        padding: var(--space-sm) var(--space-lg);
         font-size: var(--text-base);
     }
     
     /* Botões pequenos ficam menores */
     .btn-sm {
-        padding: var(--space-xs) var(--space-md);
+        padding: 0.625rem var(--space-md);
         font-size: var(--text-xs);
     }
     
     /* Ícones dentro dos botões */
     .btn i {
         font-size: 1rem;
+    }
+
+    .btn {
+        gap: 0.5rem;
     }
     
     /* HERO BUTTONS: Ajuste específico */

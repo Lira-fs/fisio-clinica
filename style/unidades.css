@@ -1133,10 +1133,96 @@
 }
 
 @media (max-width: 768px) {
+
+    .hero-unidade > .container {
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
     .hero-unidade {
         min-height: 400px;
         padding-top: 1rem;
-        padding-bottom: 1rem;
+        padding-bottom: 3rem;
+    }
+
+    .hero-unidade .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: center;
+        gap: var(--space-md);
+        width: 100%;
+        max-width: 320px; 
+        margin-left: auto; 
+        margin-right: auto;
+        margin-top: var(--space-lg);
+    }
+
+    .hero-unidade .hero-buttons .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: var(--space-sm) var(--space-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+    }
+
+    .hero-unidade-content {
+        width: 100%;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 0; /* Remove qualquer padding */
+        margin: 0 auto; /* Centraliza */
+    }
+
+    .hero-unidade .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Centraliza horizontalmente */
+        justify-content: center;
+        gap: var(--space-md);
+        width: 100%;
+        max-width: 320px;
+        margin: var(--space-lg) auto 0; /* Centraliza com margin auto */
+        padding: 0; /* Remove padding */
+    }
+
+    .hero-unidade .hero-buttons .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: var(--space-sm) var(--space-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        margin: 0;
+    }
+
+    .hero-unidade h1 {
+        font-size: var(--text-3xl);
+        margin-bottom: var(--space-md);
+    }
+
+    .hero-unidade p {
+        font-size: var(--text-base);
+        margin-bottom: var(--space-lg);
+        padding: 0 var(--space-sm);
+    }
+
+    .unidade-badge {
+        font-size: var(--text-xs);
+        padding: var(--space-xs) var(--space-lg);
+        margin-bottom: var(--space-md);
     }
     
     .hero-background img {

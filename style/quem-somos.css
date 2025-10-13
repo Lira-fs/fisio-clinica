@@ -632,6 +632,55 @@
 /* Mobile */
 @media (max-width: 768px) {
   /* História */
+  
+   /* Container do hero */
+    .hero-quem-somos > .container,
+    .hero-unidade > .container {
+        padding-left: var(--space-md);
+        padding-right: var(--space-md);
+        display: flex;
+        justify-content: center;
+        width: 100%;
+    }
+    
+    /* Conteúdo do hero */
+    .hero-quem-somos .hero-unidade-content,
+    .hero-unidade-content {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0;
+        margin: 0 auto;
+    }
+    
+    /* Container dos botões */
+    .hero-quem-somos .hero-buttons,
+    .hero-unidade-content .hero-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-md);
+        width: 100%;
+        max-width: 320px;
+        margin: var(--space-lg) auto 0;
+        padding: 0;
+    }
+    
+    /* Botões uniformes */
+    .hero-quem-somos .hero-buttons .btn,
+    .hero-unidade-content .hero-buttons .btn {
+        width: 100%;
+        min-height: 48px;
+        padding: var(--space-sm) var(--space-lg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
   .about-points {
     grid-template-columns: 1fr;
     gap: var(--space-sm);
