@@ -96,7 +96,7 @@
 
 .historia-image-main {
   width: 100%;
-  height: 450px;
+  height: 650px;
   border-radius: var(--radius-xl);
   overflow: hidden;
   box-shadow: var(--shadow-xl);
@@ -117,7 +117,7 @@
 
 /* Placeholder quando não tem imagem */
 .historia-image-main::before {
-  content: 'IMAGEM DA EQUIPE';
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -393,7 +393,7 @@
 
 /* Placeholder quando não tem imagem */
 .estrutura-item::before {
-  content: 'FOTO';
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
@@ -501,6 +501,116 @@
 }
 
 /* ================================
+   CTA FINAL APRIMORADO
+   ================================ */
+.cta-final-green {
+  background: linear-gradient(135deg, var(--success-green) 0%, var(--success-green-dark) 100%);
+  color: var(--white);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-final-green::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='2' fill='rgba(255,255,255,0.1)'/%3E%3C/svg%3E") repeat;
+  animation: backgroundFloat 20s linear infinite;
+}
+
+@keyframes backgroundFloat {
+  0% { transform: translateX(0px) translateY(0px); }
+  100% { transform: translateX(-50px) translateY(-50px); }
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.cta-final-green h2 {
+  color: var(--white);
+  margin-bottom: var(--space-lg);
+  animation: textFloat 4s ease-in-out infinite;
+}
+
+@keyframes textFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+
+.cta-final-green p {
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: var(--space-xl);
+  font-size: var(--text-lg);
+  line-height: 1.6;
+}
+
+/* ================================
+   WHATSAPP FLUTUANTE
+   ================================ */
+.whatsapp-float {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: var(--success-green);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.8rem;
+  text-decoration: none;
+  box-shadow: var(--shadow-xl);
+  z-index: var(--z-tooltip);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: pulseWhats 3s infinite ease-in-out;
+}
+
+.whatsapp-float::before {
+  content: '';
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  border: 3px solid var(--success-green);
+  border-radius: 50%;
+  opacity: 0;
+  animation: rippleEffect 2s infinite ease-out;
+}
+
+@keyframes pulseWhats {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.whatsapp-float:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.6);
+  color: white;
+}
+
+/* ================================
    RESPONSIVO
    ================================ */
 
@@ -538,7 +648,7 @@
   }
 
   .historia-image-main {
-    height: 300px;
+    height: 500px;
     margin-top: var(--space-xl);
   }
 
