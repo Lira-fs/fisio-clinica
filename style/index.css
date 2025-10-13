@@ -350,105 +350,119 @@ body {
 }
 
 /* Seção 2: Nova Grid de Tratamentos - Cards Horizontais */
+/* ================================
+   ACCORDION TRATAMENTOS - SEÇÃO 2
+   ================================ */
+
 .tratamentos-grid {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-xl);
-    margin-top: var(--space-2xl);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  margin-top: var(--space-2xl);
 }
 
 .tratamento-card {
-    background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
-    color: var(--white);
-    padding: var(--space-xl);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    position: relative;
-    overflow: hidden;
-    border: none;
-    min-height: auto;
-}
-
-.tratamento-card .card-body {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xl);
-    padding: 0;
-}
-
-.tratamento-card-content {
-    flex: 1;
-    text-align: left;
-}
-
-.tratamento-card-action {
-    flex-shrink: 0;
-}
-
-.tratamento-card::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    transform: scale(0);
-    transition: transform 0.6s ease;
-}
-
-.tratamento-card:hover::before {
-    transform: scale(1);
+  background: linear-gradient(135deg, var(--primary-medium) 0%, var(--primary-light) 100%);
+  color: var(--white);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  transition: all 0.3s ease;
 }
 
 .tratamento-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.tratamento-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-xl);
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  user-select: none;
+}
+
+.tratamento-header:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .tratamento-icon {
-    width: 80px;
-    height: 80px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: var(--text-2xl);
-    color: var(--primary-medium);
-    box-shadow: var(--shadow-lg);
-    transition: all 0.3s ease;
-    position: relative;
-    z-index: 2;
-    flex-shrink: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--white);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--text-2xl);
+  color: var(--primary-medium);
+  box-shadow: var(--shadow-lg);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
 .tratamento-card:hover .tratamento-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1) rotate(5deg);
 }
 
-.tratamento-card-content h3 {
-    font-size: var(--text-2xl);
-    margin-bottom: var(--space-sm);
-    line-height: 1.2;
-    color: var(--white);
-    position: relative;
-    z-index: 2;
+.tratamento-title {
+  flex: 1;
 }
 
-.tratamento-card-content p {
-    font-size: var(--text-lg);
-    line-height: 1.6;
-    margin-bottom: var(--space-lg);
-    color: rgba(255, 255, 255, 0.95);
-    position: relative;
-    z-index: 2;
-    max-width: none;
+.tratamento-title h3 {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-sm);
+  color: var(--white);
+  line-height: 1.2;
 }
 
-.tratamento-card .btn {
-    position: relative;
-    z-index: 2;
+.tratamento-title p {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.95);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.accordion-arrow {
+  font-size: var(--text-xl);
+  transition: transform 0.3s ease;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.tratamento-card.active .accordion-arrow {
+  transform: rotate(180deg);
+}
+
+.tratamento-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--gray-700);
+}
+
+.tratamento-card.active .tratamento-content {
+  max-height: 500px;
+  padding: var(--space-xl);
+  border-top: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.tratamento-content p {
+  font-size: var(--text-lg);
+  line-height: 1.7;
+  color: var(--gray-700);
+  margin: 0;
+}
+
+.tratamento-content strong {
+  color: var(--primary-dark);
+  display: block;
+  margin-bottom: var(--space-sm);
 }
 
 /* Seção 3: Pilates com Background */
@@ -534,100 +548,194 @@ body {
 }
 
 /* Seção 4: Nosso Espaço - Layout Album */
-.espaco-content h3 {
-    font-size: var(--text-2xl);
-    color: var(--primary-dark);
-    margin-bottom: var(--space-md);
+/* ================================
+   GALERIA.CSS - Estilos da Galeria "Nosso Espaço"
+   ================================ */
+
+/* Preview Grid (thumbnails) */
+.galeria-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
 }
 
-.espaco-content p {
-    font-size: var(--text-base);
-    line-height: 1.7;
-    margin-bottom: var(--space-md);
-    color: var(--gray-600);
-}
-
-.espaco-images {
+.galeria-preview-item {
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 400px;
-}
-
-.image-stack {
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.image-back,
-.image-front {
-    position: absolute;
-    border-radius: var(--radius-xl);
+    aspect-ratio: 1;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: var(--shadow-lg);
-    transition: all 0.3s ease;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: var(--gray-200);
 }
 
-.image-back {
-    width: 300px;
-    height: 250px;
-    top: 20%;
-    left: 10%;
-    z-index: 1;
-    transform: rotate(-5deg);
+.galeria-preview-item:hover {
+    transform: scale(1.05);
 }
 
-.image-front {
-    width: 280px;
-    height: 220px;
-    top: 30%;
-    right: 15%;
-    z-index: 2;
-    transform: rotate(8deg);
-}
-
-.image-back img,
-.image-front img {
+.galeria-preview-item img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
+    transition: transform 0.3s ease;
 }
 
-.espaco-images:hover .image-back {
-    transform: rotate(-8deg) scale(1.05);
-}
-
-.espaco-images:hover .image-front {
-    transform: rotate(5deg) scale(1.05);
-}
-
-.espaco-images:hover .image-back img,
-.espaco-images:hover .image-front img {
+.galeria-preview-item:hover img {
     transform: scale(1.1);
 }
 
-/* Placeholder para quando não há imagem */
-.image-back::before,
-.image-front::before {
-    content: 'FOTO';
+.preview-overlay {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: var(--gray-100);
-    border: 2px dashed var(--gray-300);
-    width: 100%;
-    height: 100%;
+    inset: 0;
+    background: rgba(26, 54, 93, 0.7);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: var(--text-sm);
-    color: var(--gray-400);
-    font-weight: var(--font-weight-semibold);
-    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.galeria-preview-item:hover .preview-overlay {
+    opacity: 1;
+}
+
+.preview-overlay i {
+    color: white;
+    font-size: 2rem;
+}
+
+/* ================================
+   MODAL DA GALERIA
+   ================================ */
+
+.galeria-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.95);
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.galeria-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+/* Botão Fechar (X) */
+.galeria-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.galeria-close:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(90deg);
+}
+
+/* Contador (1 / 10) */
+.galeria-counter {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 20px;
+    border-radius: 20px;
+    z-index: 10002;
+}
+
+/* Botões de Navegação (< >) */
+.galeria-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    color: white;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 10002;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.galeria-nav:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.galeria-prev {
+    left: 20px;
+}
+
+.galeria-next {
+    right: 20px;
+}
+
+/* Conteúdo Central (Imagem + Legenda) */
+.galeria-content {
+    max-width: 90%;
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.galeria-imagem {
+    max-width: 100%;
+    max-height: 75vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    animation: imageFadeIn 0.3s ease;
+}
+
+@keyframes imageFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.galeria-legenda {
+    color: white;
+    font-size: 1.125rem;
+    text-align: center;
+    max-width: 600px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 12px 24px;
+    border-radius: 8px;
 }
 
 /* Seção 5: Avaliações Compactas */
@@ -884,27 +992,86 @@ body {
     }
     
     /* Tratamentos: Manter horizontal em mobile */
-    .tratamentos-grid {
-        flex-direction: column;
-        gap: var(--space-lg);
+    .tratamento-header {
+    flex-direction: column;
+    text-align: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+  }
+
+  .tratamento-icon {
+    width: 60px;
+    height: 60px;
+    font-size: var(--text-xl);
+  }
+
+  .tratamento-title h3 {
+    font-size: var(--text-xl);
+  }
+
+  .tratamento-title p {
+    font-size: 1rem;
+  }
+
+  .tratamento-content {
+    font-size: 1rem;
+  }
+
+  .tratamento-card.active .tratamento-content {
+    padding: var(--space-lg);
+  }
+  
+    .galeria-preview-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
     }
-    
-    .tratamento-card .card-body {
-        flex-direction: column;
-        text-align: center;
-        gap: var(--space-lg);
+
+    /* Botões menores */
+    .galeria-close,
+    .galeria-nav {
+        width: 44px;
+        height: 44px;
+        font-size: 1.25rem;
     }
-    
-    .tratamento-card-content {
-        text-align: center;
+
+    .galeria-close {
+        top: 10px;
+        right: 10px;
     }
-    
-    .tratamento-card-content h3 {
-        font-size: var(--text-xl);
+
+    .galeria-nav {
+        width: 40px;
+        height: 40px;
     }
-    
-    .tratamento-card-content p {
-        font-size: var(--text-base);
+
+    .galeria-prev {
+        left: 10px;
+    }
+
+    .galeria-next {
+        right: 10px;
+    }
+
+    /* Contador menor */
+    .galeria-counter {
+        font-size: 1rem;
+        padding: 6px 16px;
+        top: 15px;
+    }
+
+    /* Legenda menor */
+    .galeria-legenda {
+        font-size: 0.875rem;
+        padding: 8px 16px;
+    }
+
+    /* Imagem menor */
+    .galeria-imagem {
+        max-height: 70vh;
+    }
+
+    .galeria-content {
+        max-width: 95%;
     }
     
     /* Pilates section mobile */
