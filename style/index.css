@@ -1285,6 +1285,10 @@ body {
 
 /* Responsividade específica */
 @media (max-width: 768px) {
+
+    .mobile-fix{
+        font-size: 2.0rem !important;
+    }
     body {
         padding-top: 70px;
     }
