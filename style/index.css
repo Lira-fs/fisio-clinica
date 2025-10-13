@@ -820,6 +820,218 @@ body {
     margin: 0;
 }
 
+/* ================================
+   MELHORIAS NA SEÇÃO DE AVALIAÇÕES + CARDS DE UNIDADES
+   Adicionar no FINAL de style/index.css
+   ================================ */
+
+/* Melhorias nos Steps de Avaliação */
+.step-card-compact {
+    position: relative;
+    overflow: visible;
+}
+
+.step-icon {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    font-size: 2rem;
+    color: rgba(255, 255, 255, 0.2);
+    z-index: 1;
+}
+
+.step-card-compact:hover .step-icon {
+    color: rgba(255, 255, 255, 0.4);
+    transform: scale(1.1) rotate(-10deg);
+    transition: all 0.3s ease;
+}
+
+/* Destaque de Confiança */
+.avaliacao-destaque {
+    margin-top: var(--space-2xl);
+    padding: var(--space-xl);
+    background: linear-gradient(135deg, var(--success-green) 0%, #128C7E 100%);
+    border-radius: var(--radius-xl);
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.avaliacao-destaque i {
+    font-size: 3rem;
+    color: white;
+    flex-shrink: 0;
+}
+
+.avaliacao-destaque p {
+    color: white;
+    font-size: var(--text-lg);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.avaliacao-destaque strong {
+    color: white;
+    font-weight: 700;
+}
+
+/* ================================
+   SEÇÃO DE UNIDADES
+   ================================ */
+
+.unidades-section {
+    position: relative;
+    overflow: hidden;
+}
+
+.unidades-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xl);
+    margin-top: var(--space-2xl);
+}
+
+/* Card da Unidade */
+.unidade-card {
+    position: relative;
+    padding: var(--space-2xl);
+    border-radius: var(--radius-2xl);
+    min-height: 320px;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: var(--shadow-md);
+    border-radius: 10px;
+}
+
+.unidade-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-2xl);
+}
+
+/* Gradientes específicos de cada unidade */
+.jundiai-card {
+    background: linear-gradient(135deg, #1a365d 0%, #2b77ad 100%);
+}
+
+.itatiba-card {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.varzea-card {
+    background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+}
+
+/* Decoração com círculos */
+.unidade-decoracao {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.shape-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    animation: floatCircle 8s ease-in-out infinite;
+}
+
+.circle-1 {
+    width: 120px;
+    height: 120px;
+    top: -30px;
+    right: -30px;
+}
+
+.circle-2 {
+    width: 80px;
+    height: 80px;
+    bottom: 20px;
+    left: -20px;
+    animation-delay: 2s;
+}
+
+.circle-3 {
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 20px;
+    animation-delay: 4s;
+}
+
+@keyframes floatCircle {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-15px) rotate(180deg);
+    }
+}
+
+/* Conteúdo do Card */
+.unidade-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    height: 100%;
+}
+
+.unidade-badge {
+    display: inline-block;
+    padding: var(--space-xs) var(--space-md);
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    width: fit-content;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.unidade-card h3 {
+    color: white;
+    font-size: var(--text-2xl);
+    margin: 0;
+    font-weight: 700;
+}
+
+.unidade-diferencial {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: var(--text-base);
+    line-height: 1.6;
+    margin: var(--space-sm) 0;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    flex: 1;
+}
+
+.unidade-diferencial i {
+    color: white;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.unidade-card .btn {
+    margin-top: auto;
+    background: white;
+    color: var(--primary-dark);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.unidade-card .btn:hover {
+    background: rgba(255, 255, 255, 0.95);
+    transform: translateX(5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
 /* CTA Final Verde */
 .cta-final-green {
     background: linear-gradient(135deg, var(--success-green) 0%, var(--success-green-dark) 100%);
@@ -951,6 +1163,91 @@ body {
     .hero-buttons {
         flex-direction: column;
         align-items: center;
+    }
+
+    /* Forçar grid vertical no mobile */
+    .unidades-cards-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: var(--space-lg);
+    }
+    
+    .unidade-card {
+        width: 100%;
+        min-height: auto;
+        padding: var(--space-xl);
+    }
+    
+    /* Avaliação destaque */
+    .avaliacao-destaque {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-lg);
+    }
+    
+    .avaliacao-destaque i {
+        font-size: 2.5rem;
+    }
+    
+    .avaliacao-destaque p {
+        font-size: var(--text-base);
+    }
+    
+    /* Cards de unidades */
+    .shape-circle {
+        opacity: 0.5;
+    }
+    
+    /* Garantir que cada card ocupe linha inteira */
+    .jundiai-card,
+    .itatiba-card,
+    .varzea-card {
+        width: 100%;
+        margin-bottom: var(--space-md);
+    }
+    
+    /* Seção Sobre - Reorganizar ordem no mobile */
+    #sobre .grid.grid-2 {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Container do texto e conteúdo */
+    #sobre .grid.grid-2 > div:first-child {
+        order: 1;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    /* Botão vai para o final (depois da imagem) */
+    #sobre .grid.grid-2 > div:first-child a.btn {
+        order: 3;
+        margin-top: var(--space-xl);
+    }
+    
+    /* Parágrafos ficam no topo */
+    #sobre .grid.grid-2 > div:first-child h3,
+    #sobre .grid.grid-2 > div:first-child p {
+        order: 0;
+    }
+    
+    /* Imagem fica no meio (order 2) */
+    #sobre .about-visual {
+        order: 2;
+        margin-top: var(--space-xl);
+        margin-bottom: 0;
+    }
+    
+    /* Ajustar tamanho da imagem para mobile */
+    #sobre .about-image-main {
+        width: 100%;
+        height: 300px;
+        max-width: 100%;
+    }
+    
+    /* Remover floating shapes no mobile */
+    #sobre .floating-shape {
+        display: none;
     }
     
     .about-visual .about-image-main {
@@ -1147,6 +1444,29 @@ body {
     .tratamento-card:hover,
     .step-card-compact:hover {
         transform: translateY(-3px) scale(1.01);
+    }
+
+     .avaliacao-destaque {
+        flex-direction: column;
+        text-align: center;
+        padding: var(--space-lg);
+    }
+    
+    .avaliacao-destaque i {
+        font-size: 2.5rem;
+    }
+    
+    .avaliacao-destaque p {
+        font-size: var(--text-base);
+    }
+    
+    /* Cards de unidades */
+    .unidade-card {
+        padding: var(--space-xl);
+    }
+    
+    .shape-circle {
+        opacity: 0.5;
     }
 }
 
