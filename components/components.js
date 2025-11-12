@@ -22,6 +22,7 @@ class SiteComponents {
     this.loadFooter();
     this.initDropdown();
     this.initMobileMenu();
+    this.initProfissionaisToggle();
     this.initScrollEffects();
     this.initSmoothScrolling();
   }
@@ -288,6 +289,26 @@ class SiteComponents {
           mobileMenu.classList.remove("active");
           document.body.classList.remove("menu-open");
         }
+      });
+    }, 100);
+  }
+
+  initProfissionaisToggle() {
+    // Toggle 'ver mais' para cards de profissionais
+    setTimeout(() => {
+      const toggles = document.querySelectorAll('.profissional-toggle');
+      if (!toggles.length) return;
+
+      toggles.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          const info = btn.closest('.profissional-info');
+          if (!info) return;
+
+          const expanded = btn.getAttribute('aria-expanded') === 'true';
+          info.classList.toggle('expanded', !expanded);
+          btn.setAttribute('aria-expanded', String(!expanded));
+          btn.textContent = expanded ? 'Ver mais' : 'Ver menos';
+        });
       });
     }, 100);
   }
