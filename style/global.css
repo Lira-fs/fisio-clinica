@@ -830,6 +830,54 @@ body.menu-open {
     margin: 0;
 }
 
+/* LISTAS REUTILIZÁVEIS COM CHECK NA FRENTE */
+
+/* =====================================
+   LISTA DESTAQUE (REUTILIZÁVEL)
+===================================== */
+
+.lista-destaque {
+    list-style: none;
+    margin: var(--space-lg) 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.lista-destaque li {
+    display: flex;
+    align-items: center; /* ajuste principal */
+    gap: var(--space-sm);
+    font-size: var(--text-base);
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+
+.lista-destaque li i {
+    color: var(--primary-medium);
+    font-size: var(--text-base);
+    flex-shrink: 0;     /* Ícone nunca reduz */
+    margin-top: 0;      /* Corrige desalinhamento */
+}
+
+.highlight {
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+/* Ajuste extra para telas pequenas */
+@media (max-width: 600px) {
+    .lista-destaque li {
+        align-items: flex-start; /* Melhora com textos longos */
+    }
+
+    .lista-destaque li i {
+        margin-top: 4px; /* leve alinhamento estético */
+    }
+}
+
+
 /* Backgrounds de Seção */
 .bg-white { background: var(--white); }
 .bg-gray-50 { background: var(--gray-50); }

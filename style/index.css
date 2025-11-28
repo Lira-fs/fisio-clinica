@@ -447,7 +447,7 @@ body {
 }
 
 .tratamento-card.active .tratamento-content {
-  max-height: 500px;
+  max-height: 1000px;
   padding: var(--space-xl);
   border-top: 2px solid rgba(255, 255, 255, 0.3);
 }
@@ -1688,136 +1688,6 @@ body {
   .author-details span {
     font-size: 0.65rem;
   }
-}
-
-/* ================================
-   LISTA DE TECNOLOGIAS - ESTILIZADA
-   ================================ */
-
-#copilot-aqui {
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-lg);
-    margin: var(--space-xl) 0 0 0;
-    padding: 0;
-}
-
-#copilot-aqui li {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding: var(--space-lg);
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.05) 0%, rgba(77, 166, 217, 0.08) 100%);
-    border-radius: var(--radius-lg);
-    border-left: 4px solid var(--accent-orange);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    backdrop-filter: blur(2px);
-}
-
-#copilot-aqui li:hover {
-    transform: translateX(8px) translateY(-2px);
-    background: linear-gradient(135deg, rgba(26, 54, 93, 0.1) 0%, rgba(77, 166, 217, 0.15) 100%);
-    box-shadow: 0 4px 16px rgba(77, 166, 217, 0.15);
-    border-left-color: var(--primary-light);
-}
-
-#copilot-aqui li i {
-    font-size: var(--text-xl);
-    color: var(--accent-orange);
-    flex-shrink: 0;
-    margin-top: 2px;
-    transition: all 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    background: rgba(245, 158, 11, 0.1);
-    border-radius: var(--radius-sm);
-}
-
-#copilot-aqui li:hover i {
-    color: var(--primary-light);
-    background: rgba(77, 166, 217, 0.15);
-    transform: scale(1.15) rotate(5deg);
-}
-
-#copilot-aqui li strong {
-    color: var(--primary-dark);
-    font-weight: 600;
-    display: block;
-    margin-bottom: 4px;
-    font-size: var(--text-base);
-}
-
-#copilot-aqui li::after {
-    content: '';
-    display: block;
-    opacity: 0;
-}
-
-/* Animação de entrada para cada item */
-#copilot-aqui li {
-    animation: slideInList 0.5s ease-out backwards;
-}
-
-#copilot-aqui li:nth-child(1) { animation-delay: 0.1s; }
-#copilot-aqui li:nth-child(2) { animation-delay: 0.15s; }
-#copilot-aqui li:nth-child(3) { animation-delay: 0.2s; }
-#copilot-aqui li:nth-child(4) { animation-delay: 0.25s; }
-#copilot-aqui li:nth-child(5) { animation-delay: 0.3s; }
-#copilot-aqui li:nth-child(6) { animation-delay: 0.35s; }
-
-@keyframes slideInList {
-    from {
-        opacity: 0;
-        transform: translateX(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-/* Responsividade para tablet */
-@media (max-width: 1024px) {
-    #copilot-aqui {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-    
-    #copilot-aqui li {
-        padding: var(--space-md);
-    }
-}
-
-/* Responsividade para mobile */
-@media (max-width: 768px) {
-    #copilot-aqui {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-        margin: var(--space-lg) 0 0 0;
-    }
-    
-    #copilot-aqui li {
-        padding: var(--space-md);
-        gap: var(--space-sm);
-    }
-    
-    #copilot-aqui li i {
-        font-size: var(--text-lg);
-        width: 24px;
-        height: 24px;
-    }
-    
-    #copilot-aqui li strong {
-        font-size: var(--text-sm);
-    }
-    
-    #copilot-aqui li {
-        font-size: var(--text-sm);
-    }
 }
 
 /* Performance otimizada */
