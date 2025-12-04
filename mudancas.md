@@ -16,28 +16,6 @@
 
 [Sessão-3-abaixo]
 
-## Pilates em itatiba no index:
-
-[Nova-Sessão-Pilates]
-
-- Adicionar sessão de apresentação do pilates em itatiba (aceita total pass, gym pass, 1h de aula, equip de primeira linha, profissionais espcializados, falar um pouco sobre pilates "fortalecimento, qualidade de vida, todas idades") *OK*
-
--> adicionar botão que leva direto pra sessão de pilates na unidades/itatiba.html *OK*
-
-[pilates] 
--> tirar a palavra individual
--> totallpass e gynpass deixar em primeiro
--> deixar as fotos passando
--> deixar um enfâse em todas as idades, e para homem e mulher
--> deixar em av ver mais infos com kay
-
-
-- Kay me mandará as fotos
-
-[diferenciais-itatiba]
-
--> Pilates, recovery plus, equipamentos tecnológicos, metodologia, ambiente acolhedor, estacionamento próprio, ar condicionado, sala de espera. 
-->   
 
 [Sessão-4-galeria]
 
@@ -68,14 +46,17 @@
 
 ## Unidade de jundiaí
 
--> melhorar os diferenciais de jundiaí
--> trocar a foto pra foto da fachada
+-> melhorar os diferenciais de jundiaí 
+
+-> trocar a foto pra foto da fachada 
 
 -> dar uma atenção no tratamento domiciliar, ver a melhor forma de como implementar isso; (home care)
 
 -> é um serviço externo de ginástica laboral; ver onde da pra colocar isso
 
--> diferencial: dinâmometro de 
+-> diferencial: dinâmometro de força;
+
+-> Adicionar sessão de equipamentos 
 
 [tratamentos]
 
@@ -107,39 +88,54 @@ Vinicius Massagardi: infos + fotos (grupo )
 
 # Unidade de itatiba
 
-[diferenciais]
+[diferenciais] **OK**
 
--> Metodologia Unica: tempo maior de sessão, avaliação estrutura e assertiva, protocolo direcionado/personalizado pro paciente
--> trocar ética e transparencia por recovery+ e recovery
--> trocar valorização da equipe por pilates
--> trocar o título de inovação por algo relacionado a tecnologia de ponta
--> trocar valorização da equipe por equipe preparad para melhor seu desempenho no esporte
+-> Metodologia Unica: tempo maior de sessão, avaliação estrutura e assertiva, protocolo direcionado/personalizado pro paciente; *OK*
+-> trocar ética e transparencia por recovery+ e recovery *OK*
+-> trocar valorização da equipe por pilates *OK*
+-> trocar o título de inovação por algo relacionado a tecnologia de ponta *OK*
+-> trocar valorização da equipe por equipe preparada para melhor seu desempenho no esporte *OK*
 
-[tratamentos]
+[pilates-itatiba] **OK**
+-> tirar a palavra individual *OK*
+-> totallpass e gympass deixar em primeiro *OK*
+-> deixar as fotos passando *OK*
+-> deixar um enfâse em todas as idades, e para homem e mulher *OK*
+-> deixar em a ver mais infos com kay *OK*
 
--> add fisioterapia desportativa
--> Em pilates: A kay vai enviar o que escrever
--> Fisioterpia traumo-ortopédica: alterar sessões para 1 hora e meia; add metodologia unica
--> trocar oclusor por recovery+ 
--> Recovery: dar enfase na recuperação muscular, tirar enfase de atleta; colocar sessão de 1hr
--> Prevenção de lesões: para todas idades ao invés de atleta
--> Oclusão: trocar por desportiva
--> adicioanr recovery plus
+## Pilates em itatiba no index: **OK**
 
-[profissionais]
+[Nova-Sessão-Pilates] **OK**
 
-[foto-victor] -> IMG_5552 -> texto na foto que a kay mandou 
-[foto-casao] -> IMG_5557 -> texto na foto que a kay mandou
-[foto-kay] -> IMG_5546 -> deicidir apresentação com kay 
+- Adicionar sessão de apresentação do pilates em itatiba (aceita total pass, gym pass, 1h de aula, equip de primeira linha, profissionais espcializados, falar um pouco sobre pilates "fortalecimento, qualidade de vida, todas idades") *OK*
+
+-> adicionar botão que leva direto pra sessão de pilates na unidades/itatiba.html *OK*
+
+
+[tratamentos] **OK**    
+
+-> add fisioterapia desportativa *OK*
+-> Em pilates: A kay vai enviar o que escrever *OK*
+-> Fisioterpia traumo-ortopédica: alterar sessões para 1 hora e meia; add metodologia unica *OK*
+-> trocar oclusor por recovery+ *OK*
+-> Recovery: dar enfase na recuperação muscular, tirar enfase de atleta; colocar sessão de 1hr *OK*
+-> Prevenção de lesões: para todas idades ao invés de atleta 
+-> Oclusão: trocar por desportiva *OK*
+-> adicioanr recovery plus *ok*
+
+[profissionais] **OK**
+
+[foto-victor] -> IMG_5552 -> texto na foto que a kay mandou *OK*
+[foto-casao] -> IMG_5557 -> texto na foto que a kay mandou *OK*
+[foto-kay] -> IMG_5546 -> deicidir apresentação com kay *OK*
 
 [avaliação-all]
 
--> colocar fotos abaixo dos ícones da esquerda;
--> recursos técnologicos avançadas, (será ?)
--> trocar de lugar, deixar mais no começo
+-> colocar fotos abaixo dos ícones da esquerda; *OK*
+-> recursos técnologicos avançadas, (será ?) *OK*
+-> trocar de lugar, deixar mais no começo 
 -> pegar a referencia de itatiba, e colocar nas outras unidades
--> trocar "analise" por "anamnese";
--> 
+-> trocar "analise" por "anamnese"; *OK*
 
 [contatos]
 
@@ -149,7 +145,7 @@ Vinicius Massagardi: infos + fotos (grupo )
 
 acrescentar equipamentos técnológicos presentes, fazer uma sessão depois de tratamentos
 
-[equipamentos]
+[equipamentos-todas-unidades]
 
 jundiai: bota pressão pneumatica, oclusor, eletroterapia, game ready (terapia com gelo), manta térmica, banheira de gelo, sauna, dry neddling, ultrassom, laser, ondas de choque, bicicleta ergonômica, cadeira abdutura, esteira, cadeira extensora e flexora, tecarterpia (falar do equipamento), 
 

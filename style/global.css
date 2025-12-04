@@ -863,7 +863,7 @@ body.menu-open {
 
 .highlight {
     font-weight: 700;
-    white-space: nowrap;
+    /* white-space: nowrap; */
 }
 
 /* Ajuste extra para telas pequenas */
@@ -1637,4 +1637,76 @@ FIZ DOS BOTÕES EM MOBILE
     .section-title h2 {
         font-size: 1.75rem;
     }
+}
+
+/* ================================
+   SLIDESHOW REUTILIZÁVEL
+   ================================ */
+
+.slideshow-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+.slideshow-slides {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.slideshow-item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity var(--transition-normal);
+    z-index: 1;
+}
+
+.slideshow-item.active {
+    opacity: 1;
+    z-index: 2;
+}
+
+.slideshow-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.slideshow-dots {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+}
+
+.slideshow-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    border: 2px solid transparent;
+}
+
+.slideshow-dot.active {
+    background: rgb(0, 110, 255);
+    transform: scale(1.3);
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.slideshow-dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+    transform: scale(1.1);
 }
