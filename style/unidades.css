@@ -727,6 +727,43 @@
     line-height: 1.5;
 }
 
+.map-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.map-btn {
+  flex: 1;
+  text-align: center;
+  padding: 10px 15px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+  transition: 0.2s ease;
+  color: white;
+}
+
+/* Waze button - azul */
+.waze-btn {
+  background: #1E88E5;
+}
+
+.waze-btn:hover {
+  background: #1565C0;
+}
+
+/* Google Maps button - verde */
+.maps-btn {
+  background: #4CAF50;
+}
+
+.maps-btn:hover {
+  background: #2E7D32;
+}
+
 .mapa-section {
     width: 100%;
     margin-top: var(--space-xl);
@@ -767,6 +804,8 @@
     border: none;
     border-radius: var(--radius-xl);
 }
+
+
 
 /* ================================
    SEÇÃO AVALIAÇÃO FISIOTERAPÊUTICA
@@ -1532,6 +1571,7 @@
     
     .diferenciais-lista {
         grid-template-columns: 1fr;
+        padding: 0 15px;
     }
 
     .diferenciais-section h3::after {
@@ -1611,6 +1651,14 @@
     .avaliacao-processo {
         gap: var(--space-md);
     }
+
+      .map-buttons {
+    flex-direction: column;
+  }
+
+  .map-btn {
+    width: 100%;
+  }
 }
 
 /* ESPAÇO DEDICADO PARA PILATES EM ITATIBA */
