@@ -5,233 +5,268 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contato | FISIO - Excelência em Fisioterapia Esportiva</title>
   <meta name="description" content="Entre em contato com a FISIO. Agende sua consulta pelo WhatsApp, telefone ou visite nossas unidades em Jundiaí, Itatiba e Várzea Paulista." />
-  <link rel="canonical" href="https://seu-dominio.com/contato" />
-  <meta property="og:title" content="Contato | FISIO" />
-  <meta property="og:description" content="Fale conosco e agende sua consulta em nossas unidades especializadas." />
-  <meta property="og:type" content="website" />
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="style/global.css" />
   <link rel="stylesheet" href="style/contato.css" />
 </head>
 <body>
-  <!-- Header importado automaticamente -->
+  <!-- Header será importado automaticamente via components.js -->
 
   <main>
-    <!-- Hero Section -->
-    <section class="hero bg-primary">
+    <!-- HERO SECTION -->
+    <section class="hero-contato">
+      <div class="hero-overlay"></div>
       <div class="container">
-        <div class="hero-content fade-in text-center">
+        <div class="hero-content">
           <span class="badge badge-accent">Contato</span>
-          <h1>Fale Conosco</h1>
-          <p>Estamos prontos para atendê-lo em nossas unidades especializadas. Agende sua consulta e inicie sua jornada rumo ao bem-estar.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção 2: Unidades -->
-    <section class="section bg-gray-50">
-      <div class="container">
-        <div class="section-title fade-in">
-          <h2>Nossas Unidades</h2>
-          <p>Encontre a unidade mais próxima de você</p>
-        </div>
-
-        <div class="grid grid-2">
-          <!-- Unidade Jundiaí -->
-          <div class="card unidade-card fade-in">
-            <div class="card-header">
-              <h3 style="font-size: 26px;">Jundiaí - SP</h3>
-            </div>
-            <div class="card-body">
-              <div class="unidade-info">
-                <div class="info-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Rua das Flores, 123 - Centro<br>Jundiaí - SP<br>CEP: 13200-001</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Seg à Sex: 6h às 20h<br>Sáb: 8h às 14h</span>
-                </div>
-              </div>
-              
-              <div class="unidade-buttons">
-                <a href="https://wa.me/5511111111111?text=Olá! Gostaria de agendar na unidade Jundiaí." 
-                   class="btn btn-success btn-sm" target="_blank" rel="noopener">
-                  <i class="fab fa-whatsapp"></i>
-                  WhatsApp
-                </a>
-                <a href="tel:+5511111111111" class="btn btn-accent btn-sm">
-                  <i class="fas fa-phone"></i>
-                  Ligar
-                </a>
-                <a href="https://maps.google.com/?q=Rua+das+Flores+123+Jundiai+SP" 
-                   class="btn btn-primary btn-sm" target="_blank" rel="noopener">
-                  <i class="fas fa-map-marked-alt"></i>
-                  Ver no Mapa
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Unidade Itatiba -->
-          <div class="card unidade-card fade-in">
-            <div class="card-header">
-              <h3 style="font-size: 26px;">Itatiba - SP</h3>
-            </div>
-            <div class="card-body">
-              <div class="unidade-info">
-                <div class="info-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Av. Brasil, 456 - Centro<br>Itatiba - SP<br>CEP: 13250-002</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Seg à Sex: 7h às 19h<br>Sáb: 8h às 12h</span>
-                </div>
-              </div>
-              
-              <div class="unidade-buttons">
-                <a href="https://wa.me/5511222222222?text=Olá! Gostaria de agendar na unidade Itatiba." 
-                   class="btn btn-success btn-sm" target="_blank" rel="noopener">
-                  <i class="fab fa-whatsapp"></i>
-                  WhatsApp
-                </a>
-                <a href="tel:+5511222222222" class="btn btn-accent btn-sm">
-                  <i class="fas fa-phone"></i>
-                  Ligar
-                </a>
-                <a href="https://maps.google.com/?q=Av+Brasil+456+Itatiba+SP" 
-                   class="btn btn-primary btn-sm" target="_blank" rel="noopener">
-                  <i class="fas fa-map-marked-alt"></i>
-                  Ver no Mapa
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Unidade Várzea Paulista -->
-          <div class="card unidade-card fade-in">
-            <div class="card-header">
-              <h3 style="font-size: 26px;">Várzea Paulista - SP</h3>
-            </div>
-            <div class="card-body">
-              <div class="unidade-info">
-                <div class="info-item">
-                  <i class="fas fa-map-marker-alt"></i>
-                  <span>Rua São Paulo, 789 - Vila Nova<br>Várzea Paulista - SP<br>CEP: 13220-003</span>
-                </div>
-                <div class="info-item">
-                  <i class="fas fa-clock"></i>
-                  <span>Seg à Sex: 6h30 às 19h30<br>Sáb: 7h às 13h</span>
-                </div>
-              </div>
-              
-              <div class="unidade-buttons">
-                <a href="https://wa.me/5511333333333?text=Olá! Gostaria de agendar na unidade Várzea Paulista." 
-                   class="btn btn-success btn-sm" target="_blank" rel="noopener">
-                  <i class="fab fa-whatsapp"></i>
-                  WhatsApp
-                </a>
-                <a href="tel:+5511333333333" class="btn btn-accent btn-sm">
-                  <i class="fas fa-phone"></i>
-                  Ligar
-                </a>
-                <a href="https://maps.google.com/?q=Rua+São+Paulo+789+Várzea+Paulista+SP" 
-                   class="btn btn-primary btn-sm" target="_blank" rel="noopener">
-                  <i class="fas fa-map-marked-alt"></i>
-                  Ver no Mapa
-                </a>
-              </div>
-            </div>
-          </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Seção 3: Redes Sociais -->
-    <section class="section bg-primary">
-      <div class="container">
-        <div class="section-title fade-in">
-          <h2>Redes Sociais</h2>
-          <p>Siga-nos e acompanhe nossas novidades, dicas de saúde e depoimentos de pacientes</p>
-        </div>
-
-        <div class="social-grid">
-          <!-- Instagram -->
-          <div class="social-card fade-in">
-            <div class="social-icon instagram">
-              <i class="fab fa-instagram"></i>
-            </div>
-            <h4>Instagram</h4>
-            <p>Acompanhe nosso dia a dia e dicas de fisioterapia</p>
-            <a href="https://instagram.com/clinicafisio" class="btn btn-secondary" target="_blank" rel="noopener">
-              <i class="fab fa-instagram"></i>
-              Seguir
+          <h1>Nossas Unidades</h1>
+          <p class="hero-subtitle">
+            Entre em contato com a Clínica FISIO — atendimento humanizado, tecnologia de ponta e profissionais especializados prontos para cuidar de você.
+          </p>
+          <div class="hero-buttons">
+            <a href="/" class="btn btn-secondary btn-sm">
+              <i class="fas fa-arrow-left"></i> Voltar ao Início
             </a>
-          </div>
-
-          <!-- Facebook -->
-          <div class="social-card fade-in">
-            <div class="social-icon facebook">
-              <i class="fab fa-facebook-f"></i>
-            </div>
-            <h4>Facebook</h4>
-            <p>Fique por dentro de todas as nossas novidades</p>
-            <a href="https://facebook.com/clinicafisio" class="btn btn-secondary" target="_blank" rel="noopener">
-              <i class="fab fa-facebook-f"></i>
-              Curtir
-            </a>
-          </div>
-
-          <!-- YouTube -->
-          <div class="social-card fade-in">
-            <div class="social-icon youtube">
-              <i class="fab fa-youtube"></i>
-            </div>
-            <h4>YouTube</h4>
-            <p>Exercícios e orientações dos nossos especialistas</p>
-            <a href="https://youtube.com/@clinicafisio" class="btn btn-secondary" target="_blank" rel="noopener">
-              <i class="fab fa-youtube"></i>
-              Inscrever-se
-            </a>
-          </div>
-
-          <!-- LinkedIn -->
-          <div class="social-card fade-in">
-            <div class="social-icon linkedin">
-              <i class="fab fa-linkedin-in"></i>
-            </div>
-            <h4>LinkedIn</h4>
-            <p>Conteúdo profissional e oportunidades de carreira</p>
-            <a href="https://linkedin.com/company/clinicafisio" class="btn btn-secondary" target="_blank" rel="noopener">
-              <i class="fab fa-linkedin-in"></i>
-              Conectar
+            <a href="#" class="btn btn-success btn-sm js-open-whatsapp-modal" rel="noopener">
+              <i class="fab fa-whatsapp"></i> WhatsApp
             </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- CTA Final -->
-    <section class="section cta-final-green">
+    <!-- UNIDADES SECTION -->
+    <section class="unidades-section">
       <div class="container">
-        <div class="cta-content fade-in">
+        <div class="section-header">
+          <h2>Conheça Nossas Clínicas</h2>
+          <p>Atendimento especializado próximo a você — escolha a unidade mais conveniente.</p>
+        </div>
+
+        <div class="unidades-list">
+          
+          <!-- CARD 1: JUNDIAÍ -->
+          <article class="unidade-card">
+            <div class="unidade-image">
+              <img src="path/to/jundiai.jpg" alt="Clínica FISIO Jundiaí" />
+            </div>
+            
+            <div class="unidade-content">
+              <h3 class="unidade-title">Clínica Jundiaí</h3>
+              
+              <div class="unidade-info">
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>Endereço</strong>
+                  </div>
+                  <p>Av. Alexandre Ludke, 156<br>Vila Bandeirantes, Jundiaí - SP</p>
+                  <div class="info-actions">
+                    <a href="https://waze.com/ul?q=Av.+Alexandre+Ludke+156+Jundiai" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
+                      <i class="fas fa-location-arrow"></i> Waze
+                    </a>
+                    <a href="https://maps.google.com/?q=Av.+Alexandre+Ludke+156+Jundiai" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+                      <i class="fas fa-map"></i> Maps
+                    </a>
+                  </div>
+                </div>
+
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-clock"></i>
+                    <strong>Horário de Funcionamento</strong>
+                  </div>
+                  <p>
+                    <span class="horario-item">Seg—Sex: 07:00—21:00</span>
+                    <span class="horario-item">Sábado: 07:00—12:00</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="unidade-footer">
+                <a href="https://wa.me/5511999999999" class="btn btn-success btn-sm" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <div class="unidade-socials">
+                  <a href="https://instagram.com/fisiojundiai" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram Jundiaí">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://facebook.com/fisiojundiai" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook Jundiaí">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 2: ITATIBA -->
+          <article class="unidade-card">
+            <div class="unidade-image">
+              <img src="path/to/itatiba.jpg" alt="Clínica FISIO Itatiba" />
+            </div>
+            
+            <div class="unidade-content">
+              <h3 class="unidade-title">Clínica Itatiba</h3>
+              
+              <div class="unidade-info">
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>Endereço</strong>
+                  </div>
+                  <p>R. Fortunato Reynaldi, 93<br>Morrão da Força, Itatiba - SP</p>
+                  <div class="info-actions">
+                    <a href="https://waze.com/ul?q=R.+Fortunato+Reynaldi+93+Itatiba" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
+                      <i class="fas fa-location-arrow"></i> Waze
+                    </a>
+                    <a href="https://maps.google.com/?q=R.+Fortunato+Reynaldi+93+Itatiba" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+                      <i class="fas fa-map"></i> Maps
+                    </a>
+                  </div>
+                </div>
+
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-clock"></i>
+                    <strong>Horário de Funcionamento</strong>
+                  </div>
+                  <p>
+                    <span class="horario-item">Seg—Sex: 07:00—21:00</span>
+                    <span class="horario-item">Sábado: 08:00—12:00</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="unidade-footer">
+                <a href="https://wa.me/5511988888888" class="btn btn-success btn-sm" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <div class="unidade-socials">
+                  <a href="https://instagram.com/fisioitatiba" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram Itatiba">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://facebook.com/fisioitatiba" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook Itatiba">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 3: VÁRZEA PAULISTA -->
+          <article class="unidade-card">
+            <div class="unidade-image">
+              <img src="path/to/varzea.jpg" alt="Clínica FISIO Várzea Paulista" />
+            </div>
+            
+            <div class="unidade-content">
+              <h3 class="unidade-title">Clínica Várzea Paulista</h3>
+              
+              <div class="unidade-info">
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <strong>Endereço</strong>
+                  </div>
+                  <p>R. Cel. Álvaro de Castro, 123<br>Vila São José, Várzea Paulista - SP</p>
+                  <div class="info-actions">
+                    <a href="https://waze.com/ul?q=R.+Cel.+Alvaro+de+Castro+123+Varzea+Paulista" class="btn btn-outline btn-sm" target="_blank" rel="noopener">
+                      <i class="fas fa-location-arrow"></i> Waze
+                    </a>
+                    <a href="https://maps.google.com/?q=R.+Cel.+Alvaro+de+Castro+123+Varzea+Paulista" class="btn btn-primary btn-sm" target="_blank" rel="noopener">
+                      <i class="fas fa-map"></i> Maps
+                    </a>
+                  </div>
+                </div>
+
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-clock"></i>
+                    <strong>Horário de Funcionamento</strong>
+                  </div>
+                  <p>
+                    <span class="horario-item">Seg—Sex: 07:00—18:00</span>
+                    <span class="horario-item">Sábado: 07:00—13:00</span>
+                  </p>
+                </div>
+              </div>
+
+              <div class="unidade-footer">
+                <a href="https://wa.me/5511977777777" class="btn btn-success btn-sm" target="_blank" rel="noopener">
+                  <i class="fab fa-whatsapp"></i> WhatsApp
+                </a>
+                <div class="unidade-socials">
+                  <a href="https://instagram.com/fisiovarzea" class="social-btn" target="_blank" rel="noopener" aria-label="Instagram Várzea">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://facebook.com/fisiovarzea" class="social-btn" target="_blank" rel="noopener" aria-label="Facebook Várzea">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- CARD 4: ITUPEVA (EM BREVE) -->
+          <article class="unidade-card unidade-card--disabled">
+            <div class="unidade-image">
+              <img src="path/to/itupeva-placeholder.jpg" alt="Unidade Itupeva em breve" />
+              <div class="coming-soon-badge">Em Breve</div>
+            </div>
+            
+            <div class="unidade-content">
+              <h3 class="unidade-title">Unidade Itupeva</h3>
+              
+              <div class="unidade-info">
+                <div class="info-block">
+                  <div class="info-header">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Novidade</strong>
+                  </div>
+                  <p class="coming-soon-text">
+                    Nossa nova unidade está chegando! Em breve traremos todas as informações sobre localização, horários e serviços disponíveis.
+                  </p>
+                </div>
+              </div>
+
+              <div class="unidade-footer">
+                <button class="btn btn-outline btn-sm" disabled>
+                  <i class="fas fa-clock"></i> Aguarde
+                </button>
+                <div class="unidade-socials">
+                  <span class="social-btn social-btn--disabled" aria-label="Instagram em breve">
+                    <i class="fab fa-instagram"></i>
+                  </span>
+                  <span class="social-btn social-btn--disabled" aria-label="Facebook em breve">
+                    <i class="fab fa-facebook-f"></i>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-final">
+      <div class="container">
+        <div class="cta-content">
           <h2>Pronto para Começar?</h2>
           <p>Agende sua avaliação e descubra como podemos ajudar na sua recuperação e bem-estar.</p>
-          <a href="#" 
-             class="btn btn-accent btn-lg js-open-whatsapp-modal">
-            <i class="fab fa-whatsapp"></i>
-            Agendar Avaliação
+          <a href="https://wa.me/5511999999999" class="btn btn-accent btn-lg" target="_blank" rel="noopener">
+            <i class="fab fa-whatsapp"></i> Agendar Avaliação
           </a>
         </div>
       </div>
     </section>
   </main>
 
+  <!-- Footer será importado automaticamente via components.js -->
+
   <!-- WhatsApp Flutuante -->
-  <a href="#" class="whatsapp-float js-open-whatsapp-modal">
+  <a href="https://wa.me/5511999999999" class="whatsapp-float js-open-whatsapp-modal" target="_blank" rel="noopener" aria-label="WhatsApp">
     <i class="fab fa-whatsapp"></i>
   </a>
 
@@ -251,8 +286,7 @@
       });
     }, observerOptions);
 
-    // Aplicar animações
-    document.querySelectorAll('.fade-in').forEach(el => {
+    document.querySelectorAll('.unidade-card').forEach(el => {
       observer.observe(el);
     });
   </script>

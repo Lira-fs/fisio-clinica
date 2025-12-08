@@ -487,6 +487,10 @@
   flex-shrink: 0;
 }
 
+.author-avatar-img {
+  width: 100%;
+}
+
 .autor-info h5 {
   color: var(--primary-dark);
   font-size: var(--text-base);

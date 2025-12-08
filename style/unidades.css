@@ -393,7 +393,7 @@
 
 .tratamento-unidade-items li i {
     color: var(--success-green);
-    font-size: var(--text-xs);
+    font-size: var(--text-sm);
     flex-shrink: 0;
 }
 
@@ -748,20 +748,26 @@
 
 /* Waze button - azul */
 .waze-btn {
-  background: #1E88E5;
+  background: #1eade5;
 }
 
 .waze-btn:hover {
-  background: #1565C0;
+  background: #00d6fc;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+  color: white;
 }
 
 /* Google Maps button - verde */
 .maps-btn {
-  background: #4CAF50;
+  background: #34A853;
 }
 
 .maps-btn:hover {
-  background: #2E7D32;
+  background: #17ce48;
+  transform: scale(1.05);
+  box-shadow: var(--shadow-xl);
+  color: white;
 }
 
 .mapa-section {
@@ -1026,6 +1032,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: var(--space-md);
+    max-width: 240px;
 }
 
 .avaliacao-intro {
@@ -1447,7 +1454,7 @@
     }
     
     .tratamento-unidade-items li {
-        font-size: var(--text-xs);
+        font-size: var(--text-sm);
     }
     
     .tratamentos-cta-box {
@@ -1590,7 +1597,7 @@
 
 
     .section-label {
-        display: block;
+        display: inline-block;
         text-align: center;
         margin-left: auto;
         margin-right: auto;
@@ -1605,9 +1612,16 @@
     
     .tratamento-unidade-icon {
         width: 50px;
-        height: 50px;
-        font-size: var(--text-lg);
     }
+    
+    .servicos-row .servico-media { order: 2; }
+    .servicos-row .servico-text { order: 1; }
+
+    /* sobrescrever regras específicas de ginastica/others que invertam a ordem no desktop */
+    .servico-ginastica .servico-media,
+    .servico-homecare .servico-media { order: 2 !important; }
+    .servico-ginastica .servico-text,
+    .servico-homecare .servico-text { order: 1 !important; }
     
     .tratamentos-cta-box {
         padding: var(--space-lg);
@@ -1922,4 +1936,310 @@
         font-size: var(--text-sm);
         justify-content: center;
     }
-}   
+} 
+
+/* ============ Infraestrutura Tecnológica ============ */
+
+.infra-tech {
+  position: relative;
+  padding: 80px 0;
+  background: var(--color-background, #f9fafb);
+  overflow: hidden;
+  margin-bottom: var(--space-2xl);
+}
+
+.infra-tech__overlay {
+  position: absolute;
+  inset: 0;
+  filter: blur(3px);
+  opacity: 15%;
+  background-image: url('../imagens/Itatiba/pilates-2.webp');
+  background-size: cover;
+   background-position: center;
+   background-attachment: fixed;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.infra-tech__inner {
+  position: relative;
+  z-index: 2;
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.infra-tech h2 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-lg);
+    position: relative;
+    text-align: center;
+}
+
+.infra-tech h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
+    border-radius: 2px;
+}
+
+.infra-tech__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 24px;
+}
+
+.infra-tech__card {
+  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
+  border: 2px solid var(--color-primary, #66bbfc);
+  border-radius: 16px;
+  padding: 24px 16px;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0,0,0,0.1));
+}
+
+.infra-tech__card:hover {
+    transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0, 94, 168, 0.25);
+}
+
+.infra-tech__icon {
+  font-size: 2.8rem;
+  color: var(--color-primary, #ffffff);
+  margin-bottom: 14px;
+}
+
+.infra-tech__name {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--color-heading, #ffffff);
+  margin-bottom: 8px;
+}
+
+.infra-tech__desc {
+  font-size: 0.9rem;
+  color: var(--color-text, #ffffff);
+  line-height: 1.4;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+  .infra-tech {
+    padding: 60px 0;
+  }
+
+  .infra-tech__grid {
+    gap: 16px;
+  }
+
+  .infra-tech__card {
+    padding: 20px 12px;
+  }
+
+  .infra-tech__icon {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+
+  .infra-tech__name {
+    font-size: 1rem;
+  }
+
+  .infra-tech__desc {
+    font-size: 0.85rem;
+  }
+}
+
+/* HOME CARE JUNDIAÍ */
+
+/* ====== Sessão servicos (Home Care + Ginástica Laboral) ====== */
+.servicos-section {
+  position: relative;
+  padding: var(--space-2xl, 56px) 0;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+.servicos-section .servicos-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 15%;
+    background: rgba(255, 255, 255, 0.95);
+    filter: blur(5px);
+    z-index: 1;
+    pointer-events: none;
+}
+.servicos-container { position: relative; z-index: 1; }
+
+/* animações + parallax */
+.servico-media,
+.servico-text {
+  transition: transform 0.45s cubic-bezier(.2,.9,.2,1), opacity 0.45s;
+  will-change: transform, opacity;
+}
+
+.fade-in .servico-media { transform: translateY(6px); opacity: 0; }
+.fade-in.visible .servico-media { transform: translateY(0); opacity: 1; }
+.fade-in .servico-text { transform: translateY(8px); opacity: 0; }
+.fade-in.visible .servico-text { transform: translateY(0); opacity: 1; }
+
+/* cada linha de serviço: grid duas colunas */
+.servicos-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg, 32px);
+  align-items: center;
+  margin-bottom: var(--space-2xl, 48px);
+}
+
+.servico-text .section-label { display: inline-block; margin-bottom: 10px; }
+
+/* texto / conteúdo */
+.servico-text { padding: 8px 0; }
+
+.servico-text h2 { margin-top:0;
+    margin-bottom:0.75rem;
+    color: var(--primary-dark);
+    margin-bottom: var(--space-lg);
+    position: relative;
+}
+
+.servico-text h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
+    border-radius: 2px;
+}
+
+/* actions / CTA (reaproveita .btn existentes) */
+.servico-actions { margin: 18px 0; }
+.servico-actions .btn { display: inline-flex; align-items:center; gap:10px; }
+
+/* pequenas galerias decorativas */
+.servico-gallery {
+  display:flex;
+  gap:8px;
+  margin-top:12px;
+}
+.servico-gallery img {
+  width:128px;
+  height:96px;
+  object-fit:cover;
+  border-radius:8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.45s ease, box shadow 0.3s ease;
+}
+
+.servico-gallery img:hover { transform: translateY(-6px) scale(1.03); box-shadow: var(--shadow-lg); }
+
+/* CTA móvel: escondida por padrão (desktop usa CTA dentro do texto) */
+.servico-cta-mobile { display: none; margin-top: 12px; text-align: center; z-index: 2; }
+
+/* pequenas melhorias visuais na imagem principal */
+.servico-media img { transition: transform 0.7s ease; display:block; }
+.servico-media:hover img { transform: scale(1.03); }
+
+/* bloco de mídia (imagem grande) */
+.servico-media {
+  width:100%;
+  height:360px; /* desktop default */
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 16px 32px rgba(0,0,0,0.12);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-color: var(--card-bg, #fff);
+}
+.servico-media img {
+  width:100%;
+  height:100%;
+  object-fit: cover;
+  display:block;
+}
+
+/* ordem específica: homecare = text left / image right (padrão),
+   ginastica = image left / text right -> invertendo com order */
+.servico-homecare { }
+.servico-ginastica .servico-media { order: 1; }
+.servico-ginastica .servico-text { order: 2; }
+
+/* badge estratégico (se quiser manter "Novidade" posicionado) */
+/* Não adicionamos badge por padrão; se quiser, crie .servico-badge dentro de .servico-text */
+
+/* ===== Responsivo específico (mobile) ===== */
+@media (max-width: 768px) {
+  /* empilha: texto acima e imagem abaixo (padrão já) */
+  .servicos-row { grid-template-columns: 1fr; gap: var(--space-md); }
+
+  /* forçar imagem depois do texto; mantemos estrutura sem mudar desktop */
+  .servico-media { order: 2; }
+  .servico-text { order: 1; }
+
+  /* esconder CTA desktop (que fica dentro do texto) para substituição pela CTA móvel */
+  .servico-text .servico-actions { display: none !important; }
+
+  /* mostrar CTA móvel colocado logo após a imagem (conforme instrução de HTML) */
+  .servico-cta-mobile {
+    display: block !important;
+    order: 3;
+  }
+
+    /* Correção específica para Ginástica Laboral: garantir ordem
+         Texto (inclui .servico-gallery) -> Imagem -> CTA móvel */
+    .servico-ginastica .servico-text { order: 1 !important; }
+    .servico-ginastica .servico-media { order: 2 !important; margin-top: var(--space-sm); }
+    .servico-ginastica .servico-cta-mobile { order: 3 !important; display: block !important; text-align: center; }
+  .servico-cta-mobile .btn { width: 90%; max-width: 420px; }
+
+  /* ajustar tamanhos e espaços */
+  .servico-media { height: 220px; border-radius: 12px; overflow: hidden; }
+  .servico-media img { object-fit: cover; height:100%; width:100%; }
+
+  .servico-gallery { justify-content: center; margin-top: 12px; }
+
+  .servico-gallery img {
+  width:110px;
+  height:90px;
+  object-fit:cover;
+  border-radius:8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.45s ease, box shadow 0.3s ease;
+}
+
+}
+
+/* animação adicional no load (micro-transform) */
+@media (prefers-reduced-motion: no-preference) {
+  .servico-media, .servico-text { transition-duration: 520ms; transition-timing-function: cubic-bezier(.2,.9,.2,1); }
+}
+
+/* Corrige ordem do CTA apenas para Ginástica em desktop: colocar CTA abaixo da galeria */
+@media (min-width: 769px) {
+    .servico-ginastica .servico-text {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* garantir que a galeria apareça antes do botão de ações (CTA) no fluxo visual */
+    .servico-ginastica .servico-gallery { order: 1; }
+    .servico-ginastica .servico-actions { order: 2; }
+}

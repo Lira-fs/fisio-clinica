@@ -59,12 +59,13 @@ class SiteComponents {
                                 <a href="/unidades/varzea.html" class="dropdown-item">
                                     <span class="unit-name">Várzea Paulista</span>
                                 </a>
+                                <a class="dropdown-item no-click">
+                                    <span class="unit-name">Itupeva <i>(em breve)</i></span>
+                                </a>
                             </div>
                         </div>
 
                          <a href="/tratamentos.html">Tratamentos</a>
-
-                          <a href="/blog.html">Blog</a>
                         
                         <a href="/contato.html">Contato</a>
                     </nav>

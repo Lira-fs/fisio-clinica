@@ -46,23 +46,21 @@
 
 ## Unidade de jundiaí
 
--> melhorar os diferenciais de jundiaí 
+-> melhorar os diferenciais de jundiaí *OK*
 
 -> trocar a foto pra foto da fachada 
 
--> dar uma atenção no tratamento domiciliar, ver a melhor forma de como implementar isso; (home care)
+-> dar uma atenção no tratamento domiciliar, ver a melhor forma de como implementar isso; (home care) *OK*
 
--> é um serviço externo de ginástica laboral; ver onde da pra colocar isso
+-> é um serviço externo de ginástica laboral; ver onde da pra colocar isso *OK*
 
--> diferencial: dinâmometro de força;
-
--> Adicionar sessão de equipamentos 
+-> Adicionar sessão de equipamentos *OK*
 
 [tratamentos]
 
--> trocar tratamento de Oclusão para tratamento de osteopatia: osteopatia é uma pós, existe um profissional especializado par iasso, parte de tecido viceral, 
+-> trocar tratamento de Oclusão para tratamento de osteopatia: osteopatia é uma pós, existe um profissional especializado par iasso, parte de tecido viceral, *ok*
 
--> Tratamento: fisioterapia desportiva;
+-> Tratamento: fisioterapia desportiva; *OK*
 
 [profissionais]
 
@@ -70,19 +68,21 @@ Gabriel:apenas trocar foto
 
 Quaggio: trocar foto 
 
-Mateus cassaro: info + foto (info e foto no grupo)
+Mateus cassaro: info + foto (info e foto no grupo) *OK*
 
 //faltante
 
-Mari: pedir infos + fotos 
+Mari: pedir infos + fotos *OK*
 
-Vinicius Massagardi: infos + fotos (grupo ) 
+Vinicius Massagardi: infos + fotos (grupo ) *OK*
+
+<!-- JUNDIAI FINALIZA AQUI -->
 
 [Info-contato]
 
--> Mudar as cores dos cards para aul, e icones em branco
+-> Mudar as cores dos cards para azul, e icones em branco
 
-## heaader 
+## header 
 
 -> colocar em unidades itupeva não clicável em breve 2026
 
@@ -133,17 +133,17 @@ Vinicius Massagardi: infos + fotos (grupo )
 
 -> colocar fotos abaixo dos ícones da esquerda; *OK*
 -> recursos técnologicos avançadas, (será ?) *OK*
--> trocar de lugar, deixar mais no começo 
+-> trocar de lugar, deixar mais no começo *OK*
 -> pegar a referencia de itatiba, e colocar nas outras unidades
 -> trocar "analise" por "anamnese"; *OK*
 
-[contatos]
+[contatos] *OK*
 
--> deixar antes de CTA
+-> deixar antes de CTA *OK*
 
 [unidades] 
 
-acrescentar equipamentos técnológicos presentes, fazer uma sessão depois de tratamentos
+acrescentar equipamentos técnológicos presentes, fazer uma sessão depois de tratamentos *ok*
 
 [equipamentos-todas-unidades]
 

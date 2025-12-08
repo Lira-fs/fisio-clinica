@@ -1439,6 +1439,12 @@ body.menu-open {
     border-radius: 2px;
 }
 
+.no-click {
+  pointer-events: none;
+  cursor: not-allowed; /* Opcional: muda o cursor para indicar que a ação não é permitida */
+  opacity: 0.6; /* Opcional: reduz a opacidade para um feedback visual de desativação */
+}
+
 /* Responsividade */
 /* Responsividade */
 @media (max-width: 768px) {
