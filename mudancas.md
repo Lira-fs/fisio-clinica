@@ -1,3 +1,10 @@
+# alterações 09/12
+
+# <h3 class="infra-tech__name">Manta Térmica</h3> -> alterar para TECARTERAPIA
+
+# Avaliação adicioanr a termografia
+
+
 ## Index
 
 - Mudar a foto dos fisios
@@ -25,15 +32,15 @@
 
 - pegar do google de forma manual *OK* 
 
-## Contato 
+## Contato **OK**
 
-- Trocar cards para horizontal, e adicionar botões para rede social de cada clínica
+- Trocar cards para horizontal, e adicionar botões para rede social de cada clínica *OK*
 
-- Adicionar fotos bonitas
+- Adicionar fotos bonitas *ok*
 
-## Quem somos
+## Quem somos **ok**
 
-[Sessão-1-Nossa-História]
+[Sessão-1-Nossa-História] 
 
 - Alterar foto -> todos os funcionários
 - Alterar de "5 Anos" -> Desde 2020 *OK*
@@ -78,13 +85,13 @@ Vinicius Massagardi: infos + fotos (grupo ) *OK*
 
 <!-- JUNDIAI FINALIZA AQUI -->
 
-[Info-contato]
+[Info-contato] **ok**
 
--> Mudar as cores dos cards para azul, e icones em branco
+-> Mudar as cores dos cards para azul, e icones em branco *ok*
 
-## header 
+## header **ok**
 
--> colocar em unidades itupeva não clicável em breve 2026
+-> colocar em unidades itupeva não clicável em breve 2026 *OK*
 
 # Unidade de itatiba
 
@@ -141,11 +148,11 @@ Vinicius Massagardi: infos + fotos (grupo ) *OK*
 
 -> deixar antes de CTA *OK*
 
-[unidades] 
+[unidades] **ok**
 
 acrescentar equipamentos técnológicos presentes, fazer uma sessão depois de tratamentos *ok*
 
-[equipamentos-todas-unidades]
+[equipamentos-todas-unidades] **ok**
 
 jundiai: bota pressão pneumatica, oclusor, eletroterapia, game ready (terapia com gelo), manta térmica, banheira de gelo, sauna, dry neddling, ultrassom, laser, ondas de choque, bicicleta ergonômica, cadeira abdutura, esteira, cadeira extensora e flexora, tecarterpia (falar do equipamento), 
 
@@ -162,3 +169,7 @@ varzea: em abertpo
 -> Tratamento 3: 
 -> Tratamento 4:
 -> Tratamento 5:
+
+## FOOTER 
+
+arrumar o footer, melhorar as informações e trazer a veracidade 

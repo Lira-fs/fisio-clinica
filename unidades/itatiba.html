@@ -422,7 +422,249 @@
 </section>
 
 <!-- SEÇÃO: Infraestrutura Tecnológica da Unidade -->
+
 <section class="infra-tech">
+  <div class="infra-tech__overlay"></div>
+
+  <div class="infra-tech__inner">
+    <h2 class="infra-tech__title">Infraestrutura Tecnológica da Unidade</h2>
+
+    <div class="infra-tech__accordion">
+
+      <!-- Card 1: Bota de Pressão Pneumática -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ph ph-boot"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Bota de Pressão Pneumática</h3>
+            <p>Compressão para acelerar a recuperação</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Tecnologia de compressão avançada:</strong> A bota de pressão pneumática utiliza compressão sequencial para melhorar a circulação sanguínea e linfática, acelerando a recuperação muscular pós-treino ou pós-lesão. Ideal para reduzir edemas, fadiga muscular e promover recuperação mais rápida entre sessões de treino intenso.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Oclusor -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ph ph-gauge"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Oclusor</h3>
+            <p>Treino com restrição de fluxo sanguíneo</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Treinamento de restrição de fluxo sanguíneo (BFR):</strong> Técnica avançada que permite ganhos de força e hipertrofia com cargas mais leves, reduzindo o estresse articular. Aplicado com segurança através de oclusores calibrados, o BFR é especialmente útil em reabilitações ortopédicas, permitindo evolução mais rápida sem sobrecarregar estruturas lesionadas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 3: Eletroterapia -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-bolt"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Eletroterapia</h3>
+            <p>Estimulação elétrica para alívio e função</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Estimulação elétrica terapêutica:</strong> Utilizamos diferentes modalidades de correntes elétricas (TENS, FES, corrente russa) para controle de dor, fortalecimento muscular, redução de edema e melhora da função neuromuscular. Tratamento não invasivo e eficaz para diversas condições ortopédicas e neurológicas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 4: Game Ready -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-snowflake"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Game Ready</h3>
+            <p>Crioterapia avançada com compressão</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Sistema de crioterapia e compressão simultâneas:</strong> Tecnologia de ponta utilizada por atletas profissionais para recuperação acelerada. Combina frio controlado com compressão intermitente, reduzindo edema, dor e inflamação de forma mais eficiente que métodos tradicionais de gelo. Essencial no pós-operatório e em lesões agudas.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 5: Manta Térmica -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-temperature"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Manta Térmica</h3>
+            <p>Calor terapêutico e relaxamento</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Termoterapia profunda e relaxante:</strong> A manta térmica proporciona calor uniforme e controlado, promovendo relaxamento muscular, melhora da circulação local e alívio de dores crônicas. Ideal como preparação para terapias manuais ou como recurso de recuperação e bem-estar após treinos intensos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 6: Banheira de Gelo -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ph ph-bathtub"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Banheira de Gelo</h3>
+            <p>Recuperação e redução de inflamação</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Imersão em água gelada para recovery:</strong> Método comprovado para redução de inflamação, dor muscular tardia (DOMS) e aceleração da recuperação pós-treino. A imersão em água gelada (crioterapia de corpo inteiro) é amplamente utilizada por atletas de alto rendimento para manter a consistência de treinos intensos e prevenir lesões por sobrecarga.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 7: Sauna -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-steam"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Sauna</h3>
+            <p>Relaxamento e desintoxicação corporal</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Terapia térmica para recuperação completa:</strong> A sauna promove vasodilatação, melhora da circulação, relaxamento profundo e eliminação de toxinas através do suor. Beneficia a recuperação muscular, melhora a qualidade do sono e reduz o estresse. Quando combinada com banheira de gelo (contraste térmico), potencializa ainda mais os efeitos de recuperação.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 8: Dry Needling -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-needle"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Dry Needling</h3>
+            <p>Liberação de pontos gatilho</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Agulhamento seco para dor miofascial:</strong> Técnica que utiliza agulhas finas para desativar pontos gatilho (trigger points) responsáveis por dor e restrição de movimento. Altamente eficaz para dores musculares crônicas, tensões e disfunções de movimento. Promove relaxamento muscular imediato e melhora da amplitude de movimento.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 9: Ultrassom -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-wave-sine"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Ultrassom</h3>
+            <p>Terapia de ondas profundas</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Ondas ultrassônicas para tratamento profundo:</strong> O ultrassom terapêutico penetra nos tecidos profundos, promovendo efeitos térmicos e mecânicos que aceleram a cicatrização, reduzem inflamação e melhoram a extensibilidade dos tecidos. Indicado para tendinites, bursites, contraturas e processos inflamatórios crônicos.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 10: Laser -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="2.8rem" height="2.8rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-bolt"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /><path d="M19 16l-2 3h4l-2 3" /></svg>
+          </div>
+          <div class="tech-title">
+            <h3>Laser</h3>
+            <p>Cicatrização e anti-inflamatório</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Laserterapia de baixa e alta potência:</strong> Tecnologia que utiliza luz concentrada para estimular processos celulares de reparação tecidual, reduzir inflamação e aliviar dor. Excelente para cicatrização de feridas, tratamento de tendinopatias, lesões musculares e processos inflamatórios agudos ou crônicos. Tratamento não invasivo, indolor e com resultados comprovados cientificamente.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 11: Ondas de Choque -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ti ti-wave-square"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Ondas de Choque</h3>
+            <p>Tratamento de tendinopatias crônicas</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Terapia por ondas acústicas de alta energia:</strong> Tratamento revolucionário para tendinopatias crônicas (calcâneo, patelar, manguito rotador), fascite plantar, calcificações e dores musculoesqueléticas resistentes a outros tratamentos. As ondas de choque estimulam processos de regeneração tecidual e neovascularização, oferecendo solução definitiva para condições que não responderam a terapias convencionais.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 12: Bicicleta Ergonômica -->
+      <div class="tech-card">
+        <div class="tech-header" onclick="toggleTechAccordion(this)">
+          <div class="tech-icon">
+            <i class="ph ph-person-simple-bike"></i>
+          </div>
+          <div class="tech-title">
+            <h3>Bicicleta Ergonômica</h3>
+            <p>Treino cardiovascular seguro</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tech-content">
+          <p>
+            <strong>Condicionamento cardiovascular de baixo impacto:</strong> Equipamento essencial para reabilitação e condicionamento físico sem sobrecarga articular. Permite progressão gradual de carga, treino aeróbico seguro em pós-operatórios, fortalecimento de membros inferiores e melhora da capacidade cardiovascular. Ideal para pacientes com restrições de impacto ou em fases iniciais de reabilitação.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- caso de errado paramos aqui -->
+<!-- <section class="infra-tech">
   <div class="infra-tech__overlay"></div>
 
   <div class="infra-tech__inner">
@@ -507,7 +749,7 @@
       </div>
     </div>
   </div>
-</section>
+</section> -->
 
     <!-- Seção Profissionais -->
     <section id="profissionais" class="profissionais-section" style="padding-top: 0 !important;">
@@ -692,5 +934,6 @@
     <!-- JavaScript -->
     <script src="/../components/components.js"></script>
     <script src="/../components/slideshow.js"></script>
+    <script src="../components/toggle-tech.js"></script>
 </body>
 </html>

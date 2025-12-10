@@ -95,7 +95,6 @@ class SiteComponents {
                         </div>
                     </div>
                     <a href="/tratamentos.html">Tratamentos</a>
-                    <a href="/blog.html">Blog</a>
                     <a href="/contato.html">Contato</a>
                     <a href="#" class="btn btn-primary">
                         <i class="fas fa-calendar-alt"></i>
