@@ -9,41 +9,42 @@
   // ================================
   // DADOS DAS IMAGENS
   // ================================
-  const IMAGENS_GALERIA = [
+
+   const IMAGENS_GALERIA = [
     {
-      src: '/imagens/Jundiai/galeria-5.webp',
-      alt: 'Recepção da clínica',
-      legenda: 'Recepção acolhedora e Aparelhos (Jundiaí)'
+      src: '/imagens/itatiba/aquario-2.webp',
+      alt: 'Aquário da Clínica (itatiba)',
+      legenda: 'Espaço de atendimento (Itatiba)'
     },
     {
-      src: '/imagens/Jundiai/jundiai-1.webp',
-      alt: 'Sala de atendimento',
-      legenda: 'Espaço de atendimento (Jundiaí)'
+      src: 'imagens/varzea/aquario-varzea.webp',
+      alt: 'Sala de atendimento Várzea',
+      legenda: 'Espaço de atendimento (Varzea Paulista)'
     },
     {
-      src: '/imagens/jundiai/galeria-2.webp',
-      alt: 'Área de exercícios',
-      legenda: 'Espaço de atendimento (Jundiaí)'
+      src: '/imagens/itatiba/paciente-2.webp',
+      alt: 'Paciente em desenvolvimento',
+      legenda: 'Paciente em desenvolvimento na clínica de itatiba'
     },
     {
-      src: '/imagens/Jundiai/jundiai-2.webp',
+      src: '/imagens/nossa-historia-jundiai.webp',
       alt: 'Equipamentos modernos',
-      legenda: 'Aquário com macas para tratamentos individuais (Jundiaí)'
-    },
-    {
-      src: '/imagens/Jundiai/galeria-4.webp',
-      alt: 'Sala de Pilates',
       legenda: 'Área de exercícios (Jundiaí)'
     },
     {
-      src: '/imagens/Jundiai/jundiai-4.webp',
-      alt: 'Área de descanso',
-      legenda: 'Fisioterapeuta cuidando de um dos nossos pacientes (Jundiaí)'
+      src: '/imagens/Itatiba/pilates-2.webp',
+      alt: 'Sala de Pilates',
+      legenda: 'Área para Pilates (Itatiba)'
     },
     {
-      src: '/imagens/itatiba/visao-geral.webp',
-      alt: 'Visão Geral Clínica de Itatiba',
-      legenda: 'Visão geral da clínica de Itatiba'
+      src: '/imagens/Jundiai/galeria-5.webp',
+      alt: 'Recepção de Jundiaí',
+      legenda: 'Recepção de Jundiaí'
+    },
+    {
+      src: '/imagens/jundiai/tratamento-choque.webp',
+      alt: 'Tratamento de Choque',
+      legenda: 'Equipamento de eletroterapia em ação'
     },
     {
       src: '/imagens/itatiba/aquario-2.webp',
@@ -51,14 +52,14 @@
       legenda: 'Macas para tratamentos individuais (Itatiba)'
     },
     {
-      src: '/imagens/itatiba/paciente-2.webp',
-      alt: 'Área de Exercícios (Itatiba)',
-      legenda: 'Área de Exercícios (Itatiba)'
+      src: '/imagens/itatiba/espaco-exercicio-itatiba.webp',
+      alt: 'Arena para exercícios (Itatiba)',
+      legenda: 'Arena para exercícios (Itatiba)'
     },
     {
-      src: '/imagens/itatiba/visao-mezanino.webp',
-      alt: 'Visão de cima (Itatiba)',
-      legenda: 'Visão de cima (Itatiba)'
+      src: '/imagens/itatiba/arena-exercicio-itatiba.webp',
+      alt: 'Arena de treino (Itatiba)',
+      legenda: 'Arena de treino (Itatiba)'
     },
     {
       src: '/imagens/itatiba/recepcao-pilates.webp',
@@ -187,6 +188,9 @@
       modal.addEventListener('touchstart', handleTouchStart, { passive: true });
       modal.addEventListener('touchend', handleTouchEnd, { passive: true });
     }
+
+    // Inicializa thumbs na grid: troca src para thumbnail (se necessário) e adiciona lightbox
+    initThumbnails();
   }
 
   // ================================
@@ -304,6 +308,150 @@
     if (touchEndX > touchStartX + swipeThreshold) {
       imagemAnterior();
     }
+  }
+
+  // ================================
+  // THUMBNAILS / LIGHTBOX SIMPLES
+  // ================================
+  function makeThumbPathFromFull(fullPath) {
+    try {
+      // Ex: /full/aquario-2.webp  -> /thumbs/aquario-2-thumb.webp
+      const url = new URL(fullPath, window.location.origin);
+      const parts = url.pathname.split('/');
+      const filename = parts.pop();
+      const dir = parts.join('/');
+      const dotIndex = filename.lastIndexOf('.');
+      const name = dotIndex > -1 ? filename.slice(0, dotIndex) : filename;
+      const ext = dotIndex > -1 ? filename.slice(dotIndex) : '';
+      // prefer replace a pasta 'full' por 'thumbs' quando existir
+      let thumbDir = dir.replace(/\bfull\b/, 'thumbs');
+      if (thumbDir === dir) {
+        // se não havia 'full', tenta colocar '/thumbs' no mesmo nível
+        thumbDir = (dir === '' ? '/thumbs' : dir + '/thumbs');
+      }
+      const thumbName = `${name}-thumb${ext}`;
+      return thumbDir.replace(/\/\/+/, '/') + '/' + thumbName;
+    } catch (e) {
+      // fallback simples
+      return fullPath.replace('/full/', '/thumbs/').replace(/(\.[a-zA-Z0-9]+)$/, '-thumb$1');
+    }
+  }
+
+  function initThumbnails() {
+    const thumbImgs = document.querySelectorAll('img[data-full]');
+    if (!thumbImgs || thumbImgs.length === 0) return;
+
+    // Cria lightbox único reaproveitável
+    const lightbox = createThumbLightbox();
+
+    thumbImgs.forEach(img => {
+      const full = img.getAttribute('data-full');
+      if (!full) return;
+
+      // Se o src estiver vazio ou apontando para a imagem full, calcule a thumb automaticamente
+      const src = img.getAttribute('src') || '';
+      const appearsFull = src && src.indexOf('/full/') !== -1;
+      if (!src || appearsFull) {
+        const thumb = makeThumbPathFromFull(full);
+        img.setAttribute('src', thumb);
+      }
+
+      // Garantir lazy load
+      if (!img.hasAttribute('loading')) img.setAttribute('loading', 'lazy');
+
+      // Ao clicar no thumb, abrir lightbox e carregar o full
+      img.style.cursor = 'zoom-in';
+      img.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await openThumbLightbox(lightbox, img);
+      });
+    });
+  }
+
+  function createThumbLightbox() {
+    // verifica se já existe
+    let lb = document.getElementById('thumbLightbox');
+    if (lb) return lb;
+
+    lb = document.createElement('div');
+    lb.id = 'thumbLightbox';
+    lb.className = 'thumb-lightbox';
+    lb.innerHTML = `
+      <div class="thumb-lightbox__backdrop" tabindex="-1"></div>
+      <div class="thumb-lightbox__panel" role="dialog" aria-modal="true">
+        <button class="thumb-lightbox__close" aria-label="Fechar">×</button>
+        <div class="thumb-lightbox__inner">
+          <img class="thumb-lightbox__img" src="" alt="" />
+          <div class="thumb-lightbox__caption"></div>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(lb);
+
+    // estilos mínimos (escopados para não depender do CSS principal)
+    const style = document.createElement('style');
+    style.textContent = `
+      .thumb-lightbox { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 99999; }
+      .thumb-lightbox.active { display: flex; }
+      .thumb-lightbox__backdrop { position: absolute; inset: 0; background: rgba(0,0,0,0.7); }
+      .thumb-lightbox__panel { position: relative; max-width: 96vw; max-height: 92vh; z-index: 2; display:flex; align-items:center; justify-content:center; }
+      .thumb-lightbox__inner { max-width: 100%; max-height: 100%; display:flex; flex-direction:column; gap:12px; align-items:center; }
+      .thumb-lightbox__img { max-width: 100%; max-height: 80vh; object-fit: contain; border-radius:8px; box-shadow: 0 10px 30px rgba(0,0,0,0.6); }
+      .thumb-lightbox__caption { color: #fff; font-size: 0.95rem; text-align:center; max-width: 90vw; }
+      .thumb-lightbox__close { position: absolute; top: -10px; right: -10px; background: #222; color:#fff; border-radius:50%; width:36px; height:36px; border:none; font-size:1.2rem; cursor:pointer; }
+    `;
+    document.head.appendChild(style);
+
+    // eventos de fechamento
+    const backdrop = lb.querySelector('.thumb-lightbox__backdrop');
+    const closeBtn = lb.querySelector('.thumb-lightbox__close');
+    backdrop.addEventListener('click', () => closeThumbLightbox(lb));
+    closeBtn.addEventListener('click', () => closeThumbLightbox(lb));
+    document.addEventListener('keydown', (ev) => {
+      if (!lb.classList.contains('active')) return;
+      if (ev.key === 'Escape') closeThumbLightbox(lb);
+    });
+
+    return lb;
+  }
+
+  async function openThumbLightbox(lb, img) {
+    const full = img.getAttribute('data-full');
+    const alt = img.getAttribute('alt') || '';
+    const caption = img.getAttribute('data-caption') || img.getAttribute('title') || '';
+    const panelImg = lb.querySelector('.thumb-lightbox__img');
+    const captionEl = lb.querySelector('.thumb-lightbox__caption');
+
+    // mostra overlay e spinner (spinner simples via CSS opacity)
+    lb.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    // enquanto carrega, podemos mostrar a thumb (se existir) e baixar opacidade
+    const thumbSrc = img.getAttribute('src') || '';
+    panelImg.style.opacity = '0';
+    panelImg.src = thumbSrc;
+    panelImg.alt = alt;
+    captionEl.textContent = '';
+
+    try {
+      await preloadImage(full);
+      // troca pela full
+      panelImg.src = full;
+      panelImg.alt = alt;
+      captionEl.textContent = caption || alt;
+      // pequena transição
+      panelImg.style.transition = 'opacity 220ms ease';
+      panelImg.style.opacity = '1';
+    } catch (e) {
+      captionEl.textContent = 'Erro ao carregar imagem';
+      panelImg.style.opacity = '1';
+      console.error(e);
+    }
+  }
+
+  function closeThumbLightbox(lb) {
+    lb.classList.remove('active');
+    document.body.style.overflow = '';
   }
 
   // ================================
