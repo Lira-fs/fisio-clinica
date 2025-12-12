@@ -1,119 +1,299 @@
-/* ============ Infraestrutura Tecnológica ============ */
-
-.infra-tech {
+.infra-tech-new {
   position: relative;
-  padding: 80px 0;
-  background: var(--color-background, #f9fafb);
+  padding: var(--space-3xl, 80px) 0;
+  background: var(--gray-50, #f9fafb);
   overflow: hidden;
-  margin-bottom: var(--space-2xl);
 }
 
-.infra-tech__overlay {
+.infra-tech-new__overlay {
   position: absolute;
   inset: 0;
   filter: blur(3px);
-  opacity: 15%;
-  background-image: url('../imagens/Itatiba/pilates-2.webp');
+  opacity: 8%;
+  background-image: url('../imagens/Jundiai/pilates-2.webp');
   background-size: cover;
-   background-position: center;
-   background-attachment: fixed;
+  background-position: center;
+  background-attachment: fixed;
   z-index: 1;
   pointer-events: none;
 }
 
-.infra-tech__inner {
+.infra-tech-new .container {
   position: relative;
   z-index: 2;
-  width: 90%;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.infra-tech h2 {
-    color: var(--primary-dark);
-    margin-bottom: var(--space-lg);
-    position: relative;
-    text-align: center;
-}
-
-.infra-tech h2::after {
-    content: '';
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--primary-medium), var(--primary-light));
-    border-radius: 2px;
-}
-
-.infra-tech__grid {
+/* Grid de Tecnologias */
+.tech-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg, 24px);
+  margin-top: var(--space-2xl, 48px);
 }
 
-.infra-tech__card {
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 50%, var(--primary-light) 100%);
-  border: 2px solid var(--color-primary, #66bbfc);
-  border-radius: 16px;
-  padding: 24px 16px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Card Individual - CORES INVERTIDAS */
+.tech-item {
+  background: linear-gradient(135deg, var(--primary-medium, #2b77ad) 0%, var(--primary-light, #4da6d9) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-xl, 16px);
+  overflow: visible;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 12px rgba(43, 119, 173, 0.2);
+  position: relative;
+  z-index: 1;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(43, 119, 173, 0.35);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.tech-item.active {
+  z-index: 10;
+  box-shadow: 0 12px 32px rgba(43, 119, 173, 0.4);
+}
+
+/* Header do Card (clicável) */
+.tech-item-header {
+  padding: var(--space-lg, 24px);
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   align-items: center;
-  box-shadow: var(--shadow-lg, 0 10px 25px rgba(0,0,0,0.1));
+  text-align: center;
+  gap: var(--space-sm, 12px);
+  position: relative;
+  background: transparent;
+  transition: background 0.3s ease;
 }
 
-.infra-tech__card:hover {
-    transform: translateY(-6px);
-  box-shadow: 0 14px 32px rgba(0, 94, 168, 0.25);
+.tech-item-header:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
-.infra-tech__icon {
-  font-size: 2.8rem;
-  color: var(--color-primary, #ffffff);
-  margin-bottom: 14px;
+/* Ícone - BRANCO */
+.tech-item-icon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: white;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
 }
 
-.infra-tech__name {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: var(--color-heading, #ffffff);
-  margin-bottom: 8px;
+.tech-item:hover .tech-item-icon {
+  transform: scale(1.1) rotate(5deg);
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
 }
 
-.infra-tech__desc {
+.tech-item-icon svg {
+  width: 1.8rem;
+  height: 1.8rem;
+}
+
+/* Título - BRANCO */
+.tech-item-header h4 {
+  color: white;
+  font-size: var(--text-base, 1rem);
+  font-weight: 600;
+  margin: 0;
+  line-height: 1.3;
+}
+
+/* Seta do Accordion - BRANCA */
+.tech-arrow {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  color: white;
   font-size: 0.9rem;
-  color: var(--color-text, #ffffff);
-  line-height: 1.4;
+  transition: transform 0.3s ease;
+  opacity: 0.8;
 }
 
-/* Responsividade */
+.tech-item:hover .tech-arrow {
+  opacity: 1;
+}
+
+.tech-item.active .tech-arrow {
+  transform: rotate(180deg);
+}
+
+/* Conteúdo Expansível - SOBREPÕE */
+.tech-item-content {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease, opacity 0.3s ease;
+  background: linear-gradient(135deg, var(--primary-dark, #1a365d) 0%, var(--primary-medium, #2b77ad) 100%);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top: none;
+  border-radius: 0 0 var(--radius-xl, 16px) var(--radius-xl, 16px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+}
+
+.tech-item.active .tech-item-content {
+  max-height: 500px;
+  padding: var(--space-lg, 24px);
+  opacity: 1;
+}
+
+/* Container da Imagem */
+.tech-image-container {
+  width: 100%;
+  height: 180px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: var(--radius-lg, 12px);
+  overflow: hidden;
+  margin-bottom: var(--space-md, 16px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.tech-image-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(77, 166, 217, 0.15) 0%, rgba(43, 119, 173, 0.15) 100%);
+  z-index: 1;
+}
+
+/* Imagem Lazy Load */
+.tech-lazy-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.tech-lazy-image.loaded {
+  opacity: 1;
+}
+
+/* Placeholder enquanto carrega - BRANCO */
+.tech-image-container:not(:has(.loaded))::after {
+  content: '⏳';
+  position: absolute;
+  font-size: 2rem;
+  color: white;
+  z-index: 2;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Descrição - BRANCA */
+.tech-description {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: var(--text-sm, 0.875rem);
+  line-height: 1.6;
+  margin: 0;
+  text-align: center;
+}
+
+/* ================================
+   RESPONSIVIDADE
+   ================================ */
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .tech-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md, 20px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .infra-tech-new {
+    padding: var(--space-2xl, 56px) 0;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-md, 16px);
+  }
+
+  .tech-item-header {
+    padding: var(--space-md, 16px);
+  }
+
+  .tech-item-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .tech-item-icon svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .tech-item-header h4 {
+    font-size: var(--text-sm, 0.875rem);
+  }
+
+  .tech-image-container {
+    height: 140px;
+  }
+
+  .tech-item.active .tech-item-content {
+    padding: var(--space-md, 16px);
+  }
+
+  .tech-description {
+    font-size: 0.8rem;
+  }
+
+  .tech-arrow {
+    font-size: 0.8rem;
+    bottom: 8px;
+    right: 8px;
+  }
+}
+
+/* Mobile Pequeno */
 @media (max-width: 480px) {
-  .infra-tech {
-    padding: 60px 0;
+  .tech-grid {
+    gap: var(--space-sm, 12px);
   }
 
-  .infra-tech__grid {
-    gap: 16px;
+  .tech-item-header {
+    padding: var(--space-sm, 12px);
   }
 
-  .infra-tech__card {
-    padding: 20px 12px;
+  .tech-item-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
   }
 
-  .infra-tech__icon {
-    font-size: 2.2rem;
-    margin-bottom: 10px;
+  .tech-item-header h4 {
+    font-size: 0.8rem;
   }
 
-  .infra-tech__name {
-    font-size: 1rem;
-  }
-
-  .infra-tech__desc {
-    font-size: 0.85rem;
+  .tech-image-container {
+    height: 120px;
   }
 }

@@ -11,6 +11,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css">
     <link rel="stylesheet" href="../style/global.css">
     <link rel="stylesheet" href="../style/unidades.css">
+    <link rel="stylesheet" href="../style/tech.css">
     <base href="../">
     
     <!-- Structured Data -->
@@ -57,7 +58,7 @@
             <p>Nossa unidade principal, onde tudo começou. Localizada no coração de Jundiaí, oferecemos atendimento de excelência em fisioterapia esportiva e reabilitação ortopédica desde 2020.</p>
             
             <div class="hero-buttons">
-                <a href="#contato" class="btn btn-accent btn-lg">
+                <a href="https://wa.me/5511972541776" class="btn btn-accent btn-lg" target="_blank">
                     <i class="fab fa-whatsapp"></i>
                     Agendar Consulta
                 </a>
@@ -237,7 +238,7 @@
         <p>Atendimento profissional no conforto da sua casa, ideal para pacientes com limitações de locomoção, pós-operatório ou que buscam uma reabilitação personalizada e contínua. O fisioterapeuta vai até você, levando todo o cuidado necessário para acelerar sua recuperação com segurança, comodidade e qualidade.</p>
 
         <div class="servico-actions">
-          <a class="btn btn-accent btn-lg" href="https://wa.me/5511YOURNUMBER?text=Olá!%20Quero%20informações%20sobre%20Home%20Care" target="_blank" rel="noopener">
+          <a class="btn btn-accent btn-lg" href="https://wa.me/5511972541776?text=Olá!%20Quero%20informações%20sobre%20Home%20Care" target="_blank" rel="noopener">
             <i class="fab fa-whatsapp" aria-hidden="true"></i>
             Agendar Home Care
           </a>
@@ -254,7 +255,7 @@
       </div>
 
         <div class="servico-cta-mobile">
-            <a class="btn btn-accent btn-lg" href="https://wa.me/5511YOURNUMBER?text=Olá!%20Quero%20informações%20sobre%20Home%20Care" target="_blank" rel="noopener">
+            <a class="btn btn-accent btn-lg" href="https://wa.me/5511972541776?text=Olá!%20Quero%20informações%20sobre%20Home%20Care" target="_blank" rel="noopener">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 Agendar Home Care
         </a>
@@ -269,7 +270,7 @@
 
             <!-- CTA móvel para Ginástica Laboral: aparece somente em mobile abaixo da imagem -->
             <div class="servico-cta-mobile">
-                    <a class="btn btn-accent btn-lg" href="https://wa.me/5511YOURNUMBER?text=Olá!%20Quero%20informações%20sobre%20Home%20Care" target="_blank" rel="noopener">
+                    <a class="btn btn-accent btn-lg" href="https://wa.me/5511972541776?text=Olá!%20Quero%20informações%20sobre%20Home%20Care" target="_blank" rel="noopener">
                 <i class="fab fa-whatsapp" aria-hidden="true"></i>
                 Agendar Visita
         </a>
@@ -424,89 +425,221 @@
 </section>
 
 <!-- SEÇÃO: Infraestrutura Tecnológica da Unidade -->
-<section class="infra-tech">
-  <div class="infra-tech__overlay"></div>
+<section class="infra-tech-new">
+  <div class="infra-tech-new__overlay"></div>
 
-  <div class="infra-tech__inner">
-    <h2 class="infra-tech__title">Infraestrutura Tecnológica da Unidade</h2>
+  <div class="container">
+    <div class="section-title fade-in">
+      <h2>Infraestrutura Tecnológica da Unidade</h2>
+      <p>Equipamentos de última geração para sua recuperação e performance</p>
+    </div>
 
-    <div class="infra-tech__grid">
+    <div class="tech-grid">
 
-      <div class="infra-tech__card">
-        <i class="ph ph-boot infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Bota de Pressão Pneumática</h3>
-        <p class="infra-tech__desc">Compressão para acelerar a recuperação</p>
+      <!-- Card 1: Bota de Pressão Pneumática -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ph ph-boot"></i>
+          </div>
+          <h4>Bota de Pressão Pneumática</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/bota-pressao.jpg" alt="Bota de Pressão Pneumática" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Compressão sequencial que melhora circulação e acelera recuperação muscular, reduzindo edemas e fadiga.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ph ph-gauge infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Oclusor</h3>
-        <p class="infra-tech__desc">Treino com restrição de fluxo sanguíneo</p>
+      <!-- Card 2: Oclusor -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ph ph-gauge"></i>
+          </div>
+          <h4>Oclusor BFR</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/oclusor.jpg" alt="Oclusor BFR" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Treino com restrição de fluxo sanguíneo para ganhos de força com cargas leves, ideal para reabilitação.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-bolt infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Eletroterapia</h3>
-        <p class="infra-tech__desc">Estimulação elétrica para alívio e função</p>
+      <!-- Card 3: Eletroterapia -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-bolt"></i>
+          </div>
+          <h4>Eletroterapia</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/eletroterapia.jpg" alt="Eletroterapia" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Correntes elétricas terapêuticas para controle de dor, fortalecimento muscular e redução de edema.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-snowflake infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Game Ready</h3>
-        <p class="infra-tech__desc">Crioterapia avançada com compressão</p>
+      <!-- Card 4: Game Ready -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-snowflake"></i>
+          </div>
+          <h4>Game Ready</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/game-ready.jpg" alt="Game Ready" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Crioterapia avançada com compressão simultânea, usado por atletas profissionais para recuperação rápida.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-temperature infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Manta Térmica</h3>
-        <p class="infra-tech__desc">Calor terapêutico e relaxamento</p>
+      <!-- Card 5: Manta Térmica -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-temperature"></i>
+          </div>
+          <h4>Manta Térmica</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/manta-termica.jpg" alt="Manta Térmica" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Calor terapêutico uniforme para relaxamento muscular profundo e melhora da circulação.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ph ph-bathtub infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Banheira de Gelo</h3>
-        <p class="infra-tech__desc">Recuperação e redução de inflamação</p>
+      <!-- Card 6: Banheira de Gelo -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ph ph-bathtub"></i>
+          </div>
+          <h4>Banheira de Gelo</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/banheira-gelo.jpg" alt="Banheira de Gelo" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Imersão em água gelada para reduzir inflamação, dor muscular e acelerar recuperação pós-treino.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-steam infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Sauna</h3>
-        <p class="infra-tech__desc">Relaxamento e desintoxicação corporal</p>
+      <!-- Card 7: Sauna -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-steam"></i>
+          </div>
+          <h4>Sauna</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/sauna.jpg" alt="Sauna" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Terapia térmica para relaxamento profundo, eliminação de toxinas e melhora da circulação.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-needle infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Dry Needling</h3>
-        <p class="infra-tech__desc">Liberação de pontos gatilho</p>
+      <!-- Card 8: Dry Needling -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-needle"></i>
+          </div>
+          <h4>Dry Needling</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/dry-needling.jpg" alt="Dry Needling" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Agulhamento seco para liberação de pontos gatilho, alívio de dor e melhora da amplitude de movimento.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-wave-sine infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Ultrassom</h3>
-        <p class="infra-tech__desc">Terapia de ondas profundas</p>
+      <!-- Card 9: Ultrassom -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-wave-sine"></i>
+          </div>
+          <h4>Ultrassom</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/ultrassom.jpg" alt="Ultrassom" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Ondas ultrassônicas que penetram tecidos profundos, acelerando cicatrização e reduzindo inflamação.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-device-laser infra-tech__icon">
-
-            <svg xmlns="http://www.w3.org/2000/svg" width="2.8rem" height="2.8rem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-pencil-bolt"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /><path d="M19 16l-2 3h4l-2 3" /></svg>
-
-        </i>
-        <h3 class="infra-tech__name">Laser</h3>
-        <p class="infra-tech__desc">Cicatrização e anti-inflamatório</p>
+      <!-- Card 10: Laser -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" /><path d="M13.5 6.5l4 4" /><path d="M19 16l-2 3h4l-2 3" /></svg>
+          </div>
+          <h4>Laser Terapêutico</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/laser.jpg" alt="Laser Terapêutico" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Laserterapia que estimula cicatrização, reduz inflamação e alivia dor de forma não invasiva.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ti ti-wave-square infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Ondas de Choque</h3>
-        <p class="infra-tech__desc">Tratamento de tendinopatias crônicas</p>
+      <!-- Card 11: Ondas de Choque -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ti ti-wave-square"></i>
+          </div>
+          <h4>Ondas de Choque</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/ondas-choque.jpg" alt="Ondas de Choque" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Tratamento revolucionário para tendinopatias crônicas e dores resistentes a terapias convencionais.</p>
+        </div>
       </div>
 
-      <div class="infra-tech__card">
-        <i class="ph ph-person-simple-bike infra-tech__icon"></i>
-        <h3 class="infra-tech__name">Bicicleta Ergonômica</h3>
-        <p class="infra-tech__desc">Treino cardiovascular seguro</p>
+      <!-- Card 12: Bicicleta Ergonômica -->
+      <div class="tech-item fade-in">
+        <div class="tech-item-header" onclick="toggleTech(this)">
+          <div class="tech-item-icon">
+            <i class="ph ph-person-simple-bike"></i>
+          </div>
+          <h4>Bicicleta Ergonômica</h4>
+          <i class="fas fa-chevron-down tech-arrow"></i>
+        </div>
+        <div class="tech-item-content">
+          <div class="tech-image-container">
+            <img data-src="../imagens/Jundiai/tecnologias/bicicleta.jpg" alt="Bicicleta Ergonômica" class="tech-lazy-image">
+          </div>
+          <p class="tech-description">Condicionamento cardiovascular de baixo impacto, ideal para reabilitação e fortalecimento seguro.</p>
+        </div>
       </div>
+
     </div>
   </div>
 </section>
@@ -522,7 +655,9 @@
             <div class="profissionais-grid">
                 <div class="profissional-card fade-in">
                     <div class="profissional-image">
-                        <img src="../imagens/fisioterapeutas/jundiai/gabriel.png" alt="Dr. Gabriel Torricelli">
+                        <img src="/imagens/fisioterapeutas/jundiai/gabriel-torricelli.webp" alt="Dr. Gabriel Torricelli"
+                        style="object-position: center 5%;"
+                        >
                     </div>
                     <div class="profissional-info">
                         <h3>Gabriel Torricelli</h3>
@@ -542,7 +677,8 @@
                 
                 <div class="profissional-card fade-in">
                     <div class="profissional-image">
-                        <img src="../imagens/fisioterapeutas/jundiai/mateus.png" alt="Dr. Mateus Carrara Quaggio">
+                        <img src="../imagens/fisioterapeutas/jundiai/matheus-carrara.webp" alt="Dr. Mateus Carrara Quaggio"
+                        style="object-position: center 5%;">
                     </div>
                     <div class="profissional-info">
                         <h3>Mateus Carrara Quaggio</h3>
@@ -559,8 +695,8 @@
                 
                 <div class="profissional-card fade-in">
                     <div class="profissional-image">
-                        <i class="fas fa-user-md"></i>
-                        <!-- <img src="imagens/dra-patricia-pilates.jpg" alt="Dra. Patricia Costa"> -->
+                        <img src="/imagens/fisioterapeutas/jundiai/marina-marques.webp" alt="Dra. Marina Marques"
+                        style="object-position: center 5%;">
                     </div>
                     <div class="profissional-info">
                         <h3>Mariana Marques</h3>
@@ -581,8 +717,8 @@
 
                 <div class="profissional-card fade-in">
                     <div class="profissional-image">
-                        <i class="fas fa-user-md"></i>
-                        <!-- <img src="imagens/dra-patricia-pilates.jpg" alt="Dra. Patricia Costa"> -->
+                        <img src="/imagens/fisioterapeutas/jundiai/vinicius-massagardi.webp" alt="Dr. Vínicius Massagardi"
+                        style="object-position: center 5%;">
                     </div>
                     <div class="profissional-info">
                         <h3>Vinicius Massagardi</h3>
@@ -610,31 +746,31 @@
             
             <div class="galeria-grid">
                 <div class="galeria-item fade-in">
-                    <img src="../imagens/Jundiai/galeria-1.webp" alt="Recepção FISIO Jundiaí">
+                    <img src="../imagens/Jundiai/galeria-1.webp" alt="Recepção FISIO Jundiaí" loading="lazy">
                     <div class="galeria-overlay">
                     </div>
                 </div>
                 
                 <div class="galeria-item fade-in">
-                    <img src="../imagens/Jundiai/galeria-2.webp" alt="Recepção FISIO Jundiaí">
+                    <img src="../imagens/Jundiai/galeria-2.webp" alt="Recepção FISIO Jundiaí" loading="lazy">
                 </div>
                 
                 <div class="galeria-item fade-in">
-                    <img src="../imagens/Jundiai/galeria-3.webp" alt="Recepção FISIO Jundiaí">
+                    <img src="../imagens/Jundiai/galeria-3.webp" alt="Recepção FISIO Jundiaí" loading="lazy">
                 </div>
                 
                 <div class="galeria-item fade-in">
-                    <img src="../imagens/Jundiai/galeria-4.webp" alt="Recepção FISIO Jundiaí">
+                    <img src="../imagens/Jundiai/galeria-4.webp" alt="Recepção FISIO Jundiaí" loading="lazy">
                     <div class="galeria-overlay">
                     </div>
                 </div>
                 
                 <div class="galeria-item fade-in">
-                    <img src="../imagens/Jundiai/galeria-5.webp" alt="Recepção FISIO Jundiaí">
+                    <img src="../imagens/Jundiai/galeria-5.webp" alt="Recepção FISIO Jundiaí" loading="lazy">
                 </div>
                 
                 <div class="galeria-item fade-in">
-                    <img src="../imagens/Jundiai/galeria-6.webp" alt="Recepção FISIO Jundiaí">
+                    <img src="../imagens/Jundiai/galeria-6.webp" alt="Recepção FISIO Jundiaí" loading="lazy">
                 </div>
             </div>
         </div>
@@ -681,7 +817,7 @@
                     <i class="fas fa-phone"></i>
                 </div>
                 <h4>Telefone</h4>
-                <p>(11) 97254-1776<br><a href='#' class="btn btn-accent-green btn-sm">WhatsApp disponível</a></p>
+                <p>(11) 97254-1776<br><a href='https://wa.me/5511972541776' class="btn btn-accent-green btn-sm" target="_blank">WhatsApp disponível</a></p>
             </div>
             
             <div class="contato-info-card fade-in">
@@ -722,7 +858,7 @@
                 <h2>Pronto para sua Recuperação?</h2>
                 <p>Agende sua avaliação na unidade Jundiaí e descubra como nossa equipe pode acelerar sua recuperação com excelência e cuidado personalizado.</p>
                 
-                <a href="https://wa.me/5511999999999?text=Olá! Gostaria de agendar uma avaliação na unidade Jundiaí da Clínica FISIO." class="btn btn-accent btn-lg" target="_blank">
+                <a href="https://wa.me/5511972541776?text=Olá! Gostaria de agendar uma avaliação na unidade Jundiaí da Clínica FISIO." class="btn btn-accent btn-lg" target="_blank">
                     <i class="fab fa-whatsapp"></i>
                     Agendar Avaliação
                 </a>
@@ -733,6 +869,7 @@
     <!-- JavaScript -->
     <script src="../components/components.js"></script>
     <script src="../components/slideshow.js"></script>
+    <script src="../components/toggle-tech.js"></script>
     <script>
         // Animações de scroll
         const observerOptions = {
