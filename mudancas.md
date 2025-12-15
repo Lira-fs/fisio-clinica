@@ -173,3 +173,11 @@ varzea: em abertpo
 ## FOOTER 
 
 arrumar o footer, melhorar as informações e trazer a veracidade 
+
+
+### PEDIR PRA KAY
+
+-> Quais tratamentos colocar ?
+
+-> Fotos da ginástica laboral, e se tiver mais do home care 
+-> Fotos dos equipamentos: oclusor, bota de pressão, eletroterapia, game ready, manta térmica, banheira de gelo, sauna, dry needling, ultrassom, laser, ondas de choque, bicileta ergônomica

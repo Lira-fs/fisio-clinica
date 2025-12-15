@@ -18,15 +18,53 @@
 
   <main>
     <!-- Hero Section -->
-    <section class="hero bg-primary">
-      <div class="container">
-        <div class="hero-content fade-in text-center">
-          <span class="badge badge-accent">Tratamentos</span>
-          <h1>Soluções Especializadas para sua Recuperação</h1>
-          <p>Oferecemos tratamentos personalizados com base científica, tecnologia avançada e cuidado humano para acelerar sua recuperação e otimizar sua performance.</p>
+ <section class="hero-contato">
+
+    <picture class="hero-background">
+      <!-- Mobile primeiro -->
+      <source
+        srcset="/imagens/tratamentos/banner-tratamentos-mobile.webp"
+        media="(max-width: 768px)"
+      />
+
+      <!-- Desktop fallback -->
+      <img
+        src="/imagens/tratamentos/banner-tratamentos.webp"
+        alt="Clínica Banner Contatos"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </picture>
+    
+    <!-- Overlay visual -->
+    <div class="hero-overlay"></div>
+
+    <div class="container">
+      <div class="hero-content">
+        
+        <span class="badge badge-accent">Tratamentos ofertados:</span>
+
+        <h1>Nossos Tratamentos:</h1>
+
+        <p class="hero-subtitle">
+          Entre em contato com a Clínica FISIO — atendimento humanizado, tecnologia de ponta e profissionais especializados prontos para cuidar de você.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="/" class="btn btn-secondary btn-lg">
+            <i class="fas fa-arrow-left"></i>
+            Voltar ao Início
+          </a>
+
+          <a href="#" class="btn btn-success btn-lg js-open-whatsapp-modal" rel="noopener">
+            <i class="fab fa-whatsapp"></i>
+            WhatsApp
+          </a>
         </div>
+
       </div>
-    </section>
+    </div>
+  </section>
 
     <!-- Seção Principal: Nossos Tratamentos -->
     <section class="section bg-white">
@@ -42,10 +80,7 @@
           <div class="tratamento-card fade-in">
             <div class="tratamento-image">
               <div class="image-placeholder">
-                <div class="placeholder-overlay">
-                  <i class="fas fa-running"></i>
-                  <span>Fisioterapia Esportiva</span>
-                </div>
+                <img src="imagens/tratamentos/tratamento-esportivo.webp" alt="">                
               </div>
               <div class="tratamento-badge esportiva">
                 <i class="fas fa-trophy"></i>
@@ -115,9 +150,8 @@
           <div class="tratamento-card fade-in">
             <div class="tratamento-image">
               <div class="image-placeholder">
+                <img src="imagens/tratamentos/tratamento-2.webp" alt="">  
                 <div class="placeholder-overlay">
-                  <i class="fas fa-spa"></i>
-                  <span>Recovery</span>
                 </div>
               </div>
               <div class="tratamento-badge recovery">
@@ -188,9 +222,8 @@
           <div class="tratamento-card fade-in">
             <div class="tratamento-image">
               <div class="image-placeholder">
+                <img src="imagens/tratamentos/tratamento-3.webp" alt="">  
                 <div class="placeholder-overlay">
-                  <i class="fas fa-bone"></i>
-                  <span>Trauma Ortopédico</span>
                 </div>
               </div>
               <div class="tratamento-badge ortopedico">
@@ -256,26 +289,9 @@
               </div>
             </div>
           </div>
-
         </div>
-
-        <!-- Botão de Agendamento -->
-        <div class="agendamento-section fade-in">
-          <div class="agendamento-content">
-            <h3>Pronto para Iniciar seu Tratamento?</h3>
-            <p>Agende sua avaliação e receba um plano personalizado para sua recuperação</p>
-            <a href="#" 
-               class="btn btn-success btn-lg agendamento-btn js-open-whatsapp-modal">
-              <i class="fab fa-whatsapp"></i>
-              Agendar Avaliação
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- Seção: Diferenciais -->
+      </section>
+            <!-- Seção: Diferenciais -->
     <section class="section bg-gray-50">
       <div class="container">
         <div class="section-title fade-in">
@@ -311,6 +327,21 @@
       </div>
     </section>
 
+        <!-- Botão de Agendamento -->
+        <div class="agendamento-section fade-in">
+          <div class="agendamento-content">
+            <h3>Pronto para Iniciar seu Tratamento?</h3>
+            <p>Agende sua avaliação e receba um plano personalizado para sua recuperação</p>
+            <a href="#" 
+               class="btn btn-success btn-lg agendamento-btn js-open-whatsapp-modal">
+              <i class="fab fa-whatsapp"></i>
+              Agendar Avaliação
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </section>
   </main>
 
   <!-- WhatsApp Flutuante -->

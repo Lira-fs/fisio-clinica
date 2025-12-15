@@ -34,7 +34,7 @@ class SiteComponents {
                 <div class="header-container">
                     <div class="logo">
                         <div class="logo-placeholder">
-                            <img src="/imagens/logo.jpeg" alt="Logo FISIO">
+                            <a href="/"><img src="/imagens/logo.png" alt="Logo FISIO"></a>
                         </div>
                         <div class="logo-text">
                             <h1>FISIO</h1>
@@ -142,7 +142,7 @@ class SiteComponents {
                         <div class="footer-section">
                             <div class="logo mb-md">
                                 <div class="logo-placeholder">
-                                    <img src="/imagens/logo.jpeg" alt="Logo FISIO">
+                                    <a href="/"><img src="/imagens/logo.png" alt="Logo FISIO"></a>
                                 </div>
                                 <div class="logo-text">
                                     <h3>FISIO</h3>
@@ -303,6 +303,18 @@ class SiteComponents {
         btn.addEventListener('click', (e) => {
           const info = btn.closest('.profissional-info');
           if (!info) return;
+
+          // Fechar outros cards abertos — garantir apenas um expandido por vez
+          const allInfos = document.querySelectorAll('.profissional-info.expanded');
+          allInfos.forEach(other => {
+            if (other === info) return;
+            other.classList.remove('expanded');
+            const otherBtn = other.querySelector('.profissional-toggle');
+            if (otherBtn) {
+              otherBtn.setAttribute('aria-expanded', 'false');
+              otherBtn.textContent = 'Ver mais';
+            }
+          });
 
           const expanded = btn.getAttribute('aria-expanded') === 'true';
           info.classList.toggle('expanded', !expanded);

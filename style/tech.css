@@ -1,21 +1,45 @@
 .infra-tech-new {
   position: relative;
-  padding: var(--space-3xl, 80px) 0;
+  padding:0;
   background: var(--gray-50, #f9fafb);
-  overflow: hidden;
+  overflow: visible;
+  z-index: 1;
 }
 
-.infra-tech-new__overlay {
+.section-title h2 {
+    color: var(--primary-dark);
+    margin-bottom: var(--space-lg);
+    position: relative;
+    padding-top: 10px;
+}
+
+.section-title h2::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(45deg, var(--primary-light), var(--accent-orange));
+    border-radius: 2px;
+}
+
+/* Background sutil com overlay */
+.infra-tech-new::before {
+  content: '';
   position: absolute;
   inset: 0;
-  filter: blur(3px);
-  opacity: 8%;
   background-image: url('../imagens/Jundiai/pilates-2.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  z-index: 1;
+  opacity: 0.08;
+  z-index: -1;
   pointer-events: none;
+}
+
+.infra-tech-new__overlay {
+  display: none;
 }
 
 .infra-tech-new .container {
@@ -29,34 +53,62 @@
   grid-template-columns: repeat(4, 1fr);
   gap: var(--space-lg, 24px);
   margin-top: var(--space-2xl, 48px);
+  position: relative;
+  z-index: 2;
+  /* garantir comportamento vertical e evitar espaços laterais inesperados */
+  grid-auto-rows: auto; /* cada linha cresce conforme o conteúdo da própria célula */
+  grid-auto-flow: row;
+  overflow-x: hidden; /* evita criação de scroll/space horizontal por overflow inesperado */
+  align-items: start; /* garante que cada item comece no topo da célula */
 }
 
-/* Card Individual - CORES INVERTIDAS */
+/* Column-mode: quando o JS reagrupa em colunas, usamos flex nas colunas */
+.tech-grid--columns {
+  display: flex;
+  gap: var(--space-lg, 24px);
+}
+.tech-col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg, 24px);
+  flex: 1 1 0%;
+}
+
+/* Card Individual - EMPURRA AO INVÉS DE SOBREPOR */
 .tech-item {
   background: linear-gradient(135deg, var(--primary-medium, #2b77ad) 0%, var(--primary-light, #4da6d9) 100%);
   border: 2px solid rgba(255, 255, 255, 0.3);
   border-radius: var(--radius-xl, 16px);
-  overflow: visible;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-width: 0; /* evita que conteúdos internos forcem expansão horizontal */
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1), border-radius 0.4s ease;
   box-shadow: 0 4px 12px rgba(43, 119, 173, 0.2);
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .tech-item:hover {
-  transform: translateY(-4px);
+  transform: translateY(-4px) translateX(0);
   box-shadow: 0 8px 24px rgba(43, 119, 173, 0.35);
   border-color: rgba(255, 255, 255, 0.5);
 }
 
 .tech-item.active {
-  z-index: 10;
   box-shadow: 0 12px 32px rgba(43, 119, 173, 0.4);
+  border-radius: var(--radius-xl, 16px) var(--radius-xl, 16px);
+  z-index: 20; /* trazer acima dos irmãos quando expandido */
+  width: 100%;
+  align-self: start;
 }
 
 /* Header do Card (clicável) */
 .tech-item-header {
   padding: var(--space-lg, 24px);
+  max-height: 160.8px;
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -66,6 +118,7 @@
   position: relative;
   background: transparent;
   transition: background 0.3s ease;
+  border-radius: var(--radius-xl, 16px) var(--radius-xl, 16px);
 }
 
 .tech-item-header:hover {
@@ -127,27 +180,24 @@
   transform: rotate(180deg);
 }
 
-/* Conteúdo Expansível - SOBREPÕE */
+/* Conteúdo Expansível - EMPURRA (continuação natural do card) */
 .tech-item-content {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  right: 0;
+  /* conteúdo expansível em fluxo normal: aumenta altura do próprio card */
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.4s ease, opacity 0.3s ease;
+  transition: max-height 0.45s cubic-bezier(0.2,0.9,0.2,1), padding 0.35s ease;
   background: linear-gradient(135deg, var(--primary-dark, #1a365d) 0%, var(--primary-medium, #2b77ad) 100%);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top: none;
   border-radius: 0 0 var(--radius-xl, 16px) var(--radius-xl, 16px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
-  opacity: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  padding: 0 var(--space-lg, 24px) 0;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .tech-item.active .tech-item-content {
-  max-height: 500px;
-  padding: var(--space-lg, 24px);
-  opacity: 1;
+  max-height: 600px; /* ajustável conforme conteúdo */
+  padding: 0 var(--space-lg, 24px) var(--space-lg, 24px);
 }
 
 /* Container da Imagem */
@@ -163,6 +213,16 @@
   justify-content: center;
   position: relative;
   border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+/* garantir que conteúdos internos não ultrapassem a largura do card */
+.tech-image-container,
+.tech-image-container img,
+.tech-lazy-image,
+.tech-item-header,
+.tech-item-content * {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .tech-image-container::before {
@@ -237,6 +297,7 @@
 
   .tech-item-header {
     padding: var(--space-md, 16px);
+    max-height: 109.63px;
   }
 
   .tech-item-icon {
@@ -259,7 +320,7 @@
   }
 
   .tech-item.active .tech-item-content {
-    padding: var(--space-md, 16px);
+    padding: 0 var(--space-md, 16px) var(--space-md, 16px);
   }
 
   .tech-description {

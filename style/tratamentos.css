@@ -6,24 +6,87 @@
 /* ================================
    HERO TRATAMENTOS
    ================================ */
-.hero {
-  min-height: 50vh;
+.hero-contato {
+  position: relative;
+  min-height: 60vh;
   display: flex;
   align-items: center;
-  text-align: center;
-}
-
-.hero .hero-content h1 {
+  justify-content: center;
+  background-attachment: fixed;
   color: var(--white);
-  margin-bottom: var(--space-lg);
+  overflow: hidden;
 }
 
-.hero .hero-content p {
-  color: rgba(255, 255, 255, 0.9);
-  font-size: var(--text-lg);
-  max-width: 700px;
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(75, 166, 217, 0.15), transparent 60%);
+  pointer-events: none;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background: linear-gradient(135deg, rgba(26, 54, 93, 0.85) 0%, rgba(43, 119, 173, 0.75) 50%, rgba(77, 166, 217, 0.65) 100%);
+}
+
+.hero-background img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: blur(3px);
+}
+
+
+.hero-contato .container {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-content {
+  /* max-width: 800px; */
   margin: 0 auto;
-  line-height: 1.6;
+  text-align: center;
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.hero-content .badge {
+  margin-bottom: var(--space-md);
+  animation: fadeInDown 0.6s ease-out;
+}
+
+.hero-content h1 {
+  font-size: var(--text-4xl);
+  color: var(--white);
+  margin-bottom: var(--space-md);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.5px;
+}
+
+.hero-subtitle {
+  font-size: var(--text-lg);
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: var(--space-xl);
+  line-height: 1.7;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 /* ================================
@@ -84,7 +147,6 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, var(--gray-100) 0%, var(--gray-200) 100%);
-  border: 2px dashed var(--gray-300);
   position: relative;
   transition: all 0.3s ease;
   cursor: pointer;
@@ -357,11 +419,9 @@
    SEÇÑƒO DE AGENDAMENTO
    ================================ */
 .agendamento-section {
-  margin-top: var(--space-3xl);
   text-align: center;
   padding: var(--space-3xl);
   background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-medium) 100%);
-  border-radius: var(--radius-xl);
   color: var(--white);
   position: relative;
   overflow: hidden;

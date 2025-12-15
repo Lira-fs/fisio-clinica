@@ -349,6 +349,26 @@
     background: linear-gradient(45deg, #3cdb3c, #0ca83b);
 }
 
+.neuro-bg {
+    background: linear-gradient(45deg, #7cdb3c, #26a80c);
+}
+
+.cardio-bg {
+    background: linear-gradient(45deg, #db3c3c, #a82b0c);
+}
+
+.mulher-bg {
+    background: linear-gradient(45deg, #ae3cdb, #a80c8e);
+}
+
+.pediatrica-bg {
+    background: linear-gradient(45deg, #3cdbb9, #0c7ca8);
+}
+
+.multi-bg {
+    background: linear-gradient(45deg, #4be2c6, #7de1f5);
+}
+
 /* Conteúdo do Card */
 .tratamento-unidade-content {
     text-align: center;
@@ -458,7 +478,7 @@
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: var(--space-xl);
     margin-top: var(--space-2xl);
-    align-items: start; /* evita que um card alto force todos os outros a crescerem */
+    align-items: start;
 }
 
 .profissional-card {
@@ -469,6 +489,7 @@
     transition: all 0.3s ease;
     position: relative;
 }
+
 
 .profissional-card:hover {
     transform: translateY(-8px);
@@ -1033,7 +1054,8 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     margin-bottom: var(--space-md);
-    max-width: 240px;
+    max-width: 300px;
+    width: 100%;
 }
 
 .avaliacao-intro {
@@ -1609,10 +1631,6 @@
 @media (max-width: 480px) {
     .tratamento-unidade-card {
         padding: var(--space-lg);
-    }
-    
-    .tratamento-unidade-icon {
-        width: 50px;
     }
     
     .servicos-row .servico-media { order: 2; }
