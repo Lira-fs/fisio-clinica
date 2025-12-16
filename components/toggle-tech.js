@@ -57,48 +57,58 @@ function toggleTech(header) {
 function updateColumnMargins() {
   const grid = document.querySelector('.tech-grid');
   if (!grid) return;
-  // se estivermos no modo colunas (DOM reorganizado em .tech-col), não aplicar margins JS
+
+  // Se estiver em column-mode (DOM reorganizado), não aplicar JS
   if (grid.classList.contains('tech-grid--columns')) {
-    // limpar margins residuais caso existam
-    const all = grid.querySelectorAll('.tech-item');
-    all.forEach(el => el.style.marginTop = '');
+    grid.querySelectorAll('.tech-item').forEach(el => {
+      el.style.marginTop = '';
+    });
     return;
   }
-  const children = Array.from(grid.children).filter(n => n.classList && n.classList.contains('tech-item'));
-  if (!children.length) return;
 
-  // Determinar número de colunas via grid-template-columns
-  const cs = window.getComputedStyle(grid);
-  let cols = 0;
-  const gtc = cs.getPropertyValue('grid-template-columns');
-  if (gtc) {
-    cols = gtc.split(' ').length;
+  const items = Array.from(
+    grid.querySelectorAll('.tech-item')
+  );
+  if (!items.length) return;
+
+  const styles = window.getComputedStyle(grid);
+  const templateCols = styles.getPropertyValue('grid-template-columns');
+
+  // Conta colunas reais do CSS Grid
+  let columnCount = 1;
+  if (templateCols && templateCols.trim() !== '') {
+    columnCount = templateCols.trim().split(/\s+/).length;
   }
-  if (!cols || cols < 1) cols = 4; // fallback
 
-  // Para cada coluna, percorre as linhas e acumula offsets
-  for (let c = 0; c < cols; c++) {
-    let cumulative = 0;
-    for (let r = 0; ; r++) {
-      const idx = c + r * cols;
-      if (idx >= children.length) break;
-      const el = children[idx];
+  // 👉 MOBILE (1 coluna): não aplica empurrão JS
+  if (columnCount <= 1) {
+    items.forEach(el => {
+      el.style.marginTop = '';
+    });
+    return;
+  }
 
-      // aplicar margem-top igual ao acumulado (só empurra dentro da coluna)
-      el.style.marginTop = cumulative ? cumulative + 'px' : '';
+  // Desktop: empurrar apenas dentro da própria coluna
+  for (let col = 0; col < columnCount; col++) {
+    let offset = 0;
 
-      // se esse el estiver ativo, aumenta o acumulado com a altura do conteúdo expandido
-      if (el.classList.contains('active')) {
-        const content = el.querySelector('.tech-item-content');
+    for (let row = 0; ; row++) {
+      const index = col + row * columnCount;
+      if (index >= items.length) break;
+
+      const item = items[index];
+      item.style.marginTop = offset ? `${offset}px` : '';
+
+      if (item.classList.contains('active')) {
+        const content = item.querySelector('.tech-item-content');
         if (content) {
-          // usar scrollHeight para obter altura real do conteúdo visível quando expandido
-          const h = content.scrollHeight;
-          cumulative += h;
+          offset += content.scrollHeight;
         }
       }
     }
   }
 }
+
 
 // Recalcula ao redimensionar (debounced)
 let __resizeTimerTech;

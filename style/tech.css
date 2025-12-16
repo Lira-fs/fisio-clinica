@@ -202,6 +202,7 @@
 
 /* Container da Imagem */
 .tech-image-container {
+  margin-top: 10px;
   width: 100%;
   height: 180px;
   background: rgba(0, 0, 0, 0.2);
@@ -290,20 +291,33 @@
     padding: var(--space-2xl, 56px) 0;
   }
 
+  /* For mobile we use a single-column layout with larger cards */
   .tech-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: var(--space-md, 16px);
+    grid-template-columns: 1fr;
+    gap: var(--space-lg, 20px);
   }
 
+  /* If JS reflowed into column-mode, force columns to stack full-width on mobile */
+  .tech-grid--columns {
+    display: block;
+  }
+  .tech-col {
+    width: 100%;
+    display: block;
+    gap: var(--space-md, 16px);
+    margin-bottom: var(--space-md, 16px);
+  }
+
+
   .tech-item-header {
-    padding: var(--space-md, 16px);
-    max-height: 109.63px;
+    padding: calc(var(--space-md, 16px) + 4px);
+    max-height: 140px;
   }
 
   .tech-item-icon {
-    width: 50px;
-    height: 50px;
-    font-size: 1.5rem;
+    width: 64px;
+    height: 64px;
+    font-size: 2rem;
   }
 
   .tech-item-icon svg {
@@ -315,8 +329,9 @@
     font-size: var(--text-sm, 0.875rem);
   }
 
+  /* larger visual for mobile single-column cards */
   .tech-image-container {
-    height: 140px;
+    height: 220px;
   }
 
   .tech-item.active .tech-item-content {
@@ -324,7 +339,7 @@
   }
 
   .tech-description {
-    font-size: 0.8rem;
+    font-size: 0.95rem;
   }
 
   .tech-arrow {
@@ -337,24 +352,18 @@
 /* Mobile Pequeno */
 @media (max-width: 480px) {
   .tech-grid {
-    gap: var(--space-sm, 12px);
+    grid-template-columns: 1fr;
+    gap: var(--space-md, 14px);
   }
 
-  .tech-item-header {
-    padding: var(--space-sm, 12px);
-  }
+  .tech-grid--columns { display: block; }
+  .tech-col { width: 100%; display: block; }
 
-  .tech-item-icon {
-    width: 45px;
-    height: 45px;
-    font-size: 1.3rem;
-  }
+  .tech-item-header { padding: var(--space-sm, 12px); max-height: 120px; }
 
-  .tech-item-header h4 {
-    font-size: 0.8rem;
-  }
+  .tech-item-icon { width: 56px; height: 56px; font-size: 1.6rem; }
 
-  .tech-image-container {
-    height: 120px;
-  }
+  .tech-item-header h4 { font-size: 0.95rem; }
+
+  .tech-image-container { height: 180px; }
 }
