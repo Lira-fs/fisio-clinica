@@ -136,74 +136,62 @@ class SiteComponents {
 
     loadFooter() {
         const footerHTML = `
-           <footer id="contato" class="footer">
+           
+              <footer class="footer-new">
                 <div class="container">
-                    <div class="footer-grid">
-                        <div class="footer-section">
-                            <div class="logo mb-md">
-                                <div class="logo-placeholder">
-                                    <a href="/"><img src="/imagens/logo.png" alt="Logo FISIO"></a>
-                                </div>
-                                <div class="logo-text">
-                                    <h3>FISIO</h3>
-                                    <p>Excelência em Fisioterapia</p>
-                                </div>
-                            </div>
-                            <p>Transformando vidas na região com profissionais qualificados, tecnologia de ponta e as mais modernas técnicas de fisioterapia em nossas 4 unidades especializadas.</p>
-                            <div class="social-links">
-                                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                                <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp js-open-whatsapp-modal"></i></a>
-                                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            </div>
-                        </div>
-                        
-                        <div class="footer-section">
-                            <h3>Nossas Unidades</h3>
-                            <ul>
-                                <li><strong>Jundiaí</strong> - Unidade Principal</li>
-                                <li><strong>Itatiba</strong> - Esportiva</li>
-                                <li><strong>Várzea Paulista</strong> - Reabilitação</li>
-                                <li><strong>Nova Unidade</strong> - Em breve</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="footer-section">
-                            <h3>Contato</h3>
-                            <p><i class="fas fa-phone"></i> (11) 99999-9999</p>
-                            <p><i class="fas fa-envelope"></i> contato@fisioclinica.com.br</p>
-                            <p><i class="fas fa-clock"></i> Seg-Sex: 7h às 19h<br>Sáb: 8h às 13h</p>
-                            <a href="posts.html">
-                                <p id="editPosts" style="cursor: pointer;">
-                                    <i class="fas fa-edit"></i> Edição de Posts
-                                </p>
-                            </a>
-                        </div>
-                        
-                        <div class="footer-section">
-                            <h3>Especialidades</h3>
-                            <ul>
-                                <li><a href="#">Fisioterapia Esportiva</a></li>
-                                <li><a href="#">Reabilitação Ortopédica</a></li>
-                                <li><a href="#">Pilates Clínico</a></li>
-                                <li><a href="#">Terapia Manual</a></li>
-                                <li><a href="#">Dry Needling</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                  <div class="footer-content">
                     
-                    <div class="footer-bottom">
-                        <p>&copy; 2025 FISIO - Clínica de Fisioterapia Especializada. Todos os direitos reservados.</p>
+                    <!-- Coluna Esquerda: Logo + Especialidade -->
+                    <div class="footer-col footer-brand">
+                      <div class="footer-logo">
+                        <a href="/">
+                          <img src="/imagens/logo.png" alt="Logo FISIO">
+                        </a>
+                        <div class="footer-logo-text">
+                          <h3>FISIO</h3>
+                          <p>Excelência em Fisioterapia</p>
+                        </div>
+                      </div>
+                      <p class="footer-specialty">Traumato-Ortopédica & Desportiva</p>
                     </div>
+
+                    <!-- Coluna Centro: Unidades -->
+                    <div class="footer-col footer-units">
+                      <h4>Nossas Unidades</h4>
+                      <ul>
+                        <li><a href="/jundiai.html">Jundiaí</a></li>
+                        <li><a href="/itatiba.html">Itatiba</a></li>
+                        <li><a href="/varzea.html">Várzea Paulista</a></li>
+                      </ul>
+                    </div>
+
+                    <!-- Coluna Direita: Social -->
+                    <div class="footer-col footer-social">
+                      <h4>Siga-nos</h4>
+                      <div class="footer-social-icons">
+                        <a href="https://instagram.com/fisioclinica" target="_blank" rel="noopener" aria-label="Instagram">
+                          <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="js-open-whatsapp-modal" aria-label="WhatsApp">
+                          <i class="fab fa-whatsapp"></i>
+                        </a>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- Bottom -->
+                  <div class="footer-bottom">
+                    <p>&copy; 2025 FISIO - Todos os direitos reservados.</p>
+                  </div>
                 </div>
-            </footer>
-            
-            <!-- WhatsApp Flutuante -->
-              <a href="#" 
-                class="whatsapp-float js-open-whatsapp-modal" 
-                aria-label="Falar no WhatsApp">
-                  <i class="fab fa-whatsapp"></i>
+              </footer>
+
+              <!-- WhatsApp Flutuante -->
+              <a href="#" class="whatsapp-float js-open-whatsapp-modal" aria-label="Falar no WhatsApp">
+                <i class="fab fa-whatsapp"></i>
               </a>
+
         `;
 
     // Injeta o footer no final do body
