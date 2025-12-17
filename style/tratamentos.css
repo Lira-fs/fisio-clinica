@@ -224,6 +224,7 @@
 
 .tratamento-badge.esportiva {
   background: linear-gradient(45deg, var(--accent-orange), var(--accent-orange-dark));
+
 }
 
 .tratamento-badge.recovery {
@@ -235,7 +236,7 @@
 }
 
 /* ================================
-   CONTEÑšDO DO TRATAMENTO
+   CONTEUDO DO TRATAMENTO
    ================================ */
 .tratamento-content {
   padding: var(--space-2xl);

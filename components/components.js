@@ -96,7 +96,7 @@ class SiteComponents {
                     </div>
                     <a href="/tratamentos.html">Tratamentos</a>
                     <a href="/contato.html">Contato</a>
-                    <a href="#" class="btn btn-primary">
+                    <a href="#" class="btn btn-primary js-open-whatsapp-modal">
                         <i class="fas fa-calendar-alt"></i>
                         Agendar Consulta
                     </a>
