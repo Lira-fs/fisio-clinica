@@ -844,3 +844,54 @@
 .tratamento-card:hover .tratamento-image img {
   transform: scale(1.05);
 }
+
+.tratamento-divider {
+  height: 1px;
+  margin: 30px 0;
+  background: linear-gradient(to right, transparent, #ddd, transparent);
+}
+
+.recovery-plus-box {
+  background: linear-gradient(135deg, rgba(255,165,0,0.08), rgba(255,215,0,0.05));
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+.recovery-plus-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.recovery-plus-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #ff9800;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.recovery-plus-badge {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #ff9800;
+  text-transform: uppercase;
+}
+
+.recovery-plus-description {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.recovery-plus-note {
+  font-size: 0.75rem;
+  opacity: 0.7;
+  margin-top: 10px;
+}
