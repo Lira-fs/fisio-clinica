@@ -159,9 +159,9 @@ class SiteComponents {
                     <div class="footer-col footer-units">
                       <h4>Nossas Unidades</h4>
                       <ul>
-                        <li><a href="/jundiai.html">Jundiaí</a></li>
-                        <li><a href="/itatiba.html">Itatiba</a></li>
-                        <li><a href="/varzea.html">Várzea Paulista</a></li>
+                        <li><a href="/unidades/jundiai.html">Jundiaí</a></li>
+                        <li><a href="/unidades/itatiba.html">Itatiba</a></li>
+                        <li><a href="/unidades/varzea.html">Várzea Paulista</a></li>
                       </ul>
                     </div>
 
@@ -169,7 +169,7 @@ class SiteComponents {
                     <div class="footer-col footer-social">
                       <h4>Siga-nos</h4>
                       <div class="footer-social-icons">
-                        <a href="https://instagram.com/fisioclinica" target="_blank" rel="noopener" aria-label="Instagram">
+                        <a href="https://www.instagram.com/fisio.jundiai/" target="_blank" rel="noopener" aria-label="Instagram">
                           <i class="fab fa-instagram"></i>
                         </a>
                         <a href="#" class="js-open-whatsapp-modal" aria-label="WhatsApp">

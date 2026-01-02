@@ -130,8 +130,106 @@
         </div>
     </section>
 
+    <!-- Seção Avaliação Fisioterapêutica -->
+<section id="avaliacao" class="avaliacao-section">
+    <div class="container">
+        <div class="avaliacao-wrapper">
 
-<section id="pilates" class="pilates-section section" style="background-image: url('../imagens/Varzea/fachada.webp'); background-size: cover; background-position: center; background-attachment: fixed;">
+            <!-- COLUNA ESQUERDA: cards empilhados (top) + slideshow desktop (embaixo) -->
+            <div class="avaliacao-image fade-in">
+                <div class="avaliacao-cards-stack">
+                    <div class="avaliacao-mini-card card-1">
+                        <i class="fas fa-user-md"></i>
+                        <span>Especialistas</span>
+                    </div>
+                    <div class="avaliacao-mini-card card-2">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span>Anamnese</span>
+                    </div>
+                    <div class="avaliacao-mini-card card-3">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Resultado</span>
+                    </div>
+                </div>
+
+                <!-- Slideshow (desktop) abaixo dos mini-cards -->
+                <div class="avaliacao-slideshow slideshow-wrapper" id="avaliacao-slideshow-desktop">
+                    <div class="slideshow-slides" id="avaliacao-slideshow">
+                        <div class="slideshow-item active"><img src="/imagens/global/atendimento-avaliacao.webp" alt="Avaliação atendimento"></div>
+                        <div class="slideshow-item"><img src="/imagens/global/eletro-avaliacao.webp" alt="Avaliação com equipamento técnológico"></div>
+                        <div class="slideshow-item"><img src="/imagens/global/equipamento-avaliacao.webp" alt="Avaliação com técnologia"></div>
+                    </div>
+                    <div class="slideshow-dots" id="avaliacao-dots"></div>
+                </div>
+            </div>
+
+            <!-- COLUNA DIREITA: conteúdo/alinhado ao topo -->
+            <div class="avaliacao-content fade-in">
+                <div class="section-label">Como Funciona a avaliação:</div>
+                <h2>Avaliação Fisioterapêutica Detalhada e Precisa</h2>
+
+                <p class="avaliacao-intro">
+                    Na nossa clínica, acreditamos que um bom tratamento começa com uma avaliação de excelência. Por isso, realizamos uma <b>anamnese fisioterapêutica completa</b>, detalhada e minuciosa, conduzida por profissionais especializados.<br><br>
+
+                    Além disso, utilizamos recursos<b> tecnológicos avançados</b> como a <b>ultrassom termográfico</b> para tornar a análise ainda mais precisa e direcionada às necessidades de cada paciente.
+                </p>
+
+                <div class="avaliacao-processo">
+                    <div class="avaliacao-item">
+                        <div class="avaliacao-item-icon">
+                            <i class="fas fa-stethoscope"></i>
+                        </div>
+                        <div class="avaliacao-item-text">
+                            <h4>Anamnese Completa</h4>
+                            <p>Avaliação cuidadosa da patologia, histórico clínico, limitações funcionais, queixas de dor e hábitos de movimento do paciente.</p>
+                        </div>
+                    </div>
+
+                    <div class="avaliacao-item">
+                        <div class="avaliacao-item-icon">
+                            <i class="fas fa-search"></i>
+                        </div>
+                        <div class="avaliacao-item-text">
+                            <h4>Identificação da Origem</h4>
+                            <p>Buscamos identificar a origem do problema, não apenas os sintomas, através de testes clínicos específicos.</p>
+                        </div>
+                    </div>
+
+                    <div class="avaliacao-item">
+                        <div class="avaliacao-item-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <div class="avaliacao-item-text">
+                            <h4>Plano Personalizado</h4>
+                            <p>Traçamos um plano de tratamento totalmente alinhado com seus objetivos: alívio da dor, reabilitação ou retorno ao esporte.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slot MOBILE: slideshow aparecerá aqui em telas pequenas (entre processo e destaque) -->
+                <div class="avaliacao-slideshow-mobile-slot">
+                    <div class="slideshow-wrapper" id="avaliacao-slideshow-mobile">
+                        <div class="slideshow-slides">
+                            <div class="slideshow-item active"><img src="/imagens/itatiba/avaliacao-1.webp" alt="Avaliação 1"></div>
+                            <div class="slideshow-item"><img src="/imagens/itatiba/avaliacao-2.webp" alt="Avaliação 2"></div>
+                            <div class="slideshow-item"><img src="/imagens/itatiba/avaliacao-3.webp" alt="Avaliação 3"></div>
+                        </div>
+                        <div class="slideshow-dots" id="avaliacao-dots-mobile"></div>
+                    </div>
+                </div>
+
+                <div class="avaliacao-destaque">
+                    <i class="fas fa-award"></i>
+                    <p><strong>Resultado:</strong> Processo de reabilitação mais eficiente, seguro e com resultados duradouros.</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section id="pilates" class="pilates-section section">
     <div class="pilates-overlay"></div>
     <div class="container">
         <div class="pilates-grid fade-in">
@@ -191,105 +289,6 @@
 
     </div>
 </section>
-
-<!-- Seção Avaliação Fisioterapêutica -->
-<section id="avaliacao" class="avaliacao-section">
-    <div class="container">
-        <div class="avaliacao-wrapper">
-
-            <!-- COLUNA ESQUERDA: cards empilhados (top) + slideshow desktop (embaixo) -->
-            <div class="avaliacao-image fade-in">
-                <div class="avaliacao-cards-stack">
-                    <div class="avaliacao-mini-card card-1">
-                        <i class="fas fa-user-md"></i>
-                        <span>Especialistas</span>
-                    </div>
-                    <div class="avaliacao-mini-card card-2">
-                        <i class="fas fa-clipboard-list"></i>
-                        <span>Anamnese</span>
-                    </div>
-                    <div class="avaliacao-mini-card card-3">
-                        <i class="fas fa-check-circle"></i>
-                        <span>Resultado</span>
-                    </div>
-                </div>
-
-                <!-- Slideshow (desktop) abaixo dos mini-cards -->
-                <div class="avaliacao-slideshow slideshow-wrapper" id="avaliacao-slideshow-desktop">
-                    <div class="slideshow-slides" id="avaliacao-slideshow">
-                        <div class="slideshow-item active"><img src="../imagens/global/atendimento-avaliacao.webp" alt="Avaliação atendimento"></div>
-                        <div class="slideshow-item"><img src="../imagens/global/eletro-avaliacao.webp" alt="Avaliação com equipamento técnológico"></div>
-                        <div class="slideshow-item"><img src="../imagens/global/equipamento-avaliacao.webp" alt="Avaliação com técnologia"></div>
-                    </div>
-                    <div class="slideshow-dots" id="avaliacao-dots"></div>
-                </div>
-            </div>
-
-            <!-- COLUNA DIREITA: conteúdo/alinhado ao topo -->
-            <div class="avaliacao-content fade-in">
-                <div class="section-label">Como Funciona a avaliação:</div>
-                <h2>Avaliação Fisioterapêutica Detalhada e Precisa</h2>
-
-                <p class="avaliacao-intro">
-                    Na nossa clínica, acreditamos que um bom tratamento começa com uma avaliação de excelência. Por isso, realizamos uma <b>anamnese fisioterapêutica completa</b>, detalhada e minuciosa, conduzida por profissionais especializados.<br><br>
-
-                    Além disso, utilizamos recursos<b> tecnológicos avançados</b> como a <b>ultrassom termográfico</b> para tornar a análise ainda mais precisa e direcionada às necessidades de cada paciente.
-                </p>
-
-                <div class="avaliacao-processo">
-                    <div class="avaliacao-item">
-                        <div class="avaliacao-item-icon">
-                            <i class="fas fa-stethoscope"></i>
-                        </div>
-                        <div class="avaliacao-item-text">
-                            <h4>Anamnese Completa</h4>
-                            <p>Avaliação cuidadosa da patologia, histórico clínico, limitações funcionais, queixas de dor e hábitos de movimento do paciente.</p>
-                        </div>
-                    </div>
-
-                    <div class="avaliacao-item">
-                        <div class="avaliacao-item-icon">
-                            <i class="fas fa-search"></i>
-                        </div>
-                        <div class="avaliacao-item-text">
-                            <h4>Identificação da Origem</h4>
-                            <p>Buscamos identificar a origem do problema, não apenas os sintomas, através de testes clínicos específicos.</p>
-                        </div>
-                    </div>
-
-                    <div class="avaliacao-item">
-                        <div class="avaliacao-item-icon">
-                            <i class="fas fa-bullseye"></i>
-                        </div>
-                        <div class="avaliacao-item-text">
-                            <h4>Plano Personalizado</h4>
-                            <p>Traçamos um plano de tratamento totalmente alinhado com seus objetivos: alívio da dor, reabilitação ou retorno ao esporte.</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slot MOBILE: slideshow aparecerá aqui em telas pequenas (entre processo e destaque) -->
-                <div class="avaliacao-slideshow-mobile-slot">
-                    <div class="slideshow-wrapper" id="avaliacao-slideshow-mobile">
-                        <div class="slideshow-slides">
-                            <div class="slideshow-item active"><img src="../imagens/itatiba/avaliacao-1.webp" alt="Avaliação 1"></div>
-                            <div class="slideshow-item"><img src="../imagens/itatiba/avaliacao-2.webp" alt="Avaliação 2"></div>
-                            <div class="slideshow-item"><img src="../imagens/itatiba/avaliacao-3.webp" alt="Avaliação 3"></div>
-                        </div>
-                        <div class="slideshow-dots" id="avaliacao-dots-mobile"></div>
-                    </div>
-                </div>
-
-                <div class="avaliacao-destaque">
-                    <i class="fas fa-award"></i>
-                    <p><strong>Resultado:</strong> Processo de reabilitação mais eficiente, seguro e com resultados duradouros.</p>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
 
 <!-- Seção Tratamentos Oferecidos -->
 <section id="tratamentos" class="tratamentos-oferecidos-section">
