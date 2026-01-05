@@ -526,6 +526,7 @@
    RESPONSIVIDADE
    ================================ */
 @media (max-width: 768px) {
+
   .hero {
     min-height: 40vh;
   }
@@ -599,6 +600,7 @@
     right: var(--space-md);
     font-size: var(--text-xs);
     padding: var(--space-xs) var(--space-md);
+    display: none;
   }
 
   .agendamento-section {
