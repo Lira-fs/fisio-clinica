@@ -16,8 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     media="print"
     onload="this.media='all'"/> 
-    <link rel="stylesheet" href="style/global.css" />
-    <link rel="stylesheet" href="style/index.css" />
+    <link rel="stylesheet" href="/style/global.css" />
+    <link rel="stylesheet" href="/style/index.css" />
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-TXF3H7BHJ7"></script>
@@ -85,7 +85,7 @@
                 <p> Transformando vidas com profissionais altamente qualificados, tecnologia de ponta e resultados comprovados.</p>
                 
                 <div class="hero-buttons">
-                    <a href="tratamentos.html" class="btn btn-primary btn-lg">
+                    <a href="/tratamentos" class="btn btn-primary btn-lg">
                         <i class="fas fa-star"></i>
                         Conheça Nossos Tratamentos
                     </a>
@@ -171,7 +171,30 @@
     </div>
 
     <div class="tratamentos-grid">
-      <!-- Card 1: Fisioterapia Esportiva -->
+
+      <!-- Card 1: Reabilitação Ortopédica -->
+      <div class="tratamento-card">
+        <div class="tratamento-header" onclick="toggleAccordion(this)">
+          <div class="tratamento-icon">
+            <i class="fas fa-hand-holding-heart"></i>
+          </div>
+          <div class="tratamento-title">
+            <h3>Reabilitação Ortopédica</h3>
+            <p>Recuperação completa de lesões músculo-esqueléticas</p>
+          </div>
+          <i class="fas fa-chevron-down accordion-arrow"></i>
+        </div>
+        <div class="tratamento-content">
+          <p>
+            <strong>Tratamento especializado:</strong> Nossa reabilitação ortopédica utiliza 
+            técnicas avançadas e abordagem multidisciplinar para tratar lesões músculo-esqueléticas, 
+            condições pós-cirúrgicas e disfunções do movimento. Trabalhamos em conjunto com 
+            médicos ortopedistas para garantir o melhor protocolo de recuperação.
+          </p>
+        </div>
+      </div>
+
+      <!-- Card 2: Fisioterapia Esportiva -->
       <div class="tratamento-card">
         <div class="tratamento-header" onclick="toggleAccordion(this)">
           <div class="tratamento-icon">
@@ -195,7 +218,7 @@
         </div>
       </div>
 
-      <!-- Card 2: Recovery -->
+      <!-- Card 3: Recovery -->
       <div class="tratamento-card">
         <div class="tratamento-header" onclick="toggleAccordion(this)">
           <div class="tratamento-icon">
@@ -217,28 +240,6 @@
 
             <i>* Ideal para você que deseja recuperar a musculatura, reduzir dores e melhorar seu bem-estar com mais eficiência.</i>
 
-          </p>
-        </div>
-      </div>
-
-      <!-- Card 3: Reabilitação Ortopédica -->
-      <div class="tratamento-card">
-        <div class="tratamento-header" onclick="toggleAccordion(this)">
-          <div class="tratamento-icon">
-            <i class="fas fa-hand-holding-heart"></i>
-          </div>
-          <div class="tratamento-title">
-            <h3>Reabilitação Ortopédica</h3>
-            <p>Recuperação completa de lesões músculo-esqueléticas</p>
-          </div>
-          <i class="fas fa-chevron-down accordion-arrow"></i>
-        </div>
-        <div class="tratamento-content">
-          <p>
-            <strong>Tratamento especializado:</strong> Nossa reabilitação ortopédica utiliza 
-            técnicas avançadas e abordagem multidisciplinar para tratar lesões músculo-esqueléticas, 
-            condições pós-cirúrgicas e disfunções do movimento. Trabalhamos em conjunto com 
-            médicos ortopedistas para garantir o melhor protocolo de recuperação.
           </p>
         </div>
       </div>
