@@ -1,2 +1,3 @@
-/index.html /
-/:splat.html /:splat 301
+/*          /:splat.html          200
+
+/*/*        /:splat/:splat.html   200
